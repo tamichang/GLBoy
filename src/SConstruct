@@ -1,0 +1,1 @@
+Program("GLBoy", ["glboy.cpp", "Object.cpp", "Color.cpp", "Shader.cpp", "SimpleLightShader.cpp", "SimpleTextureShader.cpp", "texture.cpp", "DefaultColorShader.cpp"], CPPPATH='/usr/local/include')
