@@ -59,7 +59,7 @@ namespace glboy {
 		//	GLfloat strokeWidth;
 		//	void switchStrokeColor(bool onoff);
 		
-		static GLBoy* instance;
+		static GLBoy& instance();
 		
 		//	GLenum currentMode;
 		//	std::vector<glm::vec3> vertices;

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		7363126019F1476900DE4D57 /* SConstruct */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SConstruct; sourceTree = "<group>"; };
 		73D7B5E8198C81BE001B5DB6 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		73D7B5E9198C81BE001B5DB6 /* Color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Color.cpp; sourceTree = "<group>"; };
 		73D7B5EB198C81BE001B5DB6 /* DefaultColorShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DefaultColorShader.cpp; sourceTree = "<group>"; };
@@ -23,44 +22,6 @@
 		73D7B5FD198C81BE001B5DB6 /* SimpleTextureShader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimpleTextureShader.hpp; sourceTree = "<group>"; };
 		73D7B5FE198C81BE001B5DB6 /* texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = texture.cpp; sourceTree = "<group>"; };
 		73D7B600198C81C7001B5DB6 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
-		73D7B602198C8518001B5DB6 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		73D7B603198C8518001B5DB6 /* CMakeCache.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeCache.txt; sourceTree = "<group>"; };
-		73D7B606198C8518001B5DB6 /* CMakeCCompiler.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeCCompiler.cmake; sourceTree = "<group>"; };
-		73D7B607198C8518001B5DB6 /* CMakeCXXCompiler.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeCXXCompiler.cmake; sourceTree = "<group>"; };
-		73D7B608198C8518001B5DB6 /* CMakeDetermineCompilerABI_C.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = CMakeDetermineCompilerABI_C.bin; sourceTree = "<group>"; };
-		73D7B609198C8518001B5DB6 /* CMakeDetermineCompilerABI_CXX.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = CMakeDetermineCompilerABI_CXX.bin; sourceTree = "<group>"; };
-		73D7B60A198C8518001B5DB6 /* CMakeSystem.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeSystem.cmake; sourceTree = "<group>"; };
-		73D7B60C198C8518001B5DB6 /* a.out */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = a.out; sourceTree = "<group>"; };
-		73D7B60D198C8518001B5DB6 /* CMakeCCompilerId.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMakeCCompilerId.c; sourceTree = "<group>"; };
-		73D7B60F198C8518001B5DB6 /* a.out */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = a.out; sourceTree = "<group>"; };
-		73D7B610198C8518001B5DB6 /* CMakeCXXCompilerId.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CMakeCXXCompilerId.cpp; sourceTree = "<group>"; };
-		73D7B611198C8518001B5DB6 /* cmake.check_cache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake.check_cache; sourceTree = "<group>"; };
-		73D7B612198C8518001B5DB6 /* CMakeDirectoryInformation.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeDirectoryInformation.cmake; sourceTree = "<group>"; };
-		73D7B613198C8518001B5DB6 /* CMakeOutput.log */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeOutput.log; sourceTree = "<group>"; };
-		73D7B616198C8518001B5DB6 /* build.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = build.make; sourceTree = "<group>"; };
-		73D7B617198C8518001B5DB6 /* cmake_clean.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_clean.cmake; sourceTree = "<group>"; };
-		73D7B618198C8518001B5DB6 /* cmake_clean_target.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_clean_target.cmake; sourceTree = "<group>"; };
-		73D7B619198C8518001B5DB6 /* Color.cpp.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = Color.cpp.o; sourceTree = "<group>"; };
-		73D7B61A198C8518001B5DB6 /* CXX.includecache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CXX.includecache; sourceTree = "<group>"; };
-		73D7B61B198C8518001B5DB6 /* DefaultColorShader.cpp.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = DefaultColorShader.cpp.o; sourceTree = "<group>"; };
-		73D7B61C198C8518001B5DB6 /* depend.internal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = depend.internal; sourceTree = "<group>"; };
-		73D7B61D198C8518001B5DB6 /* depend.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = depend.make; sourceTree = "<group>"; };
-		73D7B61E198C8518001B5DB6 /* DependInfo.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DependInfo.cmake; sourceTree = "<group>"; };
-		73D7B61F198C8518001B5DB6 /* flags.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flags.make; sourceTree = "<group>"; };
-		73D7B620198C8518001B5DB6 /* glboy.cpp.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = glboy.cpp.o; sourceTree = "<group>"; };
-		73D7B621198C8518001B5DB6 /* link.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = link.txt; sourceTree = "<group>"; };
-		73D7B622198C8518001B5DB6 /* Object.cpp.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = Object.cpp.o; sourceTree = "<group>"; };
-		73D7B623198C8518001B5DB6 /* progress.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = progress.make; sourceTree = "<group>"; };
-		73D7B624198C8518001B5DB6 /* Shader.cpp.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = Shader.cpp.o; sourceTree = "<group>"; };
-		73D7B625198C8518001B5DB6 /* SimpleLightShader.cpp.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = SimpleLightShader.cpp.o; sourceTree = "<group>"; };
-		73D7B626198C8518001B5DB6 /* SimpleTextureShader.cpp.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = SimpleTextureShader.cpp.o; sourceTree = "<group>"; };
-		73D7B627198C8518001B5DB6 /* texture.cpp.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = texture.cpp.o; sourceTree = "<group>"; };
-		73D7B628198C8518001B5DB6 /* Makefile.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.cmake; sourceTree = "<group>"; };
-		73D7B629198C8518001B5DB6 /* Makefile2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile2; sourceTree = "<group>"; };
-		73D7B62A198C8518001B5DB6 /* progress.marks */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = progress.marks; sourceTree = "<group>"; };
-		73D7B62B198C8518001B5DB6 /* TargetDirectories.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TargetDirectories.txt; sourceTree = "<group>"; };
-		73D7B62C198C8518001B5DB6 /* install_manifest.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = install_manifest.txt; sourceTree = "<group>"; };
-		73D7B62E198C8518001B5DB6 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		73E9EB8719678207004DB096 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,7 +29,6 @@
 		73D7B5E7198C81BE001B5DB6 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				7363126019F1476900DE4D57 /* SConstruct */,
 				73D7B5E8198C81BE001B5DB6 /* CMakeLists.txt */,
 				73D7B5EE198C81BE001B5DB6 /* glboy.hpp */,
 				73D7B5ED198C81BE001B5DB6 /* glboy.cpp */,
@@ -87,103 +47,9 @@
 			path = src;
 			sourceTree = "<group>";
 		};
-		73D7B601198C8518001B5DB6 /* build */ = {
-			isa = PBXGroup;
-			children = (
-				73D7B602198C8518001B5DB6 /* cmake_install.cmake */,
-				73D7B603198C8518001B5DB6 /* CMakeCache.txt */,
-				73D7B604198C8518001B5DB6 /* CMakeFiles */,
-				73D7B62C198C8518001B5DB6 /* install_manifest.txt */,
-				73D7B62E198C8518001B5DB6 /* Makefile */,
-			);
-			path = build;
-			sourceTree = "<group>";
-		};
-		73D7B604198C8518001B5DB6 /* CMakeFiles */ = {
-			isa = PBXGroup;
-			children = (
-				73D7B605198C8518001B5DB6 /* 3.0.0 */,
-				73D7B611198C8518001B5DB6 /* cmake.check_cache */,
-				73D7B612198C8518001B5DB6 /* CMakeDirectoryInformation.cmake */,
-				73D7B613198C8518001B5DB6 /* CMakeOutput.log */,
-				73D7B614198C8518001B5DB6 /* CMakeTmp */,
-				73D7B615198C8518001B5DB6 /* glboy.dir */,
-				73D7B628198C8518001B5DB6 /* Makefile.cmake */,
-				73D7B629198C8518001B5DB6 /* Makefile2 */,
-				73D7B62A198C8518001B5DB6 /* progress.marks */,
-				73D7B62B198C8518001B5DB6 /* TargetDirectories.txt */,
-			);
-			path = CMakeFiles;
-			sourceTree = "<group>";
-		};
-		73D7B605198C8518001B5DB6 /* 3.0.0 */ = {
-			isa = PBXGroup;
-			children = (
-				73D7B606198C8518001B5DB6 /* CMakeCCompiler.cmake */,
-				73D7B607198C8518001B5DB6 /* CMakeCXXCompiler.cmake */,
-				73D7B608198C8518001B5DB6 /* CMakeDetermineCompilerABI_C.bin */,
-				73D7B609198C8518001B5DB6 /* CMakeDetermineCompilerABI_CXX.bin */,
-				73D7B60A198C8518001B5DB6 /* CMakeSystem.cmake */,
-				73D7B60B198C8518001B5DB6 /* CompilerIdC */,
-				73D7B60E198C8518001B5DB6 /* CompilerIdCXX */,
-			);
-			path = 3.0.0;
-			sourceTree = "<group>";
-		};
-		73D7B60B198C8518001B5DB6 /* CompilerIdC */ = {
-			isa = PBXGroup;
-			children = (
-				73D7B60C198C8518001B5DB6 /* a.out */,
-				73D7B60D198C8518001B5DB6 /* CMakeCCompilerId.c */,
-			);
-			path = CompilerIdC;
-			sourceTree = "<group>";
-		};
-		73D7B60E198C8518001B5DB6 /* CompilerIdCXX */ = {
-			isa = PBXGroup;
-			children = (
-				73D7B60F198C8518001B5DB6 /* a.out */,
-				73D7B610198C8518001B5DB6 /* CMakeCXXCompilerId.cpp */,
-			);
-			path = CompilerIdCXX;
-			sourceTree = "<group>";
-		};
-		73D7B614198C8518001B5DB6 /* CMakeTmp */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CMakeTmp;
-			sourceTree = "<group>";
-		};
-		73D7B615198C8518001B5DB6 /* glboy.dir */ = {
-			isa = PBXGroup;
-			children = (
-				73D7B616198C8518001B5DB6 /* build.make */,
-				73D7B617198C8518001B5DB6 /* cmake_clean.cmake */,
-				73D7B618198C8518001B5DB6 /* cmake_clean_target.cmake */,
-				73D7B619198C8518001B5DB6 /* Color.cpp.o */,
-				73D7B61A198C8518001B5DB6 /* CXX.includecache */,
-				73D7B61B198C8518001B5DB6 /* DefaultColorShader.cpp.o */,
-				73D7B61C198C8518001B5DB6 /* depend.internal */,
-				73D7B61D198C8518001B5DB6 /* depend.make */,
-				73D7B61E198C8518001B5DB6 /* DependInfo.cmake */,
-				73D7B61F198C8518001B5DB6 /* flags.make */,
-				73D7B620198C8518001B5DB6 /* glboy.cpp.o */,
-				73D7B621198C8518001B5DB6 /* link.txt */,
-				73D7B622198C8518001B5DB6 /* Object.cpp.o */,
-				73D7B623198C8518001B5DB6 /* progress.make */,
-				73D7B624198C8518001B5DB6 /* Shader.cpp.o */,
-				73D7B625198C8518001B5DB6 /* SimpleLightShader.cpp.o */,
-				73D7B626198C8518001B5DB6 /* SimpleTextureShader.cpp.o */,
-				73D7B627198C8518001B5DB6 /* texture.cpp.o */,
-			);
-			path = glboy.dir;
-			sourceTree = "<group>";
-		};
 		73E9EB7619678161004DB096 = {
 			isa = PBXGroup;
 			children = (
-				73D7B601198C8518001B5DB6 /* build */,
 				73D7B600198C81C7001B5DB6 /* TODO */,
 				73D7B5E7198C81BE001B5DB6 /* src */,
 				73E9EB8719678207004DB096 /* README.markdown */,

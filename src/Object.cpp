@@ -27,7 +27,7 @@ namespace glboy {
 	//model_matrix(glm::mat4(1.0f)),
 	need_reculc_model(true)
 	{
-		shader = GLBoy::instance->default_color_shader;
+		shader = GLBoy::instance().default_color_shader;
 	}
 	
 	
@@ -87,7 +87,7 @@ namespace glboy {
 	
 	void Object::texture(std::string image_path)
 	{
-		std::map<std::string, GLuint> texture_map = GLBoy::instance->texture_map;
+		std::map<std::string, GLuint> texture_map = GLBoy::instance().texture_map;
 		GLuint texture_id;
 		
 		map<string, GLuint>::iterator itr = texture_map.find(image_path);
@@ -105,7 +105,7 @@ namespace glboy {
 		
 		use_texture = true;
 		this->texture_id = texture_id;
-		shader = GLBoy::instance->simple_texture_shader;
+		shader = GLBoy::instance().simple_texture_shader;
 	}
 	
 	
@@ -113,11 +113,11 @@ namespace glboy {
 	void Object::light(bool on)
 	{
 		if (on) {
-			shader = GLBoy::instance->simple_light_shader;
+			shader = GLBoy::instance().simple_light_shader;
 		} else if (use_texture) {
-			shader = GLBoy::instance->simple_texture_shader;
+			shader = GLBoy::instance().simple_texture_shader;
 		} else {
-			shader = GLBoy::instance->default_color_shader;
+			shader = GLBoy::instance().default_color_shader;
 		}
 	}
 	
@@ -384,7 +384,7 @@ namespace glboy {
 	{
 		if (true)// (need_reculc_model)
 		{
-			GLBoy& boy = *GLBoy::instance;
+			GLBoy& boy = GLBoy::instance();
 			mvp = boy.projection_matrix * boy.view_matrix * model_matrix;
 			need_reculc_model = false;
 		}

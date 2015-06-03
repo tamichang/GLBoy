@@ -17,7 +17,7 @@ using std::string;
 
 namespace glboy {
 	
-	GLBoy* GLBoy::instance = NULL;
+	//GLBoy* GLBoy::instance = NULL;
 	
 	
 	GLBoy::GLBoy() : //hsva_upper_limit({360.0f,100.0f,100.0f,100.0f}), fill_rgba({0.86f,0.74f,0.91f,1.0f}),
@@ -35,7 +35,7 @@ namespace glboy {
 	LightableDistance(1000.0f),
 	LightColor(glm::vec3(0.45, 0.56, 0.85))
 	{
-		GLBoy::instance = this;
+		//GLBoy::instance = this;
 	}
 	
 	//void GLBoy::boot() {
@@ -46,6 +46,10 @@ namespace glboy {
 	//	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	//}
 	
+	GLBoy& GLBoy::instance() {
+		static GLBoy instance;
+		return instance;
+	}
 
 	void GLBoy::prepare()
 	{

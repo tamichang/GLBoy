@@ -68,7 +68,7 @@ namespace glboy {
 	
 	void SimpleTextureShader::fire(Object* obj)
 	{
-		GLBoy& boy = *GLBoy::instance;
+		GLBoy& boy = GLBoy::instance();
 		
 		glUseProgram(shader_id);
 		glDisable(GL_BLEND);

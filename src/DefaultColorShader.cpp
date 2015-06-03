@@ -57,7 +57,7 @@ namespace glboy {
 	
 	void DefaultColorShader::fire(Object* obj)
 	{
-		GLBoy& boy = *GLBoy::instance;
+		GLBoy& boy = GLBoy::instance();
 		
 		glUseProgram(shader_id);
 		glEnable(GL_BLEND);
