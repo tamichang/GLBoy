@@ -9,7 +9,6 @@
 #include <cstdlib>
 #include <math.h>
 
-//using namespace glm;
 using std::vector;
 using std::map;
 using std::string;
@@ -17,41 +16,16 @@ using std::string;
 
 namespace glboy {
 	
-	//GLBoy* GLBoy::instance = NULL;
-	
-	
-	GLBoy::GLBoy() : //hsva_upper_limit({360.0f,100.0f,100.0f,100.0f}), fill_rgba({0.86f,0.74f,0.91f,1.0f}),
+	GLBoy::GLBoy() :
 	background_color(Color::hsv(80,10,98)),
-	//background_color(Color::hsv(80,0,0)),
-	//fill_color(Color::hsv(47,94,99,100)),
-	//line_color(Color::hsv(207,64,100)),
-	//hl(360.0f), sl(100.0f), vl(100.0f), al(100.0f), fillh(1.0f), fills(1.0f), fillv(1.0f), filla(1.0f), strokeH(0.5f), strokeS(0.5f), strokeV(0.5f), strokeA(1.0f),
 	width(800),
-	height(800), //currentMode(GL_TRIANGLES),
+	height(800),
 	camera_x(0.0f),
 	camera_y(0.0f),
 	light_position(glm::vec3(300.0f,300.0f,300.0f)),
 	LightPower(30.0f),
 	LightableDistance(1000.0f),
 	LightColor(glm::vec3(0.45, 0.56, 0.85))
-	{
-		//GLBoy::instance = this;
-	}
-	
-	//void GLBoy::boot() {
-	//	glfwWindowHint(GLFW_SAMPLES, 4);
-	//	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	//	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	//	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-	//	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	//}
-	
-	GLBoy& GLBoy::instance() {
-		static GLBoy instance;
-		return instance;
-	}
-
-	void GLBoy::prepare()
 	{
 		// Enable depth test
 		glEnable(GL_DEPTH_TEST);
@@ -64,11 +38,6 @@ namespace glboy {
 		// Cull triangles which normal is not towards the camera
 		//glEnable(GL_CULL_FACE);
 		
-		glGenVertexArrays(1, &VertexArrayID);
-		glBindVertexArray(VertexArrayID);
-		
-		//	loadDefaultColorShader();
-		//	loadSimpleTextureShader();
 		default_color_shader = new DefaultColorShader();
 		simple_texture_shader = new SimpleTextureShader();
 		simple_light_shader = new SimpleLightShader();
@@ -88,6 +57,24 @@ namespace glboy {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		
 		culc_VP();
+	}
+	
+	//void GLBoy::boot() {
+	//	glfwWindowHint(GLFW_SAMPLES, 4);
+	//	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	//	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	//	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+	//	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	//}
+	
+	GLBoy& GLBoy::instance() {
+		static GLBoy instance;
+		return instance;
+	}
+
+	void GLBoy::prepare()
+	{
+		
 	}
 	
 	

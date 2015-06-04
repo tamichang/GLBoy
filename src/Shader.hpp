@@ -16,6 +16,8 @@ namespace glboy {
 	
 	class Shader {
 	public:
+		typedef std::shared_ptr<Shader> ptr;
+		
 		GLuint shader_id;
 		
 		Shader();

@@ -25,8 +25,10 @@ namespace glboy {
 	primitive_mode(GL_TRIANGLES),
 	model_matrix(glm::mat4(1.0f)),
 	//model_matrix(glm::mat4(1.0f)),
-	need_reculc_model(true)
+	need_reculc_mvp(true)
 	{
+		glGenVertexArrays(1, &VertexArrayID);
+		glBindVertexArray(VertexArrayID);
 		shader = GLBoy::instance().default_color_shader;
 	}
 	
@@ -346,14 +348,6 @@ namespace glboy {
 	//	return (GLfloat) ::rand()/RAND_MAX;
 	//}
 	
-	
-	Color* Object::get_fill_color()
-	{
-		return fill_color;
-	}
-	
-	
-	
 	void Object::set_fill_color(Color* color)
 	{
 		delete fill_color;
@@ -370,7 +364,7 @@ namespace glboy {
 	{
 		model_matrix = glm::translate(model_matrix, glm::vec3(x,y,z));
 		//std::cout << glm::to_string(translate_matrix) << std::endl;
-		need_reculc_model = true;
+		need_reculc_mvp = true;
 		//	for (int i=0; i < vertices.size(); i++) {
 		//		vertices[i].x += x;
 		//		vertices[i].y += y;
@@ -382,11 +376,11 @@ namespace glboy {
 	
 	glm::mat4 Object::culc_mvp()
 	{
-		if (true)// (need_reculc_model)
+		if (true)// (need_reculc_mvp)
 		{
 			GLBoy& boy = GLBoy::instance();
 			mvp = boy.projection_matrix * boy.view_matrix * model_matrix;
-			need_reculc_model = false;
+			need_reculc_mvp = false;
 		}
 		return mvp;
 	}
