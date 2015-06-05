@@ -19,7 +19,28 @@ namespace glboy {
 		hsv_into_rgb();
 	}
 	
+	ptr Color::hsv(int h, int s, int v)
+	{
+		return ptr(new Color(h, s, v, 100));
+	}
 	
+
+	ptr Color::hsv(int h, int s, int v, int a)
+	{
+		return ptr(new Color(h, s, v, a));
+	}
+	
+	void Color::fill(int h, int s, int v)
+	{
+		this->h = h; this->s = s; this->v = v; this->a = 100;
+		hsv_into_rgb();
+	}
+	
+	void Color::fill(int h, int s, int v, int a)
+	{
+		this->h = h; this->s = s; this->v = v; this->a = a;
+		hsv_into_rgb();
+	}
 	
 	void Color::hsv_into_rgb()
 	{
@@ -67,18 +88,6 @@ namespace glboy {
 	
 	
 	
-	Color* Color::hsv(int h, int s, int v)
-	{
-		return new Color(h, s, v, 100);
-	}
-	
-	
-	
-	
-	Color* Color::hsv(int h, int s, int v, int a)
-	{
-		return new Color(h, s, v, a);
-	}
 	
 	
 }	//glboy

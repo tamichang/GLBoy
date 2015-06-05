@@ -11,13 +11,13 @@
 
 namespace glboy {
 	
-	
 	const std::string SimpleLightShader::vertex_shader =
 	"#version 330 core  "
 	// Input vertex data, different for all executions of this shader.
 	"layout(location = 0) in vec3 vertexPosition_modelspace;  "
 	"layout(location = 1) in vec4 vertexColor;  "
-	"layout(location = 2) in vec3 vertexNormal_modelspace;  "
+	"layout(location = 2) in vec2 vertexUV;	"
+	"layout(location = 3) in vec3 vertexNormal_modelspace;  "
 	// Output data ; will be interpolated for each fragment.
 	"out vec3 fragmentColor;  "
 	"out vec3 Position_worldspace;  "
@@ -116,7 +116,6 @@ namespace glboy {
 	
 	SimpleLightShader::SimpleLightShader()
 	{
-		//shader_id = LoadShaders( "SimpleLightVertexShader.vert", "SimpleLightFragmentShader.frag" );
 		shader_id = LoadShaders(vertex_shader, fragment_shader);
 		light_id = glGetUniformLocation(shader_id, "LightPosition_worldspace");
 		mvp_id = glGetUniformLocation(shader_id, "MVP");
@@ -130,49 +129,23 @@ namespace glboy {
 	
 	
 	
-	void SimpleLightShader::fire(Object* obj)
+	void SimpleLightShader::use_program(Object::ptr obj)
 	{
-		
 		GLBoy& boy = GLBoy::instance();
 		
 		glUseProgram(shader_id);
 		glDisable(GL_BLEND);
-		//GLuint MatrixID = glGetUniformLocation(shader_id, "MVP");
+		
 		glUniform3fv(light_id, 1, &boy.light_position[0]);
-		//glUniformMatrix4fv(mvp_id, 1, GL_FALSE, &boy->MVP[0][0]);
 		glm::mat4 mvp = obj->culc_mvp();
 		glUniformMatrix4fv(mvp_id, 1, GL_FALSE, &mvp[0][0]);
 		glUniformMatrix4fv(view_id, 1, GL_FALSE, &boy.view_matrix[0][0]);
-		//glUniformMatrix4fv(model_id, 1, GL_FALSE, &boy->Model[0][0]);
 		glUniformMatrix4fv(model_id, 1, GL_FALSE, &obj->model_matrix[0][0]);
+		
 		//std::cout << glm::to_string(boy->Model) << std::endl;
 		glUniform1f(LightPower_id, boy.LightPower);
 		glUniform1f(LightableDistance_id, boy.LightableDistance);
 		glUniform3fv(LightColor_id, 1, &boy.LightColor[0]);
-		
-		glEnableVertexAttribArray(0);
-		glBindBuffer(GL_ARRAY_BUFFER, boy.vertexbuffer);
-		glBufferData(GL_ARRAY_BUFFER, obj->vertices.size() * sizeof(glm::vec3), &obj->vertices[0], GL_STATIC_DRAW);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
-		
-		glEnableVertexAttribArray(1);
-		glBindBuffer(GL_ARRAY_BUFFER, boy.colorbuffer);
-		glBufferData(GL_ARRAY_BUFFER, obj->vertex_colors.size() * sizeof(glm::vec4), &obj->vertex_colors[0], GL_STATIC_DRAW);
-		glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, (void*)0);
-		
-		glEnableVertexAttribArray(2);
-		glBindBuffer(GL_ARRAY_BUFFER, boy.normalbuffer);
-		glBufferData(GL_ARRAY_BUFFER, obj->normals.size() * sizeof(glm::vec3), &obj->normals[0], GL_STATIC_DRAW);
-		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
-		
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, boy.elementbuffer);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, obj->indices.size() * sizeof(unsigned short), &obj->indices[0] , GL_STATIC_DRAW);
-		
-		glDrawElements(obj->primitive_mode, obj->indices.size(), GL_UNSIGNED_SHORT, (void*)0);
-		
-		glDisableVertexAttribArray(0);
-		glDisableVertexAttribArray(1);
-		glDisableVertexAttribArray(2);
 	}
 	
 	
@@ -181,7 +154,6 @@ namespace glboy {
 	{
 		std::cout << "SimpleLightShader destructor" << std::endl;
 		glDeleteProgram(shader_id);
-		//glDeleteTextures(1, &samplerId);
 	}
 	
 }	//glboy

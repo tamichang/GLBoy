@@ -49,7 +49,7 @@ namespace glboy {
 		std::shared_ptr<Shader> simple_texture_shader;
 		std::shared_ptr<Shader> simple_light_shader;
 		
-		void culc_VP();
+		void culc_view_matrix();
 		
 		GLfloat camera_x, camera_y;
 		
@@ -67,12 +67,6 @@ namespace glboy {
 		GLBoy();
 		virtual ~GLBoy();
 		
-		//	virtual void boot();
-//		virtual void prepare();
-//		virtual void setup();
-//		virtual void draw();
-//		virtual void quit();
-		
 		void clear_background();
 		
 		void camera_xy(GLfloat x, GLfloat y);
@@ -82,11 +76,10 @@ namespace glboy {
 	
 	
 	class Object {
-	public:
-		
-		typedef std::unique_ptr<Object> ptr;
-		
 		Color::ptr fill_color;
+		
+	public:
+		typedef std::unique_ptr<Object> ptr;
 				
 		bool need_reculc_mvp;
 		glm::mat4 mvp;
@@ -116,6 +109,7 @@ namespace glboy {
 		std::shared_ptr<Shader> shader;
 		
 		void draw();
+		void setup();
 		
 		void vertex(GLfloat x, GLfloat y, GLfloat z);
 		void vertex(GLfloat x, GLfloat y, GLfloat z, GLfloat u, GLfloat v);
@@ -130,6 +124,8 @@ namespace glboy {
 	
 		void translate(GLfloat x, GLfloat y, GLfloat z);
 		
+		void fill(int h, int s, int v);
+		void fill(int h, int s, int v, int a);
 	};
 	
 	

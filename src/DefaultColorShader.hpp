@@ -1,11 +1,8 @@
-
-#ifndef __GLBoy__DefaultColorShader__
-#define __GLBoy__DefaultColorShader__
+#ifndef _GLBoy_DefaultColorShader_
+#define _GLBoy_DefaultColorShader_
 
 #include "Shader.hpp"
-#include <OpenGL/gl3.h>
-//#include <GL/glew.h>
-//#include <GLFW/glfw3.h>
+//#include <OpenGL/gl3.h>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -19,14 +16,14 @@ namespace glboy {
 	class DefaultColorShader : public Shader {
 		GLuint mvp_id;
 		static const std::string vertex_shader, fragment_shader;
-	public:
 		
+	public:
 		DefaultColorShader();
 		~DefaultColorShader();
 		
-		void fire(Object* object);
+		void use_program(std::unique_ptr<Object> object);
 	};
 	
 }	//glboy
 
-#endif /* defined(__GLBoy__defaultColorShader__) */
+#endif

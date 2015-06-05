@@ -1,18 +1,13 @@
-
-#ifndef __GLBoy__SimpleLightShader__
-#define __GLBoy__SimpleLightShader__
-
+#ifndef _GLBoy_SimpleLightShader_
+#define _GLBoy_SimpleLightShader_
 
 #include "Shader.hpp"
+//#include <OpenGL/gl3.h>
 
-#include <OpenGL/gl3.h>
-//#include <GL/glew.h>
-//#include <GLFW/glfw3.h>
 #include <string>
 #include <iostream>
 
 namespace glboy {
-	
 	
 	class Object;
 	
@@ -26,10 +21,9 @@ namespace glboy {
 		SimpleLightShader();
 		~SimpleLightShader();
 		
-		void fire(Object* object);
+		void use_program(std::unique_ptr<Object> object);
 	};
 	
 }	//glboy
 
-
-#endif /* defined(__GLBoy__SimpleLightShader__) */
+#endif
