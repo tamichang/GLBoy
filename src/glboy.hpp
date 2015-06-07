@@ -21,12 +21,12 @@ namespace glboy {
 	
 	class Color
 	{
-		typedef std::unique_ptr<Color> ptr;
-		
 		Color(int h, int s, int v, int a);
 		void hsv_into_rgb();
 		
 	public:
+		typedef std::unique_ptr<Color> ptr;
+		
 		static const int hlimit, slimit, vlimit, alimit;
 		float r, g, b, alpha;
 		int h, s, v, a;
@@ -35,13 +35,15 @@ namespace glboy {
 		static ptr hsv(int h, int s, int v, int a);
 		
 		void fill(int h, int s, int v);
-		void fill(int h, int s, int v, int a)
+		void fill(int h, int s, int v, int a);
 	};
 	
 	
 	class GLBoy {
 	public:
-		static GLBoy& instance();
+		typedef std::shared_ptr<GLBoy> ptr;
+		
+		static ptr instance();
 		
 		std::map<std::string, GLuint> texture_map;
 		
@@ -49,11 +51,13 @@ namespace glboy {
 		std::shared_ptr<Shader> simple_texture_shader;
 		std::shared_ptr<Shader> simple_light_shader;
 		
+		void culc_projection_matrix();
 		void culc_view_matrix();
 		
 		GLfloat camera_x, camera_y;
 		
 		int width, height;
+		void set_width_height(int w, int h);
 		
 		glm::mat4 view_matrix, projection_matrix;	//, MVP; //, View; //, Model;
 		
@@ -65,7 +69,7 @@ namespace glboy {
 		Color::ptr background_color;
 		
 		GLBoy();
-		virtual ~GLBoy();
+		~GLBoy();
 		
 		void clear_background();
 		
@@ -79,7 +83,7 @@ namespace glboy {
 		Color::ptr fill_color;
 		
 	public:
-		typedef std::unique_ptr<Object> ptr;
+		typedef std::shared_ptr<Object> ptr;
 				
 		bool need_reculc_mvp;
 		glm::mat4 mvp;
@@ -116,6 +120,7 @@ namespace glboy {
 		void vertexColor();
 		void normal(GLfloat x, GLfloat y, GLfloat z);
 		
+		static ptr make_shared();
 		Object();
 		virtual ~Object();
 		

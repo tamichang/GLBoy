@@ -73,8 +73,10 @@ namespace glboy {
 	
 	Shader::Shader() {}
 	
-	Shader::~Shader() {}
+	Shader::~Shader() {
+		//std::cout << "destroied Shader" << std::endl;
+	}
 	
-	void Shader::use_program(Object::ptr object) {}
+	void Shader::use_program(Object* object) {}
 	
 }	//glboy

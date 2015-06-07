@@ -20,7 +20,7 @@ namespace glboy {
 		Shader();
 		virtual ~Shader();
 		
-		virtual void use_program(std::unique_ptr<Object> object);
+		virtual void use_program(Object* object);
 	};
 	
 }	//glboy

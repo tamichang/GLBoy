@@ -129,23 +129,23 @@ namespace glboy {
 	
 	
 	
-	void SimpleLightShader::use_program(Object::ptr obj)
+	void SimpleLightShader::use_program(Object* obj)
 	{
-		GLBoy& boy = GLBoy::instance();
+		GLBoy::ptr boy = GLBoy::instance();
 		
 		glUseProgram(shader_id);
 		glDisable(GL_BLEND);
 		
-		glUniform3fv(light_id, 1, &boy.light_position[0]);
+		glUniform3fv(light_id, 1, &boy->light_position[0]);
 		glm::mat4 mvp = obj->culc_mvp();
 		glUniformMatrix4fv(mvp_id, 1, GL_FALSE, &mvp[0][0]);
-		glUniformMatrix4fv(view_id, 1, GL_FALSE, &boy.view_matrix[0][0]);
+		glUniformMatrix4fv(view_id, 1, GL_FALSE, &boy->view_matrix[0][0]);
 		glUniformMatrix4fv(model_id, 1, GL_FALSE, &obj->model_matrix[0][0]);
 		
 		//std::cout << glm::to_string(boy->Model) << std::endl;
-		glUniform1f(LightPower_id, boy.LightPower);
-		glUniform1f(LightableDistance_id, boy.LightableDistance);
-		glUniform3fv(LightColor_id, 1, &boy.LightColor[0]);
+		glUniform1f(LightPower_id, boy->LightPower);
+		glUniform1f(LightableDistance_id, boy->LightableDistance);
+		glUniform3fv(LightColor_id, 1, &boy->LightColor[0]);
 	}
 	
 	

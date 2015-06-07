@@ -19,7 +19,7 @@ namespace glboy {
 	GLBoy::GLBoy() :
 	background_color(Color::hsv(80,10,98)),
 	width(800),
-	height(800),
+	height(640),
 	camera_x(0.0f),
 	camera_y(0.0f),
 	light_position(glm::vec3(300.0f,300.0f,300.0f)),
@@ -27,6 +27,8 @@ namespace glboy {
 	LightableDistance(1000.0f),
 	LightColor(glm::vec3(0.45, 0.56, 0.85))
 	{
+		std::cout << "Init GLBOY" << std::endl;
+		
 		// Enable depth test
 		glEnable(GL_DEPTH_TEST);
 		// Accept fragment if it closer to the camera than the former one
@@ -50,17 +52,27 @@ namespace glboy {
 		glClearColor(background_color->r, background_color->g, background_color->b, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		
+		culc_projection_matrix();
+		culc_view_matrix();
+	}
+	
+	std::shared_ptr<GLBoy> GLBoy::instance() {
+		static std::shared_ptr<GLBoy> instance = std::make_shared<GLBoy>();
+		return instance;
+	}
+	
+	void GLBoy::set_width_height(int w, int h) {
+		width = w;
+		height = h;
+		culc_projection_matrix();
+		culc_view_matrix();
+	}
+	
+	void GLBoy::culc_projection_matrix() {
 		// culc projection matrix
 		float fov = M_PI / 3.0f;
 		float cameraZ = (height/2.0f) / glm::tan(fov/2.0f);
 		projection_matrix = glm::perspective(glm::degrees(fov), (float)width/(float)height, cameraZ/10.0f, cameraZ*10.0f);
-
-		culc_view_matrix();
-	}
-	
-	GLBoy& GLBoy::instance() {
-		static GLBoy instance;
-		return instance;
 	}
 	
 	void GLBoy::culc_view_matrix()
@@ -82,6 +94,7 @@ namespace glboy {
 	
 	GLBoy::~GLBoy()
 	{
+		std::cout << "destroied GLBOY" << std::endl;
 	}
 	
 	

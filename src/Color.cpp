@@ -19,13 +19,13 @@ namespace glboy {
 		hsv_into_rgb();
 	}
 	
-	ptr Color::hsv(int h, int s, int v)
+	Color::ptr Color::hsv(int h, int s, int v)
 	{
 		return ptr(new Color(h, s, v, 100));
 	}
 	
 
-	ptr Color::hsv(int h, int s, int v, int a)
+	Color::ptr Color::hsv(int h, int s, int v, int a)
 	{
 		return ptr(new Color(h, s, v, a));
 	}

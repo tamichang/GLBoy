@@ -25,7 +25,7 @@ namespace glboy {
 	model_matrix(glm::mat4(1.0f)),
 	need_reculc_mvp(true)
 	{
-		shader = GLBoy::instance().default_color_shader;
+		shader = GLBoy::instance()->default_color_shader;
 		
 		glGenVertexArrays(1, &VAO);
 		glBindVertexArray(VAO);
@@ -37,9 +37,13 @@ namespace glboy {
 		glBindVertexArray(0);	// unbind
 	}
 	
+	Object::ptr Object::make_shared() {
+		return ptr(new Object());
+	}
 	
 	Object::~Object()
 	{
+		std::cout << "destroied Object" << std::endl;
 		// Cleanup VAO/VBO
 		glBindVertexArray(VAO);
 		glDeleteBuffers(1, &vertexbuffer);
@@ -86,7 +90,7 @@ namespace glboy {
 	
 	void Object::texture(std::string image_path)
 	{
-		std::map<std::string, GLuint> texture_map = GLBoy::instance().texture_map;
+		std::map<std::string, GLuint> texture_map = GLBoy::instance()->texture_map;
 		GLuint texture_id;
 		
 		map<string, GLuint>::iterator itr = texture_map.find(image_path);
@@ -103,18 +107,18 @@ namespace glboy {
 		
 		use_texture = true;
 		this->texture_id = texture_id;
-		shader = GLBoy::instance().simple_texture_shader;
+		shader = GLBoy::instance()->simple_texture_shader;
 	}
 	
 	
 	void Object::light(bool on)
 	{
 		if (on) {
-			shader = GLBoy::instance().simple_light_shader;
+			shader = GLBoy::instance()->simple_light_shader;
 		} else if (use_texture) {
-			shader = GLBoy::instance().simple_texture_shader;
+			shader = GLBoy::instance()->simple_texture_shader;
 		} else {
-			shader = GLBoy::instance().default_color_shader;
+			shader = GLBoy::instance()->default_color_shader;
 		}
 	}
 	
@@ -123,7 +127,7 @@ namespace glboy {
 	{
 		glBindVertexArray(VAO);
 		
-		shader->use_program(ptr(this));
+		shader->use_program(this);
 		
 		glDrawElements(primitive_mode, indices.size(), GL_UNSIGNED_SHORT, (void*)0);
 	}
@@ -151,7 +155,7 @@ namespace glboy {
 		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
 		
 		glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
-		glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(glm::vec3), normals[0], GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(glm::vec3), &normals[0], GL_STATIC_DRAW);
 		
 		glEnableVertexAttribArray(3);
 		glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
@@ -161,7 +165,7 @@ namespace glboy {
 	}
 	
 	
-	ptr Object::triangle(GLfloat x1, GLfloat y1, GLfloat z1,
+	Object::ptr Object::triangle(GLfloat x1, GLfloat y1, GLfloat z1,
 							 GLfloat x2, GLfloat y2, GLfloat z2,
 							 GLfloat x3, GLfloat y3, GLfloat z3)
 	{
@@ -175,7 +179,7 @@ namespace glboy {
 	
 	
 	
-	ptr Object::box(GLfloat size)
+	Object::ptr Object::box(GLfloat size)
 	{
 		//glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 		ptr object = ptr(new Object());
@@ -275,7 +279,7 @@ namespace glboy {
 	
 	void Object::fill(int h, int s, int v, int a)
 	{
-		fill_color->fill(h, s, v a);
+		fill_color->fill(h, s, v, a);
 		vertex_colors.clear();
 		for (int i=0; i < vertices.size(); i++) {
 			vertexColor();
@@ -296,8 +300,8 @@ namespace glboy {
 	{
 		if (true)// (need_reculc_mvp)
 		{
-			GLBoy& boy = GLBoy::instance();
-			mvp = boy.projection_matrix * boy.view_matrix * model_matrix;
+			GLBoy::ptr boy = GLBoy::instance();
+			mvp = boy->projection_matrix * boy->view_matrix * model_matrix;
 			//need_reculc_mvp = false;
 		}
 		return mvp;

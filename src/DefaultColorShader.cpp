@@ -40,7 +40,7 @@ namespace glboy {
 	}
 	
 		
-	void DefaultColorShader::use_program(Object::ptr obj)
+	void DefaultColorShader::use_program(Object* obj)
 	{
 		glUseProgram(shader_id);
 		glEnable(GL_BLEND);

@@ -23,7 +23,7 @@ namespace glboy {
 		SimpleTextureShader();
 		~SimpleTextureShader();
 		
-		void use_program(std::unique_ptr<Object> object);
+		void use_program(Object* object);
 	};
 	
 }	//glboy

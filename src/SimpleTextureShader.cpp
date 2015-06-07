@@ -43,7 +43,7 @@ namespace glboy {
 	}
 	
 	
-	void SimpleTextureShader::use_program(Object::ptr obj)
+	void SimpleTextureShader::use_program(Object* obj)
 	{
 		glUseProgram(shader_id);
 		glDisable(GL_BLEND);
