@@ -1,0 +1,56 @@
+Plane plane = new Plane();
+
+void setup() {
+  size(600,480,P3D);
+  colorMode(HSB,360,100,100,100);
+  
+  
+}
+
+void draw() {
+  background(0,52,42);
+  translate(width/2, height/2);
+  rotateY(map(mouseX-width/2,-width/2,width/2,-PI,PI));
+  rotateX(map(mouseY-width/2,-width/2,width/2,-PI,PI));
+  
+  plane.tick();
+  plane.draw();
+}
+
+class Plane {
+  int line_count = 10;
+  int point_count = 30;
+  float delta_line_angle = TWO_PI/line_count;
+  int scale = 100;
+  
+  Plane() {
+  }
+  
+  void tick() {}
+  
+  void draw() {
+    float[] p = new float[4];
+    for(int l=0; l<line_count; l++) {
+    for(float x=0; x<=1; x=x+0.01) {
+      float xx = x*scale*cos(delta_line_angle*l);
+      float z  = x*scale*sin(delta_line_angle*l);
+      float y1 = (sqrt(1-pow(x,2))+(float)Math.cbrt(pow(x,2)))*scale;
+      float y2 = (-sqrt(1-pow(x,2))+(float)Math.cbrt(pow(x,2)))*scale;
+      if(x == 0) {
+        p[0] = xx;
+        p[1] = y1;
+        p[2] = y2;
+        p[3] = z;
+      }
+      line(p[0],p[1],p[3],xx,y1,z);
+      line(p[0],p[2],p[3],xx,y2,z);
+      
+      p[0] = xx;
+      p[1] = y1;
+      p[2] = y2;
+      p[3] = z;
+      
+      //println("x =" + x + ", y = " + (sqrt(1-pow(x,2))+(float)Math.cbrt(x)));
+    }}
+  }
+}
