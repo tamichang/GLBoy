@@ -11,3 +11,4 @@ bin/*
 processing/**/rec/*
 .mov
 .tif
+*.mov
