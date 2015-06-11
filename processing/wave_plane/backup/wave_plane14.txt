@@ -2,13 +2,13 @@
 WavePlane wp = new WavePlane(400,400);
 
 void setup() {
-  size(600, 480, P3D);
+  size(1000, 780, P3D);
   colorMode(HSB, 360, 100, 100, 100);
   background(0,0,0);
   //stroke(330,13,99);
   noStroke();
   //fill(150,13,99);
-  //noFill();
+  noFill();
   sphereDetail(10);
 }
 
@@ -24,7 +24,7 @@ void draw() {
 //  camera(cameraV.x, cameraV.y, cameraV.z, width/2, height/2, 0, 0, 1, 0);
   
   
-  translate(width/2, height*0.5, 0);
+  translate(width/2, height*0.6, 0);
   rotateY(map(mouseX-width/2,-width/2,width/2,-PI,PI));
   rotateX(map(mouseY-width/2,-width/2,width/2,-PI,PI));
   
@@ -43,17 +43,17 @@ void draw() {
 class WavePlane {
   int w, h;
   
-  int line_count  = 100;
-  int point_count = 100;
+  int line_count  = 20;
+  int point_count = 20;
   
   float[][][] line = new float[line_count][point_count][3];
   
   float dx, dz;
-  int wave_width = 100;
+  int wave_width = 300;
   float da = 0.1;
   float dla = 0.5;
   
-  float[][] acnes = new float[0][2]; 
+  float[][] acnes = new float[2][2]; 
   
   float myu = 0;
   float max_sigma2 = 0.5;
@@ -67,22 +67,40 @@ class WavePlane {
   }
   
   void tick() {
-    myu = map(frameCount%180,0,180,7,-7);
+    //myu = map(frameCount%180,0,180,7,-7);
     float da = TWO_PI/acnes.length;
     for(int a=0; a<acnes.length; a++) {
-      //float[] acne = {cos(frameCount*0.03+da*a)*(point_count/4)*sin(frameCount*0.01)+point_count/2,
-      //                sin(frameCount*0.03+da*a)*(line_count/4)*sin(frameCount*0.01)+line_count/2};
-      float[] acne = {point_count/2, line_count/2};
+      float[] acne = {cos(frameCount*0.03+da*a)*(point_count/4)*sin(frameCount*0.01)+point_count/2,
+                      sin(frameCount*0.03+da*a)*(line_count/4)*sin(frameCount*0.01)+line_count/2};
+      //float[] acne = {point_count/2, line_count/2};
       acnes[a] = acne;
       //println(acne[1]);
     }
+    
+    /*int pcenter = (int) point_count/2;
+    int pbound1 = (int) point_count/4;
+    int pbound2 = pcenter+(pcenter-pbound1);
+    float dx = w/2/pbound1;
+    float dax = TWO_PI/(pcenter-pbound1);*/
     
     for(int j=0; j<line_count; j++) {
       //float sigma2 = map(abs(line_count/2-j),0,line_count/2,max_sigma2,5);
       float sigma2 = max_sigma2;
       for(int i=0; i<point_count; i++) {
+        /*float x;
+        if(i<pbound1) {
+          x = dx*i;
+        } else if(i<pcenter) {
+          x = w/4*3+sin(dax*i+PI/2)*w/4;
+        } else if(i<pbound2) {
+          x = w/4*3+sin(dax*i+PI/2*3)*w/4;;
+        } else {
+          x = w/2+dx*i;
+        }*/
         float x = i*dx;
+        //float x = i<point_count/2? i*dx : dx*(int)point_count/2 - (i*dx - dx*(int)point_count/2);
         float y = 0;
+        //y = sin(PI/point_count*i)*100;
         for(int a=0; a<acnes.length; a++) {
           //float y = sin(i*da+dla*j+frameCount*0.1) * wave_width/2;
           float distance = sqrt(pow(abs(i-acnes[a][0]),2) + pow(abs(j-acnes[a][1]),2));
@@ -107,6 +125,12 @@ class WavePlane {
   }
   
   void draw() {
+    
+    int p_center = (int)point_count/2;
+    int l_center = (int)line_count/2;
+    float[] center = line[p_center][l_center];
+    PVector vc = new PVector(center[0],center[1],center[2]);
+    
     pushMatrix();
     translate(-w/2, 0, -h/2);
     for(int l=0; l<line_count-1; l++) {
@@ -116,6 +140,14 @@ class WavePlane {
         p2 = line[l][p+1];
         p3 = line[l+1][p];
         p4 = line[l+1][p+1];
+        
+        PVector v1 = new PVector((p1[0]+p2[0]+p3[0])/3,(p1[1]+p2[1]+p3[1])/3,(p1[2]+p2[2]+p3[2])/3);
+        PVector v2 = new PVector((p2[0]+p4[0]+p3[0])/3,(p2[1]+p4[1]+p3[1])/3,(p2[2]+p4[2]+p3[2])/3);
+//        v1.sub(vc);
+//        v1.mult((sin(frameCount*0.05)+1)/2*3);
+//        v2.sub(vc);
+//        v2.mult((sin(frameCount*0.05)+1)/2*3);
+        
         /*
         pushMatrix();
         translate((p1[0]+p2[0])/2,(p1[1]+p2[1])/2,(p1[2]+p2[2])/2);
@@ -124,21 +156,43 @@ class WavePlane {
         popMatrix();
         */
         
-        beginShape(TRIANGLES);
-        //fill(360/point_count*p,10,95);
-        fill(skyColor(noise(p*0.1,l*0.1,frameCount*0.01)));
-        vertex(p1[0], p1[1]+noise(p*0.1,l*0.1,frameCount*0.01)*60, p1[2]);
-        fill(skyColor(noise((p+1)*0.1,l*0.1,frameCount*0.01)));
-        vertex(p2[0], p2[1]+noise((p+1)*0.1,l*0.1,frameCount*0.01)*60, p2[2]);
-        fill(skyColor(noise(p*0.1,(l+1)*0.1,frameCount*0.01)));
-        vertex(p3[0], p3[1]+noise(p*0.1,(l+1)*0.1,frameCount*0.01)*60, p3[2]);
+//        beginShape(TRIANGLES);
+//        stroke(360/point_count*p,10,95);
+//        /*//fill(250,map(p1[1],-50,50,0,100),100);
+//        vertex(p1[0], p1[1]+(noise(p*0.05,l*0.05,frameCount*0.02)*2-1)*60, p1[2]);
+//        //fill(250,map(p2[1],-50,50,0,100),100);
+//        vertex(p2[0], p2[1]+(noise((p+1)*0.05,l*0.05,frameCount*0.02)*2-1)*60, p2[2]);
+//        //fill(250,map(p3[1],-50,50,0,100),100);
+//        vertex(p3[0], p3[1]+(noise(p*0.05,(l+1)*0.05,frameCount*0.02)*2-1)*60, p3[2]);
+//        
+//        //fill(250,map(p2[1],-50,50,0,100),100);
+//        vertex(p2[0], p2[1]+(noise((p+1)*0.05,l*0.05,frameCount*0.02)*2-1)*60, p2[2]);
+//        //fill(250,map(p3[1],-50,50,0,100),100);
+//        vertex(p3[0], p3[1]+(noise(p*0.05,(l+1)*0.05,frameCount*0.02)*2-1)*60, p3[2]);
+//        //fill(250,map(p4[1],-50,50,0,100),100);
+//        vertex(p4[0], p4[1]+(noise((p+1)*0.05,(l+1)*0.05,frameCount*0.02)*2-1)*60, p4[2]);*/
+//        
+//        //fill(250,map(p1[1],-50,50,0,100),100);
+//        vertex(p1[0], 0, p1[2]);
+//        //fill(250,map(p2[1],-50,50,0,100),100);
+//        vertex(p2[0], 0, p2[2]);
+//        //fill(250,map(p3[1],-50,50,0,100),100);
+//        vertex(p3[0], 0, p3[2]);
+//        
+//        //fill(250,map(p2[1],-50,50,0,100),100);
+//        vertex(p2[0], 0, p2[2]);
+//        //fill(250,map(p3[1],-50,50,0,100),100);
+//        vertex(p3[0], 0, p3[2]);
+//        //fill(250,map(p4[1],-50,50,0,100),100);
+//        vertex(p4[0], 0, p4[2]);
+//        endShape();
         
-        fill(skyColor(noise((p+1)*0.1,l*0.1,frameCount*0.01)));
-        vertex(p2[0], p2[1]+noise((p+1)*0.1,l*0.1,frameCount*0.01)*60, p2[2]);
-        fill(skyColor(noise(p*0.1,(l+1)*0.1,frameCount*0.01)));
-        vertex(p3[0], p3[1]+noise(p*0.1,(l+1)*0.1,frameCount*0.01)*60, p3[2]);
-        fill(skyColor(noise((p+1)*0.1,(l+1)*0.1,frameCount*0.01)));
-        vertex(p4[0], p4[1]+noise((p+1)*0.1,(l+1)*0.1,frameCount*0.01)*60, p4[2]);
+        stroke(360/point_count*p,10,95);
+        beginShape(LINES);
+        vertex(v1.x, 0, v1.z);
+        vertex(v1.x, v1.y, v1.z);
+        vertex(v2.x, 0, v2.z);
+        vertex(v2.x, v2.y, v2.z);
         endShape();
         
       }
@@ -146,18 +200,7 @@ class WavePlane {
     popMatrix();
   }
   
-  color skyColor(float noise) {
-    color c;
-    if(noise < 0.5) {
-      c = color(200,map(noise,0,0.5,60,20),90);
-    } else {
-      c = color(37,map(noise,0.5,1,10,80),90);
-    }
-    return c;
-  }
-  
 }
-
 
 boolean rec = false;
 

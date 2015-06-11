@@ -68,6 +68,7 @@ namespace glboy {
 	{
 		glm::vec3 vertex(x,y,z);
 		vertices.push_back(vertex);
+		vertexColor();
 		glm::vec2 uv(u,v);
 		uvs.push_back(uv);
 		indices.push_back(indices.size());
@@ -85,6 +86,14 @@ namespace glboy {
 	{
 		glm::vec4 cvec(fill_color->r ,fill_color->g, fill_color->b, fill_color->alpha);
 		vertex_colors.push_back(cvec);
+	}
+	
+	void Object::clear_vertices()
+	{
+		vertices.clear();
+		vertex_colors.clear();
+		uvs.clear();
+		normals.clear();
 	}
 	
 	

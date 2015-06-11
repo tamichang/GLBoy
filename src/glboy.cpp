@@ -17,7 +17,7 @@ using std::string;
 namespace glboy {
 	
 	GLBoy::GLBoy() :
-	background_color(Color::hsv(80,10,98)),
+	background_color(Color::hsv(212,84,26)),
 	width(800),
 	height(640),
 	camera_x(0.0f),
@@ -61,6 +61,13 @@ namespace glboy {
 		return instance;
 	}
 	
+	GLBoy::ptr GLBoy::init(std::shared_ptr<Player> player)
+	{
+		ptr boy = GLBoy::instance();
+		boy->player = player;
+		return boy;
+	}
+	
 	void GLBoy::set_width_height(int w, int h) {
 		width = w;
 		height = h;
@@ -89,6 +96,13 @@ namespace glboy {
 	{
 		camera_x = x; camera_y = y;
 		culc_view_matrix();
+	}
+	
+	void GLBoy::camera_to_mouse()
+	{
+		GLfloat xpos, ypos;
+		player->mouse_position(xpos, ypos);
+		camera_xy(xpos, ypos);
 	}
 	
 	

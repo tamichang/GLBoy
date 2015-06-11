@@ -16,7 +16,7 @@ PROJECT(glboy)
 include_directories(/usr/local/include)
 
 #静的ライブラリの生成
-ADD_LIBRARY(glboy STATIC glboy.cpp Object.cpp Color.cpp Shader.cpp SimpleLightShader.cpp SimpleTextureShader.cpp texture.cpp DefaultColorShader.cpp)
+ADD_LIBRARY(glboy STATIC glboy.cpp Object.cpp Color.cpp Shader.cpp SimpleLightShader.cpp SimpleTextureShader.cpp texture.cpp DefaultColorShader.cpp Player.cpp Cassette.cpp)
 
 INSTALL(TARGETS glboy ARCHIVE DESTINATION lib)
 

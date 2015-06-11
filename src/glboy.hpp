@@ -14,6 +14,8 @@
 #include <vector>
 #include <map>
 
+typedef float GLfloat;
+typedef int GLint;
 
 namespace glboy {
 	
@@ -38,12 +40,16 @@ namespace glboy {
 		void fill(int h, int s, int v, int a);
 	};
 	
+	class Player;
 	
 	class GLBoy {
 	public:
 		typedef std::shared_ptr<GLBoy> ptr;
 		
 		static ptr instance();
+		static ptr init(std::shared_ptr<Player> player);
+		
+		std::shared_ptr<Player> player;
 		
 		std::map<std::string, GLuint> texture_map;
 		
@@ -54,7 +60,7 @@ namespace glboy {
 		void culc_projection_matrix();
 		void culc_view_matrix();
 		
-		GLfloat camera_x, camera_y;
+		float camera_x, camera_y;
 		
 		int width, height;
 		void set_width_height(int w, int h);
@@ -62,8 +68,8 @@ namespace glboy {
 		glm::mat4 view_matrix, projection_matrix;	//, MVP; //, View; //, Model;
 		
 		glm::vec3 light_position;
-		GLfloat   LightPower;
-		GLfloat   LightableDistance;
+		float   LightPower;
+		float   LightableDistance;
 		glm::vec3 LightColor;
 		
 		Color::ptr background_color;
@@ -73,9 +79,10 @@ namespace glboy {
 		
 		void clear_background();
 		
-		void camera_xy(GLfloat x, GLfloat y);
+		void camera_xy(float x, float y);
+		void camera_to_mouse();
 		
-		void rotateX(GLfloat angle);
+		void rotateX(float angle);
 	};
 	
 	
@@ -115,22 +122,56 @@ namespace glboy {
 		void draw();
 		void setup();
 		
-		void vertex(GLfloat x, GLfloat y, GLfloat z);
-		void vertex(GLfloat x, GLfloat y, GLfloat z, GLfloat u, GLfloat v);
+		void vertex(float x, float y, float z);
+		void vertex(float x, float y, float z, float u, float v);
 		void vertexColor();
-		void normal(GLfloat x, GLfloat y, GLfloat z);
+		void normal(float x, float y, float z);
+		void clear_vertices();
 		
 		static ptr make_shared();
 		Object();
 		virtual ~Object();
 		
-		static ptr triangle(GLfloat x1, GLfloat y1, GLfloat z1, GLfloat x2, GLfloat y2, GLfloat z2, GLfloat x3, GLfloat y3, GLfloat z3);
-		static ptr box(GLfloat size);
+		static ptr triangle(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3);
+		static ptr box(float size);
 	
-		void translate(GLfloat x, GLfloat y, GLfloat z);
+		void translate(float x, float y, float z);
 		
 		void fill(int h, int s, int v);
 		void fill(int h, int s, int v, int a);
+	};
+	
+	class Cassette;
+	
+	class Player : public std::enable_shared_from_this<Player> {
+	public:
+		typedef std::shared_ptr<Player> ptr;
+		
+		Player();
+		virtual ~Player();
+		
+		int width, height;
+		std::shared_ptr<Cassette> cassette;
+		
+		virtual int run();
+		virtual void mouse_position(float& xpos, float& ypos);
+		virtual void set_cassette(std::shared_ptr<Cassette> cassette);
+	};
+	
+	
+	class Cassette {
+	public:
+		typedef std::shared_ptr<Cassette> ptr;
+		
+		virtual ~Cassette();
+		
+		std::shared_ptr<Player> player;
+		int frame_count;
+		
+		virtual void setup();
+		virtual void draw();
+		
+		float map(float value, float start1, float stop1, float start2, float stop2);
 	};
 	
 	

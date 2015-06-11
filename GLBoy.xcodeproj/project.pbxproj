@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		730DFBA51B27D6D6009C0853 /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		730DFBA61B27DADE009C0853 /* Cassette.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Cassette.cpp; sourceTree = "<group>"; };
 		73D7B5E8198C81BE001B5DB6 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		73D7B5E9198C81BE001B5DB6 /* Color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Color.cpp; sourceTree = "<group>"; };
 		73D7B5EB198C81BE001B5DB6 /* DefaultColorShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DefaultColorShader.cpp; sourceTree = "<group>"; };
@@ -43,6 +45,8 @@
 				73D7B5FD198C81BE001B5DB6 /* SimpleTextureShader.hpp */,
 				73D7B5FC198C81BE001B5DB6 /* SimpleTextureShader.cpp */,
 				73D7B5FE198C81BE001B5DB6 /* texture.cpp */,
+				730DFBA51B27D6D6009C0853 /* Player.cpp */,
+				730DFBA61B27DADE009C0853 /* Cassette.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
