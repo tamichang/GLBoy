@@ -35,6 +35,12 @@ namespace glboy {
 		glGenBuffers(1, &uvbuffer);
 		glGenBuffers(1, &normalbuffer);
 		glBindVertexArray(0);	// unbind
+		
+//		vertices.reserve(100000);
+//		vertex_colors.reserve(100000);
+//		uvs.reserve(100000);
+//		normals.reserve(100000);
+//		indices.reserve(100000);
 	}
 	
 	Object::ptr Object::make_shared() {
@@ -57,8 +63,9 @@ namespace glboy {
 	
 	void Object::vertex(GLfloat x, GLfloat y, GLfloat z)
 	{
-		glm::vec3 vertex(x,y,z);
-		vertices.push_back(vertex);
+//		glm::vec3 vertex(x,y,z);
+		vertex_point v = {x,y,z};
+		vertices.push_back(v);
 		vertexColor();
 		indices.push_back(indices.size());
 	}
@@ -66,10 +73,12 @@ namespace glboy {
 	
 	void Object::vertex(GLfloat x, GLfloat y, GLfloat z, GLfloat u, GLfloat v)
 	{
-		glm::vec3 vertex(x,y,z);
-		vertices.push_back(vertex);
+//		glm::vec3 vertex(x,y,z);
+		vertex_point v_point = {x,y,z};
+		vertices.push_back(v_point);
 		vertexColor();
-		glm::vec2 uv(u,v);
+//		glm::vec2 uv(u,v);
+		uv_point uv = {u,v};
 		uvs.push_back(uv);
 		indices.push_back(indices.size());
 	}
@@ -77,15 +86,17 @@ namespace glboy {
 	
 	void Object::normal(GLfloat x, GLfloat y, GLfloat z)
 	{
-		glm::vec3 vertex_normal(x,y,z);
-		normals.push_back(vertex_normal);
+//		glm::vec3 vertex_normal(x,y,z);
+		normal_point normal = {x,y,z};
+		normals.push_back(normal);
 	}
 	
 	
 	void Object::vertexColor()
 	{
-		glm::vec4 cvec(fill_color->r ,fill_color->g, fill_color->b, fill_color->alpha);
-		vertex_colors.push_back(cvec);
+//		glm::vec4 cvec(fill_color->r ,fill_color->g, fill_color->b, fill_color->alpha);
+		rgb_color_point rgb = {fill_color->r ,fill_color->g, fill_color->b, fill_color->alpha};
+		vertex_colors.push_back(rgb);
 	}
 	
 	void Object::clear_vertices()
@@ -94,6 +105,7 @@ namespace glboy {
 		vertex_colors.clear();
 		uvs.clear();
 		normals.clear();
+		indices.clear();
 	}
 	
 	
@@ -146,25 +158,25 @@ namespace glboy {
 		glBindVertexArray(VAO);
 		
 		glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(vertex_point), &vertices[0], GL_STATIC_DRAW);
 		
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 		
 		glBindBuffer(GL_ARRAY_BUFFER, colorbuffer);
-		glBufferData(GL_ARRAY_BUFFER, vertex_colors.size() * sizeof(glm::vec4), &vertex_colors[0], GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, vertex_colors.size() * sizeof(rgb_color_point), &vertex_colors[0], GL_STATIC_DRAW);
 		
 		glEnableVertexAttribArray(1);
 		glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, (void*)0);
 		
 		glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
-		glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0], GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(uv_point), &uvs[0], GL_STATIC_DRAW);
 		
 		glEnableVertexAttribArray(2);
 		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
 		
 		glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
-		glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(glm::vec3), &normals[0], GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(normal_point), &normals[0], GL_STATIC_DRAW);
 		
 		glEnableVertexAttribArray(3);
 		glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);

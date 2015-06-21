@@ -21,6 +21,20 @@ namespace glboy {
 	
 	class Shader;
 	
+	struct vertex_point {
+		float x, y, z;
+	};
+	
+	struct uv_point {
+		float u, v;
+	};
+	
+	struct rgb_color_point {
+		 float r, g, b, a;
+	};
+	
+	typedef vertex_point normal_point;
+	
 	class Color
 	{
 		Color(int h, int s, int v, int a);
@@ -105,11 +119,11 @@ namespace glboy {
 		GLuint normalbuffer;
 		GLuint elementbuffer;
 		
-		std::vector<glm::vec3> vertices;
-		std::vector<glm::vec4> vertex_colors;
+		std::vector<vertex_point> vertices;
+		std::vector<rgb_color_point> vertex_colors;
 		std::vector<unsigned short> indices;
-		std::vector<glm::vec2> uvs;
-		std::vector<glm::vec3> normals;
+		std::vector<uv_point> uvs;
+		std::vector<normal_point> normals;
 		
 		GLuint texture_id;
 		bool use_texture;
