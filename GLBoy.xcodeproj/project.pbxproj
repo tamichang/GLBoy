@@ -7,56 +7,74 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		730DFBA51B27D6D6009C0853 /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
-		730DFBA61B27DADE009C0853 /* Cassette.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Cassette.cpp; sourceTree = "<group>"; };
-		73D7B5E8198C81BE001B5DB6 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
-		73D7B5E9198C81BE001B5DB6 /* Color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Color.cpp; sourceTree = "<group>"; };
-		73D7B5EB198C81BE001B5DB6 /* DefaultColorShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DefaultColorShader.cpp; sourceTree = "<group>"; };
-		73D7B5EC198C81BE001B5DB6 /* DefaultColorShader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DefaultColorShader.hpp; sourceTree = "<group>"; };
-		73D7B5ED198C81BE001B5DB6 /* glboy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glboy.cpp; sourceTree = "<group>"; };
-		73D7B5EE198C81BE001B5DB6 /* glboy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = glboy.hpp; sourceTree = "<group>"; };
-		73D7B5EF198C81BE001B5DB6 /* Object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Object.cpp; sourceTree = "<group>"; };
-		73D7B5F1198C81BE001B5DB6 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
-		73D7B5F2198C81BE001B5DB6 /* Shader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Shader.hpp; sourceTree = "<group>"; };
-		73D7B5FA198C81BE001B5DB6 /* SimpleLightShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleLightShader.cpp; sourceTree = "<group>"; };
-		73D7B5FB198C81BE001B5DB6 /* SimpleLightShader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimpleLightShader.hpp; sourceTree = "<group>"; };
-		73D7B5FC198C81BE001B5DB6 /* SimpleTextureShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleTextureShader.cpp; sourceTree = "<group>"; };
-		73D7B5FD198C81BE001B5DB6 /* SimpleTextureShader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimpleTextureShader.hpp; sourceTree = "<group>"; };
-		73D7B5FE198C81BE001B5DB6 /* texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = texture.cpp; sourceTree = "<group>"; };
+		7301DA451BC6EE6B0031D21B /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		7301DA471BC6EE6B0031D21B /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		7301DA481BC6EE6B0031D21B /* Color.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Color.cpp; sourceTree = "<group>"; };
+		7301DA491BC6EE6B0031D21B /* DefaultColorShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DefaultColorShader.cpp; sourceTree = "<group>"; };
+		7301DA4B1BC6EE6B0031D21B /* glboy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = glboy.cpp; sourceTree = "<group>"; };
+		7301DA4C1BC6EE6B0031D21B /* glboy.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = glboy.hpp; sourceTree = "<group>"; };
+		7301DA4D1BC6EE6B0031D21B /* Object.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Object.cpp; sourceTree = "<group>"; };
+		7301DA4E1BC6EE6B0031D21B /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		7301DA4F1BC6EE6B0031D21B /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
+		7301DA501BC6EE6B0031D21B /* Shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Shader.hpp; sourceTree = "<group>"; };
+		7301DA511BC6EE6B0031D21B /* SimpleLightShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleLightShader.cpp; sourceTree = "<group>"; };
+		7301DA531BC6EE6B0031D21B /* SimpleTextureShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleTextureShader.cpp; sourceTree = "<group>"; };
+		7301DA551BC6EE6B0031D21B /* texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = texture.cpp; sourceTree = "<group>"; };
+		7301DA5B1BC6F0B80031D21B /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		7301DA5C1BC6F0B80031D21B /* fwplayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fwplayer.cpp; sourceTree = "<group>"; };
+		7301DA5D1BC6F0B80031D21B /* fwplayer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fwplayer.hpp; sourceTree = "<group>"; };
+		7301DA5E1BC81C830031D21B /* EllipseShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EllipseShader.cpp; sourceTree = "<group>"; };
+		7301DA671BCA27460031D21B /* FBObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FBObject.cpp; sourceTree = "<group>"; };
+		7301DA681BCBD8750031D21B /* BlurShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BlurShader.cpp; sourceTree = "<group>"; };
+		734CB0B21BCDF6F00057C845 /* Graphics.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Graphics.cpp; sourceTree = "<group>"; };
+		734CB0B31BCE1E870057C845 /* GraphicsPostShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GraphicsPostShader.cpp; sourceTree = "<group>"; };
 		73D7B600198C81C7001B5DB6 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
 		73E9EB8719678207004DB096 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		73D7B5E7198C81BE001B5DB6 /* src */ = {
+		7301DA461BC6EE6B0031D21B /* glboy */ = {
 			isa = PBXGroup;
 			children = (
-				73D7B5E8198C81BE001B5DB6 /* CMakeLists.txt */,
-				73D7B5EE198C81BE001B5DB6 /* glboy.hpp */,
-				73D7B5ED198C81BE001B5DB6 /* glboy.cpp */,
-				73D7B5E9198C81BE001B5DB6 /* Color.cpp */,
-				73D7B5EF198C81BE001B5DB6 /* Object.cpp */,
-				73D7B5F2198C81BE001B5DB6 /* Shader.hpp */,
-				73D7B5F1198C81BE001B5DB6 /* Shader.cpp */,
-				73D7B5EC198C81BE001B5DB6 /* DefaultColorShader.hpp */,
-				73D7B5EB198C81BE001B5DB6 /* DefaultColorShader.cpp */,
-				73D7B5FB198C81BE001B5DB6 /* SimpleLightShader.hpp */,
-				73D7B5FA198C81BE001B5DB6 /* SimpleLightShader.cpp */,
-				73D7B5FD198C81BE001B5DB6 /* SimpleTextureShader.hpp */,
-				73D7B5FC198C81BE001B5DB6 /* SimpleTextureShader.cpp */,
-				73D7B5FE198C81BE001B5DB6 /* texture.cpp */,
-				730DFBA51B27D6D6009C0853 /* Player.cpp */,
-				730DFBA61B27DADE009C0853 /* Cassette.cpp */,
+				7301DA471BC6EE6B0031D21B /* CMakeLists.txt */,
+				7301DA4C1BC6EE6B0031D21B /* glboy.hpp */,
+				7301DA4B1BC6EE6B0031D21B /* glboy.cpp */,
+				734CB0B21BCDF6F00057C845 /* Graphics.cpp */,
+				7301DA481BC6EE6B0031D21B /* Color.cpp */,
+				7301DA4D1BC6EE6B0031D21B /* Object.cpp */,
+				7301DA671BCA27460031D21B /* FBObject.cpp */,
+				7301DA4E1BC6EE6B0031D21B /* Player.cpp */,
+				7301DA501BC6EE6B0031D21B /* Shader.hpp */,
+				7301DA4F1BC6EE6B0031D21B /* Shader.cpp */,
+				7301DA491BC6EE6B0031D21B /* DefaultColorShader.cpp */,
+				7301DA531BC6EE6B0031D21B /* SimpleTextureShader.cpp */,
+				734CB0B31BCE1E870057C845 /* GraphicsPostShader.cpp */,
+				7301DA511BC6EE6B0031D21B /* SimpleLightShader.cpp */,
+				7301DA5E1BC81C830031D21B /* EllipseShader.cpp */,
+				7301DA681BCBD8750031D21B /* BlurShader.cpp */,
+				7301DA551BC6EE6B0031D21B /* texture.cpp */,
 			);
-			path = src;
+			path = glboy;
+			sourceTree = "<group>";
+		};
+		7301DA5A1BC6F0B80031D21B /* glfw */ = {
+			isa = PBXGroup;
+			children = (
+				7301DA5B1BC6F0B80031D21B /* CMakeLists.txt */,
+				7301DA5D1BC6F0B80031D21B /* fwplayer.hpp */,
+				7301DA5C1BC6F0B80031D21B /* fwplayer.cpp */,
+			);
+			path = glfw;
 			sourceTree = "<group>";
 		};
 		73E9EB7619678161004DB096 = {
 			isa = PBXGroup;
 			children = (
 				73D7B600198C81C7001B5DB6 /* TODO */,
-				73D7B5E7198C81BE001B5DB6 /* src */,
 				73E9EB8719678207004DB096 /* README.markdown */,
+				7301DA451BC6EE6B0031D21B /* CMakeLists.txt */,
+				7301DA461BC6EE6B0031D21B /* glboy */,
+				7301DA5A1BC6F0B80031D21B /* glfw */,
 			);
 			sourceTree = "<group>";
 		};
