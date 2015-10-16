@@ -36,7 +36,7 @@ namespace glboy {
 		glBindTexture(GL_TEXTURE_2D, rendered_texture_id);
 		
 		// Give an empty image to OpenGL ( the last "0" means "empty" )
-		glTexImage2D(GL_TEXTURE_2D, 0,GL_RGB, width, height, 0,GL_RGB, GL_UNSIGNED_BYTE, 0);
+		glTexImage2D(GL_TEXTURE_2D, 0,GL_RGB, width, height, 0,GL_RGBA, GL_UNSIGNED_BYTE, 0);
 		
 		// Poor filtering
 //		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
@@ -66,6 +66,7 @@ namespace glboy {
 		}
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		
+		after_obj->shader = GLBoy::instance->simple_texture_shader;
 		after_obj->set_texture_id(rendered_texture_id);
 	}
 	
@@ -106,53 +107,4 @@ namespace glboy {
 	}
 	
 	
-	FBObject::ptr FBObject::ellipse(float x, float y, float z, float w, float h)
-	{
-		std::shared_ptr<FBObject> obj = std::shared_ptr<FBObject>(new FBObject(w,h));
-//		GLBoy* boy = GLBoy::instance;
-//		float hw1 = w/boy->width/2.0f;
-//		float hh1 = h/boy->height/2.0f;
-
-//		obj->vertex(-hw1, hh1, 0);
-//		obj->vertex(-hw1, -hh1, 0);
-//		obj->vertex(hw1, -hh1, 0);
-//		obj->vertex(hw1, -hh1, 0);
-//		obj->vertex(hw1, hh1, 0);
-//		obj->vertex(-hw1, hh1, 0);
-		
-		obj->vertex(-1, 1, 0);
-		obj->vertex(-1, -1, 0);
-		obj->vertex(1, -1, 0);
-		obj->vertex(1, -1, 0);
-		obj->vertex(1, 1, 0);
-		obj->vertex(-1, 1, 0);
-		
-		obj->shader = GLBoy::instance->ellipse_shader;
-		std::vector<float> major_minor;
-		major_minor.push_back(w);
-		major_minor.push_back(h);
-		obj->shader_params.insert(std::make_pair("major_minor", major_minor));
-		std::vector<float> center;
-		center.push_back(w/2.0f);
-		center.push_back(h/2.0f);
-		obj->shader_params.insert(std::make_pair("center", center));
-		
-		
-		float hw2 = w/2.0f;
-		float hh2 = h/2.0f;
-		// float hw2 = 1;
-		// float hh2 = 1;
-		
-		Object::ptr after_obj = obj->after_obj;
-		after_obj->shader = GLBoy::instance->simple_texture_shader;
-		after_obj->vertex(-hw2, hh2, 0, 0, 1);
-		after_obj->vertex(-hw2, -hh2, 0, 0, 0);
-		after_obj->vertex(hw2, -hh2, 0, 1, 0);
-		after_obj->vertex(hw2, -hh2, 0, 1, 0);
-		after_obj->vertex(hw2, hh2, 0, 1, 1);
-		after_obj->vertex(-hw2, hh2, 0, 0, 1);
-		after_obj->translate(x, y, z);
-		
-		return obj;
-	}
 }

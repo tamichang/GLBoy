@@ -33,7 +33,7 @@ namespace glboy {
 		out vec4 color;
 		
 		void main() {
-			float offset = 1.0f;
+			float offset = 1.0f/400.0f;
 			float left = UV.s - offset - offset;
 			float top  = UV.t - offset - offset;
 			vec2 tc = vec2(left, top);
@@ -96,8 +96,8 @@ namespace glboy {
 		for (int c = 0; c < 25; c++)
 			sum += kernel[c];
 		for (int c = 0; c < 25; c++)
-			kernel[c] /= sum;
-			
+			kernel[c] /= (sum/1.0f);
+		
 		
 	}
 	

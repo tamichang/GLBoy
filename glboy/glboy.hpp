@@ -66,6 +66,7 @@ namespace glboy {
 	class Graphics;
 	
 	class Object;
+	class FBObject;
 	
 	
 	class GLBoy {
@@ -130,17 +131,18 @@ namespace glboy {
 	
 	class Graphics {
 		GLuint framebuffer_id;
-		GLuint rendered_texture_id;
-		GLuint depth_renderbuffer;
+//		GLuint rendered_texture_id;
+		GLuint depth_renderbuffer_id, color_renderbuffer_id;
 		
 		GLuint parent_framebuffer_id;
 		Size   parent_viewport;
 		
-		std::unique_ptr<Object> poster;
+//		std::unique_ptr<Object> poster;
 		
 	public:
 		int width, height;
 		Color::ptr background_color;
+		std::shared_ptr<FBObject> fbo;
 		
 		Graphics(int w, int h);
 		~Graphics();
@@ -154,7 +156,7 @@ namespace glboy {
 	};
 	
 	
-//	class FBObject;
+	
 	
 	class Object {
 	protected:
@@ -193,8 +195,9 @@ namespace glboy {
 		
 		std::shared_ptr<Shader> shader;
 		
-		void draw();
-		void bindVertexData();
+		// virtualつけないとFBObjectのdrawが呼ばれない（Object型のとき）ハマった...
+		virtual void draw();
+		virtual void bindVertexData();
 		
 		void vertex(float x, float y, float z);
 		void vertex(float x, float y, float z, float u, float v);
@@ -208,6 +211,7 @@ namespace glboy {
 		
 		static ptr triangle(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3);
 		static ptr box(float size);
+		static ptr ellipse(float x, float y, float z, float w, float h);
 		
 //		glm::vec3 center;
 //		float width; float height;
@@ -220,19 +224,25 @@ namespace glboy {
 	
 	
 	class FBObject : public Object {
-		GLuint framebuffer_id;
+		
 		GLuint rendered_texture_id;
 		GLuint depth_renderbuffer;
 		//GLenum DrawBuffers[];
 		int width, height;
 		
 	public:
+		
 		typedef std::shared_ptr<FBObject> ptr;
+		
+		GLuint framebuffer_id;
+		
 		std::shared_ptr<Object> after_obj;
+		
 //		FBObject();
 		FBObject(int width, int height);
 		virtual ~FBObject();
-		static ptr ellipse(float x, float y, float z, float w, float h);
+		
+//		static ptr ellipse(float x, float y, float z, float w, float h);
 		void draw();
 		void bindVertexData();
 		static ptr create(int width, int height);

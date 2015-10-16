@@ -68,7 +68,10 @@ namespace glboy {
 		std::vector<float> major_minor = obj->shader_params.find("major_minor")->second;
 		glUniform2fv(major_minor_id, 1, &major_minor[0]);
 //		glUniform1f(height_id, obj->shader_params.find("height")->second);
-		std::vector<float> center = obj->shader_params.find("center")->second;
+//		std::vector<float> center = obj->shader_params.find("center")->second;
+		std::vector<float> center;
+		center.push_back(major_minor[0]/2.0f);
+		center.push_back(major_minor[1]/2.0f);
 		glUniform2fv(center_id, 1, &center[0]);
 	}
 	
