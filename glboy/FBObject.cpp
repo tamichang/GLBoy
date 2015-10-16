@@ -17,13 +17,13 @@ namespace glboy {
 	
 //	FBObject::FBObject(): width(256), height(256) {}
 	
-	FBObject::FBObject(int width, int height)
+	FBObject::FBObject(float width, float height)
 	{
 		std::cout << "FBObject constractor" << std::endl;
 		
 		this->width = width;
 		this->height = height;
-		this->after_obj = Object::create();
+//		this->after_obj = Object::create();
 		
 		// The framebuffer, which regroups 0, 1, or more textures, and 0 or 1 depth buffer.
 		glGenFramebuffers(1, &framebuffer_id);
@@ -36,7 +36,7 @@ namespace glboy {
 		glBindTexture(GL_TEXTURE_2D, rendered_texture_id);
 		
 		// Give an empty image to OpenGL ( the last "0" means "empty" )
-		glTexImage2D(GL_TEXTURE_2D, 0,GL_RGB, width, height, 0,GL_RGBA, GL_UNSIGNED_BYTE, 0);
+		glTexImage2D(GL_TEXTURE_2D, 0,GL_RGBA, width, height, 0,GL_RGBA, GL_UNSIGNED_BYTE, 0);
 		
 		// Poor filtering
 //		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
@@ -66,8 +66,6 @@ namespace glboy {
 		}
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		
-		after_obj->shader = GLBoy::instance->simple_texture_shader;
-		after_obj->set_texture_id(rendered_texture_id);
 	}
 	
 	
@@ -93,17 +91,53 @@ namespace glboy {
 		glViewport(0,0,boy->current_viewport.w, boy->current_viewport.h);
 		
 		// after_obj->set_texture_id(rendered_texture_id);
-		after_obj->draw();
+		if (after_obj) {
+			after_obj->draw();
+		}
 	}
 	
 	void FBObject::bindVertexData() {
 		Object::bindVertexData();
-		after_obj->bindVertexData();
+		if (after_obj) {
+			after_obj->bindVertexData();
+		}
 	}
 
 	
-	FBObject::ptr FBObject::create(int width, int height) {
+	FBObject::ptr FBObject::create(float width, float height) {
 		return ptr(new FBObject(width, height));
+	}
+	
+	
+	FBObject::ptr FBObject::create_blur(float width, float height) {
+		ptr fbo = std::make_shared<FBObject>(width, height);
+		fbo->shader = GLBoy::instance->blur_shader;
+
+		fbo->vertex(-1, 1, 0, 0, 1);
+		fbo->vertex(-1, -1, 0, 0, 0);
+		fbo->vertex(1, -1, 0, 1, 0);
+		fbo->vertex(1, -1, 0, 1, 0);
+		fbo->vertex(1, 1, 0, 1, 1);
+		fbo->vertex(-1, 1, 0, 0, 1);
+		fbo->bindVertexData();
+		
+		std::vector<float> size;
+		size.push_back(width);
+		size.push_back(height);
+		fbo->shader_params.insert(std::make_pair("size", size));
+		std::vector<float> interval;
+		interval.push_back(3.0f);
+		fbo->shader_params.insert(std::make_pair("interval", interval));
+		
+		return fbo;
+	}
+	
+	
+	Object::ptr FBObject::create_after_obj() {
+		this->after_obj = Object::create();
+		after_obj->shader = GLBoy::instance->simple_texture_shader;
+		after_obj->set_texture_id(rendered_texture_id);
+		return after_obj;
 	}
 	
 	

@@ -38,6 +38,10 @@ namespace glboy {
 		int w, h;
 	};
 	
+	struct point2d {
+		float x, y;
+	};
+	
 	typedef vertex_point normal_point;
 	
 	
@@ -58,6 +62,11 @@ namespace glboy {
 		
 		void fill(int h, int s, int v);
 		void fill(int h, int s, int v, int a);
+	};
+	
+	
+	enum FILTER {
+		BLUR = 0
 	};
 	
 	
@@ -126,6 +135,9 @@ namespace glboy {
 		virtual void draw();
 		
 		float map(float value, float start1, float stop1, float start2, float stop2);
+		
+//		enum FILTER {BLUR = 0};
+		void filter(FILTER filter);
 	};
 	
 	
@@ -136,15 +148,18 @@ namespace glboy {
 		
 		GLuint parent_framebuffer_id;
 		Size   parent_viewport;
-		
+		point2d center;
 //		std::unique_ptr<Object> poster;
 		
 	public:
 		int width, height;
 		Color::ptr background_color;
-		std::shared_ptr<FBObject> fbo;
+		std::shared_ptr<FBObject> blit_fbo;
+		std::shared_ptr<Object> quad_paste_obj;
 		
-		Graphics(int w, int h);
+		std::vector<std::shared_ptr<FBObject>> post_processes;
+		
+		Graphics(float x, float y, int w, int h);
 		~Graphics();
 		
 		// void init();
@@ -153,6 +168,8 @@ namespace glboy {
 		
 		void begin();
 		void end();
+		
+		void filter(FILTER filter);
 	};
 	
 	
@@ -224,28 +241,30 @@ namespace glboy {
 	
 	
 	class FBObject : public Object {
-		
-		GLuint rendered_texture_id;
-		GLuint depth_renderbuffer;
-		//GLenum DrawBuffers[];
-		int width, height;
-		
 	public:
 		
 		typedef std::shared_ptr<FBObject> ptr;
 		
+		float width, height;
+		
+		GLuint rendered_texture_id;
+		GLuint depth_renderbuffer;
 		GLuint framebuffer_id;
 		
 		std::shared_ptr<Object> after_obj;
 		
 //		FBObject();
-		FBObject(int width, int height);
+		FBObject(float width, float height);
 		virtual ~FBObject();
 		
 //		static ptr ellipse(float x, float y, float z, float w, float h);
 		void draw();
 		void bindVertexData();
-		static ptr create(int width, int height);
+		
+		static ptr create(float width, float height);
+		static ptr create_blur(float width, float height);
+		
+		Object::ptr create_after_obj();
 	};
 	
 	

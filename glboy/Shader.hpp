@@ -94,7 +94,7 @@ namespace glboy {
 	
 	class BlurShader : public Shader
 	{
-		GLint sampler_id, coefficients_id;
+		GLint sampler_id, coefficients_id, offset_id;
 		float kernel[25];
 		
 	public:

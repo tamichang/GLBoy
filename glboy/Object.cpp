@@ -317,7 +317,7 @@ namespace glboy {
 		// float hw2 = 1;
 		// float hh2 = 1;
 		
-		Object::ptr after_obj = obj->after_obj;
+		Object::ptr after_obj = obj->create_after_obj();
 		//after_obj->shader = GLBoy::instance->simple_texture_shader;
 		after_obj->vertex(-hw2, hh2, 0, 0, 1);
 		after_obj->vertex(-hw2, -hh2, 0, 0, 0);

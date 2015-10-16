@@ -70,7 +70,7 @@ namespace glboy {
 		culc_projection_matrix();
 		culc_view_matrix();
 		
-		graphics = std::unique_ptr<Graphics>(new Graphics(width, height));
+		graphics = std::unique_ptr<Graphics>(new Graphics(0, 0, width, height));
 	}
 	
 //	std::shared_ptr<GLBoy> GLBoy::create() {
@@ -180,6 +180,11 @@ namespace glboy {
 		}
 		
 		return texture_id;
+	}
+	
+	
+	void GLBoy::filter(FILTER filter) {
+		graphics->filter(filter);
 	}
 
 }	//glboy

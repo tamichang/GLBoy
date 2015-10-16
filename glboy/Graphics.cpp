@@ -11,10 +11,11 @@
 
 namespace glboy {
 
-	Graphics::Graphics(int w, int h) : background_color(Color::hsv(212,84,26))
+	Graphics::Graphics(float x, float y, int w, int h) : background_color(Color::hsv(212,84,26))
 	{
 		std::cout << "Graphics constructor" << std::endl;
 		
+		center = {x, y};
 		width = w;
 		height = h;
 		
@@ -98,16 +99,31 @@ namespace glboy {
 		
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		
-		fbo = FBObject::create(width, height);
+		blit_fbo = FBObject::create(width, height);
 //		fbo->after_obj->shader = GLBoy::instance->graphics_post_shader;
-		fbo->after_obj->shader = GLBoy::instance->blur_shader;
-		fbo->after_obj->vertex(-1,1,0,0,1);
-		fbo->after_obj->vertex(-1,-1,0,0,0);
-		fbo->after_obj->vertex(1,-1,0,1,0);
-		fbo->after_obj->vertex(1,-1,0,1,0);
-		fbo->after_obj->vertex(1,1,0,1,1);
-		fbo->after_obj->vertex(-1,1,0,0,1);
-		fbo->after_obj->bindVertexData();
+//		fbo->after_obj->shader = GLBoy::instance->blur_shader;
+//		fbo->after_obj->vertex(-1,1,0,0,1);
+//		fbo->after_obj->vertex(-1,-1,0,0,0);
+//		fbo->after_obj->vertex(1,-1,0,1,0);
+//		fbo->after_obj->vertex(1,-1,0,1,0);
+//		fbo->after_obj->vertex(1,1,0,1,1);
+//		fbo->after_obj->vertex(-1,1,0,0,1);
+//		fbo->after_obj->bindVertexData();
+		
+		quad_paste_obj = Object::create();
+		quad_paste_obj->shader = GLBoy::instance->graphics_post_shader;
+		float hw = width/GLBoy::instance->width;
+		float hh = height/GLBoy::instance->height;
+		float offset_x = center.x/(GLBoy::instance->width/2.0f);
+		float offset_y = center.y/(GLBoy::instance->height/2.0f);
+		quad_paste_obj->vertex(-hw+offset_x, hh+offset_y, 0, 0, 1);
+		quad_paste_obj->vertex(-hw+offset_x, -hh+offset_y, 0, 0, 0);
+		quad_paste_obj->vertex(hw+offset_x, -hh+offset_y, 0, 1, 0);
+		quad_paste_obj->vertex(hw+offset_x, -hh+offset_y, 0, 1, 0);
+		quad_paste_obj->vertex(hw+offset_x, hh+offset_y, 0, 1, 1);
+		quad_paste_obj->vertex(-hw+offset_x, hh+offset_y, 0, 0, 1);
+		quad_paste_obj->bindVertexData();
+		
 	}
 	
 	
@@ -150,7 +166,7 @@ namespace glboy {
 	void Graphics::end() {
 		
 		glBindFramebuffer(GL_READ_FRAMEBUFFER, framebuffer_id);
-		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, fbo->framebuffer_id); // Normal FBO can be the default FBO too.
+		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, blit_fbo->framebuffer_id); // Normal FBO can be the default FBO too.
 		glBlitFramebuffer(0, 0, width, height, 0, 0, width, height, GL_COLOR_BUFFER_BIT, GL_NEAREST);
 		
 //		glBindFramebuffer(GL_FRAMEBUFFER, fbo->framebuffer_id);
@@ -159,6 +175,15 @@ namespace glboy {
 //		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 //		fbo->after_obj->draw();
 		
+		GLuint rendered_texture_id = blit_fbo->rendered_texture_id;
+		
+		for(auto it = post_processes.begin(); it != post_processes.end(); ++it) {
+			(*it)->set_texture_id(rendered_texture_id);
+			(*it)->draw();
+			rendered_texture_id = (*it)->rendered_texture_id;
+		}
+		
+		
 		glBindFramebuffer(GL_FRAMEBUFFER, parent_framebuffer_id);
 		glViewport(0,0,parent_viewport.w, parent_viewport.h);
 		
@@ -166,10 +191,28 @@ namespace glboy {
 		boy->current_framebuffer_id = parent_framebuffer_id;
 		boy->current_viewport = parent_viewport;
 		
-		fbo->after_obj->draw();
+//		fbo->after_obj->draw();
+		
+		quad_paste_obj->set_texture_id(rendered_texture_id);
+		quad_paste_obj->draw();
 		
 //		poster->texture_id = rendered_texture_id;
 //		poster->draw();
 	}
 	
+	
+	void Graphics::filter(FILTER filter) {
+		switch (filter) {
+			case FILTER::BLUR:
+			{
+				std::cout << "Set blur filter" << std::endl;
+				FBObject::ptr blur = FBObject::create_blur(width, height);
+				post_processes.push_back(blur);
+				break;
+			}
+			default:
+				std::cout << "undefined filter" << std::endl;
+				break;
+		}
+	}
 }
