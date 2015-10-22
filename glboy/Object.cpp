@@ -25,7 +25,7 @@ namespace glboy {
 	// use_texture(false)
 	//need_reculc_mvp(true)
 	{
-		std::cout << "Object constractor" << std::endl;
+		LOGV("Object constractor\n");
 		
 		shader = GLBoy::instance->default_color_shader;
 		
@@ -46,12 +46,12 @@ namespace glboy {
 	}
 	
 	Object::ptr Object::create() {
-		return ptr(new Object());
+		return Object::ptr(new Object());
 	}
 	
 	Object::~Object()
 	{
-		std::cout << "destroied Object" << std::endl;
+		LOGV("destroied Object\n");
 		// Cleanup VAO/VBO
 		glBindVertexArray(VAO);
 		glDeleteBuffers(1, &vertexbuffer);

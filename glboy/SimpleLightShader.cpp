@@ -123,6 +123,8 @@ namespace glboy {
 	
 	SimpleLightShader::SimpleLightShader()
 	{
+		LOGV("SimpleLightShader constractor\n");
+		
 		shader_id = LoadShaders(vertex_shader, fragment_shader);
 		light_id = glGetUniformLocation(shader_id, "LightPosition_worldspace");
 		mvp_id = glGetUniformLocation(shader_id, "MVP");
@@ -159,7 +161,7 @@ namespace glboy {
 	
 	SimpleLightShader::~SimpleLightShader()
 	{
-		std::cout << "SimpleLightShader destructor" << std::endl;
+		LOGV("SimpleLightShader destructor\n");
 		glDeleteProgram(shader_id);
 	}
 	

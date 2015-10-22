@@ -1,9 +1,9 @@
 
 #include "glboy.hpp"
 //#include <algorithm>
-#include <cmath>
+//#include <cmath>
 
-using namespace std;
+//using namespace std;
 
 namespace glboy {
 	
@@ -21,13 +21,13 @@ namespace glboy {
 	
 	Color::ptr Color::hsv(int h, int s, int v)
 	{
-		return ptr(new Color(h, s, v, 100));
+		return Color::ptr(new Color(h, s, v, 100));
 	}
 	
 
 	Color::ptr Color::hsv(int h, int s, int v, int a)
 	{
-		return ptr(new Color(h, s, v, a));
+		return Color::ptr(new Color(h, s, v, a));
 	}
 	
 	void Color::fill(int h, int s, int v)
@@ -46,10 +46,10 @@ namespace glboy {
 	{
 		int i;
 		float h_, s_, v_;
-		h_ = abs(h % hlimit);
-		s_ = (float) max(min(s, slimit),0) / slimit;
-		v_ = (float) max(min(v, vlimit),0) / vlimit;
-		alpha = (float) max(min(a, alimit),0) / alimit;
+		h_ = glm::abs(h % hlimit);
+		s_ = (float) std::max(std::min(s, slimit),0) / slimit;
+		v_ = (float) std::max(std::min(v, vlimit),0) / vlimit;
+		alpha = (float) std::max(std::min(a, alimit),0) / alimit;
 		
 		if (s <= 0) {
 			r = g = b = v_;

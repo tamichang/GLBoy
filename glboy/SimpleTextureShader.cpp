@@ -31,12 +31,13 @@ namespace glboy {
 		// Interpolated values from the vertex shaders
 		in vec2 UV;
 		// Ouput data
-		out vec3 color;
+		out vec4 color;
 		// Values that stay constant for the whole mesh.
 		uniform sampler2D myTextureSampler;
 		void main() {
 		// Output color = color of the texture at the specified UV
-			color = texture( myTextureSampler, UV ).xyz;
+//			color = vec4(texture( myTextureSampler, UV ).xyz, 1.0f);
+			color = vec4(0.9f,0.2f,0.6f,1.0f);
 		}
 	);
 	
@@ -44,6 +45,7 @@ namespace glboy {
 	
 	SimpleTextureShader::SimpleTextureShader()
 	{
+		LOGV("SimpleTextureShader constractor\n");
 		shader_id = LoadShaders(vertex_shader, fragment_shader);
 		mvp_id    = glGetUniformLocation(shader_id, "MVP");
 		samplerId = glGetUniformLocation(shader_id, "myTextureSampler");
@@ -64,7 +66,7 @@ namespace glboy {
 	
 	SimpleTextureShader::~SimpleTextureShader()
 	{
-		std::cout << "SimpleTextureShader destructor" << std::endl;
+		LOGV("SimpleTextureShader destructor\n");
 		glDeleteProgram(shader_id);
 		glDeleteTextures(1, &samplerId);
 	}

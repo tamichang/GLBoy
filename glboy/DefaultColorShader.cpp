@@ -43,6 +43,7 @@ namespace glboy {
 	
 	DefaultColorShader::DefaultColorShader()
 	{
+		LOGV("DefaultColorShader constractor\n");
 		shader_id = LoadShaders( vertex_shader, fragment_shader );
 		mvp_id = glGetUniformLocation(shader_id, "MVP");
 	}
@@ -61,7 +62,7 @@ namespace glboy {
 	
 	DefaultColorShader::~DefaultColorShader()
 	{
-		std::cout << "DefaultColorShader destructor" << std::endl;
+		LOGV("DefaultColorShader destructor\n");
 		glDeleteProgram(shader_id);
 	}
 	

@@ -30,6 +30,7 @@ namespace glboy {
 		uniform sampler2D sampler;
 		uniform float coefficients[25];
 		uniform vec2 offset;
+	  uniform float power;
 		out vec4 color;
 		
 		void main() {
@@ -70,6 +71,8 @@ namespace glboy {
 			c += coefficients[23] * texture(sampler, tc); tc.x += offset.x;
 			c += coefficients[24] * texture(sampler, tc);
 			
+			c *= power;
+			
 			color = c;
 		}
 	);
@@ -77,10 +80,13 @@ namespace glboy {
 	
 	BlurShader::BlurShader()
 	{
+		LOGV("BlurShader constractor\n");
+		
 		shader_id = LoadShaders( vertex_shader, fragment_shader );
 		sampler_id = glGetUniformLocation(shader_id, "sampler");
 		coefficients_id = glGetUniformLocation(shader_id, "coefficients");
 		offset_id = glGetUniformLocation(shader_id, "offset");
+		power_id  = glGetUniformLocation(shader_id, "power");
 		
 		float _kernel[25] =
 		{
@@ -119,12 +125,16 @@ namespace glboy {
 		size[0] = interval[0] * 1.0f / size[0];
 		size[1] = interval[0] * 1.0f / size[1];
 		glUniform2fv(offset_id, 1, &size[0]);
+		
+		std::vector<float> power = obj->shader_params.find("power")->second;
+		glUniform1f(power_id, power[0]);
+		
 	}
 	
 	
 	BlurShader::~BlurShader()
 	{
-		std::cout << "BlurShader destructor" << std::endl;
+		LOGV("BlurShader destructor\n");
 		glDeleteProgram(shader_id);
 	}
 	

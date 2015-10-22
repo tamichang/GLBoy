@@ -17,27 +17,34 @@ namespace glboy {
 	
 	GLBoy* GLBoy::instance;
 	
-	GLBoy::GLBoy() :
-	width(800),
-	height(640),
-	camera_x(0.0f),
-	camera_y(0.0f),
-	background_color(Color::hsv(212,84,26)),
-	light_position(glm::vec3(300.0f,300.0f,300.0f)),
-	LightPower(30.0f),
-	LightableDistance(1000.0f),
-	LightColor(glm::vec3(0.45, 0.56, 0.85)),
-	current_framebuffer_id(0),
-	current_viewport({width, height})
+	
+	bool checkGlError(const char* funcName) {
+		GLint err = glGetError();
+		if (err != GL_NO_ERROR) {
+			LOGE("GL error after %s(): 0x%08x\n", funcName, err);
+			return true;
+		}
+		return false;
+	}
+	
+	
+	GLBoy::GLBoy() : camera_x(0.0f),	camera_y(0.0f),	background_color(Color::hsv(0,43,92)),
+									 light_position(glm::vec3(300.0f,300.0f,300.0f)),	LightPower(30.0f), LightableDistance(1000.0f),
+									 LightColor(glm::vec3(0.45, 0.56, 0.85)),	current_framebuffer_id(0)
 	{
-		std::cout << "GLBOY constractor" << std::endl;
+		LOGV("GLBOY constractor\n");
 		GLBoy::instance = this;
 	}
 	
-	void GLBoy::init(const std::shared_ptr<Player> player) {
-		std::cout << "GLBOY init" << std::endl;
+	void GLBoy::init(const std::shared_ptr<Player> player, int w, int h) {
+		LOGV("GLBOY init\n");
 		
 		this->player = player;
+		width = w;
+		height = h;
+		current_viewport = {w, h};
+		
+		clear_background();
 		
 		/*
 		// Enable depth test
@@ -54,7 +61,7 @@ namespace glboy {
 		default_color_shader  = std::make_shared<DefaultColorShader>();
 		simple_texture_shader = std::make_shared<SimpleTextureShader>();
 		graphics_post_shader  = std::make_shared<GraphicsPostShader>();
-		simple_light_shader   = std::make_shared<SimpleLightShader>();
+//		simple_light_shader   = std::make_shared<SimpleLightShader>();
 		ellipse_shader        = std::make_shared<EllipseShader>();
 		blur_shader           = std::make_shared<BlurShader>();
 		/*
@@ -85,13 +92,14 @@ namespace glboy {
 //		return boy;
 //	}
 	
-//	void GLBoy::size(int w, int h) {
-//		// width = w;
-//		// height = h;
-//		// graphics->size(w, h);
-//		culc_projection_matrix();
-//		culc_view_matrix();
-//	}
+	void GLBoy::size(int w, int h) {
+		width = w;
+		height = h;
+		current_viewport = {w, h};
+		graphics->size(w, h);
+		culc_projection_matrix();
+		culc_view_matrix();
+	}
 	
 	Size GLBoy::size() {
 		Size size = {width, height};
@@ -102,7 +110,7 @@ namespace glboy {
 		// culc projection matrix
 		float fov = M_PI / 3.0f;
 		float cameraZ = (height/2.0f) / glm::tan(fov/2.0f);
-		projection_matrix = glm::perspective(glm::degrees(fov), (float)width/(float)height, cameraZ/10.0f, cameraZ*10.0f);
+		projection_matrix = glm::perspective(fov /*glm::degrees(fov)*/, (float)width/(float)height, cameraZ/10.0f, cameraZ*10.0f);
 	}
 	
 	void GLBoy::culc_view_matrix()
@@ -131,7 +139,7 @@ namespace glboy {
 	
 	GLBoy::~GLBoy()
 	{
-		std::cout << "destroied GLBOY" << std::endl;
+		LOGV("destroied GLBOY\n");
 	}
 	
 	
@@ -152,9 +160,11 @@ namespace glboy {
 	void GLBoy::setup() {}
 	
 	void GLBoy::render() {
+		clear_background();
 		graphics->begin();
 		draw();
 		graphics->end();
+//		graphics->quad_paste_obj->draw();
 	}
 	
 	void GLBoy::draw() {}
@@ -175,7 +185,7 @@ namespace glboy {
 		} else
 		{
 			texture_id = loadBMP_custom(image_path.c_str());
-			std::cout << "load texture : " << texture_id << std::endl;
+			LOGV("load texture : %d\n", texture_id);
 			texture_map.insert(make_pair(image_path, texture_id));
 		}
 		

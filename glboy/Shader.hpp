@@ -1,11 +1,20 @@
 #ifndef _GLBOY_SHADER_HPP
 #define _GLBOY_SHADER_HPP
 
-#include <OpenGL/gl3.h>
+#ifdef __ANDROID__
+	#include <GLES3/gl3.h>
+	//#define GLSL_VERSION "300 es"
+	#define GLSL(version, shader)  "#version 300 es\n" #shader
+#else
+	#include <OpenGL/gl3.h>
+	//#define GLSL_VERSION "330	core"
+	#define GLSL(version, shader)  "#version 330 core\n" #shader
+#endif
+
 #include <string>
 //#include "GLBoy.hpp"
 
-#define GLSL(version, shader)  "#version " #version "\n" #shader
+//#define GLSL(version, shader)  "#version " #version "\n" #shader
 
 namespace glboy {
 	
@@ -94,7 +103,7 @@ namespace glboy {
 	
 	class BlurShader : public Shader
 	{
-		GLint sampler_id, coefficients_id, offset_id;
+		GLint sampler_id, coefficients_id, offset_id, power_id;
 		float kernel[25];
 		
 	public:

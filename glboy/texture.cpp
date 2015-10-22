@@ -10,7 +10,7 @@ namespace glboy {
 	GLuint loadBMP_custom(const char * imagepath)
 	{
 		
-		printf("Reading image %s\n", imagepath);
+		LOGV("Reading image %s\n", imagepath);
 		
 		// Data read from the header of the BMP file
 		unsigned char header[54];
@@ -24,7 +24,7 @@ namespace glboy {
 		FILE * file = fopen(imagepath,"rb");
 		if (!file)
 		{
-			printf("%s could not be opened. Are you in the right directory ? Don't forget to read the FAQ !\n", imagepath);
+			LOGE("%s could not be opened. Are you in the right directory ? Don't forget to read the FAQ !\n", imagepath);
 			getchar(); return 0;
 		}
 		
@@ -33,25 +33,25 @@ namespace glboy {
 		// If less than 54 bytes are read, problem
 		if ( fread(header, 1, 54, file)!=54 )
 		{
-			printf("Not a correct BMP file\n");
+			LOGE("Not a correct BMP file\n");
 			return 0;
 		}
 		// A BMP files always begins with "BM"
 		if ( header[0]!='B' || header[1]!='M' )
 		{
-			printf("Not a correct BMP file\n");
+			LOGE("Not a correct BMP file\n");
 			return 0;
 		}
 		// Make sure this is a 24bpp file
 		if ( *(int*)&(header[0x1E])!=0  )
 		{
-			printf("Not a correct BMP file\n");
+			LOGE("Not a correct BMP file\n");
 			return 0;
 		}
 		
 		if ( *(int*)&(header[0x1C])!=24 )
 		{
-			printf("Not a correct BMP file\n");
+			LOGE("Not a correct BMP file\n");
 			return 0;
 		}
 		
@@ -82,7 +82,7 @@ namespace glboy {
 		glBindTexture(GL_TEXTURE_2D, textureID);
 		
 		// Give the image to OpenGL
-		glTexImage2D(GL_TEXTURE_2D, 0,GL_RGB, width, height, 0, GL_BGR, GL_UNSIGNED_BYTE, data);
+		glTexImage2D(GL_TEXTURE_2D, 0,GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
 		
 		// OpenGL has now copied the data. Free our own version
 		delete [] data;

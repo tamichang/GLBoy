@@ -19,7 +19,7 @@ namespace glboy {
 	
 	FBObject::FBObject(float width, float height)
 	{
-		std::cout << "FBObject constractor" << std::endl;
+		LOGV("FBObject constractor\n");
 		
 		this->width = width;
 		this->height = height;
@@ -49,19 +49,24 @@ namespace glboy {
 		// The depth buffer
 		glGenRenderbuffers(1, &depth_renderbuffer);
 		glBindRenderbuffer(GL_RENDERBUFFER, depth_renderbuffer);
-		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, width, height);
+		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, width, height);
 		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depth_renderbuffer);
 		
 		// Set "rendered_texture" as our colour attachement #0
-		glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, rendered_texture_id, 0);
+		#ifdef __ANDROID__
+			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, rendered_texture_id, 0);
+		#else
+			glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, rendered_texture_id, 0);
+		#endif
 		
 		// Set the list of draw buffers.
 		GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
 		glDrawBuffers(1, DrawBuffers); // "1" is the size of DrawBuffers
 		
 		// Always check that our framebuffer is ok
-		if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
-			fprintf( stderr, "Failed to create FrameBuffer.(glCheckFramebufferStatus)\n" );
+		GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+		if(status != GL_FRAMEBUFFER_COMPLETE) {
+			LOGE("Failed to create FrameBuffer. glCheckFramebufferStatus: %d\n", status);
 			throw std::runtime_error("error");
 		}
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -71,7 +76,7 @@ namespace glboy {
 	
 	FBObject::~FBObject()
 	{
-		std::cout << "destroied FBObject" << std::endl;
+		LOGV("destroied FBObject\n");
 		glDeleteFramebuffers(1, &framebuffer_id);
 		glDeleteTextures(1, &rendered_texture_id);
 		glDeleteRenderbuffers(1, &depth_renderbuffer);
@@ -105,12 +110,12 @@ namespace glboy {
 
 	
 	FBObject::ptr FBObject::create(float width, float height) {
-		return ptr(new FBObject(width, height));
+		return FBObject::ptr(new FBObject(width, height));
 	}
 	
 	
 	FBObject::ptr FBObject::create_blur(float width, float height) {
-		ptr fbo = std::make_shared<FBObject>(width, height);
+		FBObject::ptr fbo = std::make_shared<FBObject>(width, height);
 		fbo->shader = GLBoy::instance->blur_shader;
 
 		fbo->vertex(-1, 1, 0, 0, 1);
@@ -128,6 +133,9 @@ namespace glboy {
 		std::vector<float> interval;
 		interval.push_back(3.0f);
 		fbo->shader_params.insert(std::make_pair("interval", interval));
+		std::vector<float> power;
+		power.push_back(3.0f);
+		fbo->shader_params.insert(std::make_pair("power", power));
 		
 		return fbo;
 	}

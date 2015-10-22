@@ -46,6 +46,8 @@ namespace glboy {
 	
 	EllipseShader::EllipseShader()
 	{
+		LOGV("EllipseShader constractor\n");
+		
 		shader_id = LoadShaders( vertex_shader, fragment_shader );
 		//mvp_id = glGetUniformLocation(shader_id, "MVP");
 		center_id = glGetUniformLocation(shader_id, "center");
@@ -78,7 +80,7 @@ namespace glboy {
 	
 	EllipseShader::~EllipseShader()
 	{
-		std::cout << "EllipseShader destructor" << std::endl;
+		LOGV("EllipseShader destructor\n");
 		glDeleteProgram(shader_id);
 	}
 	

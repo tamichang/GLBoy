@@ -1,12 +1,34 @@
 #ifndef _GLBOY_
 #define _GLBOY_
 
-#include <OpenGL/gl3.h>
+#define DEBUG 1
+
+#ifdef __ANDROID__
+	#include <android/log.h>
+	#include <GLES3/gl3.h>
+	#define GLBOY_LOG_TAG "GLBOY"
+	#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, GLBOY_LOG_TAG, __VA_ARGS__)
+	#if DEBUG
+		#define LOGV(...) __android_log_print(ANDROID_LOG_VERBOSE, GLBOY_LOG_TAG, __VA_ARGS__)
+	#else
+		#define LOGV(...)
+	#endif
+#else
+	#include <OpenGL/gl3.h>
+	#define LOGE(...) fprintf(stderr, __VA_ARGS__)
+	#if DEBUG
+		#define LOGV(...) printf(__VA_ARGS__)
+	#else
+		#define LOGV(...)
+	#endif
+#endif
+
 //#include <OpenGL/glu.h>
 //#include <GL/glew.h>
 //#include <GLFW/glfw3.h>
 
 //#define GLM_FORCE_RADIANS
+//#define message(ignore)
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -57,8 +79,8 @@ namespace glboy {
 		float r, g, b, alpha;
 		int h, s, v, a;
 
-		static ptr hsv(int h, int s, int v);
-		static ptr hsv(int h, int s, int v, int a);
+		static Color::ptr hsv(int h, int s, int v);
+		static Color::ptr hsv(int h, int s, int v, int a);
 		
 		void fill(int h, int s, int v);
 		void fill(int h, int s, int v, int a);
@@ -102,9 +124,9 @@ namespace glboy {
 		
 		int width, height;
 		float camera_x, camera_y;
-		 Color::ptr background_color;
+		Color::ptr background_color;
 		
-//		void size(int w, int h);
+		void size(int w, int h);
 		Size size();
 		
 		glm::mat4 view_matrix, projection_matrix;	//, MVP; //, View; //, Model;
@@ -129,7 +151,7 @@ namespace glboy {
 		
 		int frame_count;
 		
-		void init(const std::shared_ptr<Player> player);
+		void init(const std::shared_ptr<Player> player, int w, int h);
 		virtual void setup();
 		void render();
 		virtual void draw();
@@ -150,12 +172,13 @@ namespace glboy {
 		Size   parent_viewport;
 		point2d center;
 //		std::unique_ptr<Object> poster;
+		void init();
 		
 	public:
 		int width, height;
 		Color::ptr background_color;
-		std::shared_ptr<FBObject> blit_fbo;
-		std::shared_ptr<Object> quad_paste_obj;
+		std::unique_ptr<FBObject> blit_fbo;
+		std::unique_ptr<Object> quad_paste_obj;
 		
 		std::vector<std::shared_ptr<FBObject>> post_processes;
 		
@@ -163,7 +186,7 @@ namespace glboy {
 		~Graphics();
 		
 		// void init();
-//		void size(int w, int h);
+		void size(int w, int h);
 		void clear_background();
 		
 		void begin();
@@ -222,13 +245,13 @@ namespace glboy {
 		void normal(float x, float y, float z);
 		void clear_vertices();
 		
-		static ptr create();
+		static Object::ptr create();
 		Object();
 		virtual ~Object();
 		
-		static ptr triangle(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3);
-		static ptr box(float size);
-		static ptr ellipse(float x, float y, float z, float w, float h);
+		static Object::ptr triangle(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3);
+		static Object::ptr box(float size);
+		static Object::ptr ellipse(float x, float y, float z, float w, float h);
 		
 //		glm::vec3 center;
 //		float width; float height;
@@ -261,8 +284,8 @@ namespace glboy {
 		void draw();
 		void bindVertexData();
 		
-		static ptr create(float width, float height);
-		static ptr create_blur(float width, float height);
+		static FBObject::ptr create(float width, float height);
+		static FBObject::ptr create_blur(float width, float height);
 		
 		Object::ptr create_after_obj();
 	};
@@ -282,6 +305,7 @@ namespace glboy {
 //		virtual void set_glboy(std::shared_ptr<GLBoy> glboy);
 	};
 	
+	bool checkGlError(const char* funcName);
 	
 	GLuint loadBMP_custom(const char * imagepath);
 	

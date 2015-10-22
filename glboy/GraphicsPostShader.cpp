@@ -18,10 +18,12 @@ namespace glboy {
 		layout(location = 1) in vec4 vertexColor;
 		layout(location = 2) in vec2 vertexUV;
 		layout(location = 3) in vec3 vertexNormal_modelspace;
+//    out vec4 fragmentColor;
 		out vec2 UV;
 		void main() {
-		 gl_Position.xyz =  vertexPosition_modelspace;
-		 UV = vertexUV;
+		  gl_Position =  vec4(vertexPosition_modelspace,1);
+		  UV = vertexUV;
+//      fragmentColor = vertexColor;
 		}
 	);
 	
@@ -29,17 +31,19 @@ namespace glboy {
 	const std::string fragment_shader =
 	GLSL(330 core,
 		in vec2 UV;
-		out vec3 color;
+//			 in vec4 fragmentColor;
+		out vec4 color;
 		uniform sampler2D myTextureSampler;
 		void main() {
-		 color = texture( myTextureSampler, UV ).xyz;
+		 color = vec4(texture( myTextureSampler, UV ).xyz, 1.0f);	//vec4を返さないとAndroidでは表示されなかった！vec3じゃだめ
+//			color = vec4(1.0f,1.0f,1.0f,1.0f);
 		}
 	);
 	
 	
-	
 	GraphicsPostShader::GraphicsPostShader()
 	{
+		LOGV("GraphicsPostShader constractor\n");
 		shader_id = LoadShaders(vertex_shader, fragment_shader);
 		sampler_id = glGetUniformLocation(shader_id, "myTextureSampler");
 	}
@@ -49,6 +53,8 @@ namespace glboy {
 	{
 		glUseProgram(shader_id);
 		glDisable(GL_BLEND);
+//		glEnable(GL_BLEND);
+//		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, obj->texture_id);
@@ -57,7 +63,7 @@ namespace glboy {
 	
 	GraphicsPostShader::~GraphicsPostShader()
 	{
-		std::cout << "GraphicsPostShader destructor" << std::endl;
+		LOGV("GraphicsPostShader destructor\n");
 		glDeleteProgram(shader_id);
 		glDeleteTextures(1, &sampler_id);
 	}

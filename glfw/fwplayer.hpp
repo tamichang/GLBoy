@@ -1,6 +1,7 @@
 #ifndef _FWPLAYER_
 #define _FWPLAYER_
 
+
 //#define GLEW_NO_GLU
 //#include <GL/glew.h>
 
@@ -17,6 +18,8 @@
 class FWPlayer : public glboy::Player {
 public:
 	GLFWwindow* window;
+	
+	int width, height;
 	
 	int run();
 	
