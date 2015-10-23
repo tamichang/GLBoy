@@ -1,5 +1,5 @@
 
-#include "glboy.hpp"
+#include "GLBoy.hpp"
 #include <stdio.h>
 
 namespace glboy {

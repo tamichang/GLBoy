@@ -1,5 +1,4 @@
-
-#include "glboy.hpp"
+#include "GLBoy.hpp"
 //#include <algorithm>
 //#include <cmath>
 

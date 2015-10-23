@@ -1,4 +1,4 @@
-#include "glboy.hpp"
+#include "GLBoy.hpp"
 
 #include "Shader.hpp"
 //#include "DefaultColorShader.hpp"
@@ -36,7 +36,7 @@ namespace glboy {
 		GLBoy::instance = this;
 	}
 	
-	void GLBoy::init(const std::shared_ptr<Player> player, int w, int h) {
+	void GLBoy::init(Player* player, int w, int h) {
 		LOGV("GLBOY init\n");
 		
 		this->player = player;

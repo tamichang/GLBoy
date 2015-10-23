@@ -107,7 +107,7 @@ namespace glboy {
 		static GLBoy* instance;
 		std::unique_ptr<Graphics> graphics;
 		
-		std::shared_ptr<Player> player;
+		Player* player;
 		
 		std::map<std::string, GLuint> texture_map;
 		GLuint texture(std::string image_path);
@@ -151,7 +151,7 @@ namespace glboy {
 		
 		int frame_count;
 		
-		void init(const std::shared_ptr<Player> player, int w, int h);
+		void init(Player* player, int w, int h);
 		virtual void setup();
 		void render();
 		virtual void draw();

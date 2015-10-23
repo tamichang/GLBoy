@@ -11,8 +11,8 @@
 		7301DA471BC6EE6B0031D21B /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		7301DA481BC6EE6B0031D21B /* Color.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Color.cpp; sourceTree = "<group>"; };
 		7301DA491BC6EE6B0031D21B /* DefaultColorShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DefaultColorShader.cpp; sourceTree = "<group>"; };
-		7301DA4B1BC6EE6B0031D21B /* glboy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = glboy.cpp; sourceTree = "<group>"; };
-		7301DA4C1BC6EE6B0031D21B /* glboy.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = glboy.hpp; sourceTree = "<group>"; };
+		7301DA4B1BC6EE6B0031D21B /* GLBoy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GLBoy.cpp; sourceTree = "<group>"; };
+		7301DA4C1BC6EE6B0031D21B /* GLBoy.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GLBoy.hpp; sourceTree = "<group>"; };
 		7301DA4D1BC6EE6B0031D21B /* Object.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Object.cpp; sourceTree = "<group>"; };
 		7301DA4E1BC6EE6B0031D21B /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		7301DA4F1BC6EE6B0031D21B /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
@@ -28,6 +28,9 @@
 		7301DA681BCBD8750031D21B /* BlurShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BlurShader.cpp; sourceTree = "<group>"; };
 		734CB0B21BCDF6F00057C845 /* Graphics.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Graphics.cpp; sourceTree = "<group>"; };
 		734CB0B31BCE1E870057C845 /* GraphicsPostShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GraphicsPostShader.cpp; sourceTree = "<group>"; };
+		736D39AC1BDA2D66005CBD3C /* AndroPlayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AndroPlayer.cpp; sourceTree = "<group>"; };
+		736D39AD1BDA2D66005CBD3C /* AndroPlayer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AndroPlayer.hpp; sourceTree = "<group>"; };
+		736D39AE1BDA4C71005CBD3C /* glboy_AndroPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glboy_AndroPlayer.h; sourceTree = "<group>"; };
 		73D7B600198C81C7001B5DB6 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
 		73E9EB8719678207004DB096 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -37,8 +40,8 @@
 			isa = PBXGroup;
 			children = (
 				7301DA471BC6EE6B0031D21B /* CMakeLists.txt */,
-				7301DA4C1BC6EE6B0031D21B /* glboy.hpp */,
-				7301DA4B1BC6EE6B0031D21B /* glboy.cpp */,
+				7301DA4C1BC6EE6B0031D21B /* GLBoy.hpp */,
+				7301DA4B1BC6EE6B0031D21B /* GLBoy.cpp */,
 				734CB0B21BCDF6F00057C845 /* Graphics.cpp */,
 				7301DA481BC6EE6B0031D21B /* Color.cpp */,
 				7301DA4D1BC6EE6B0031D21B /* Object.cpp */,
@@ -67,6 +70,16 @@
 			path = glfw;
 			sourceTree = "<group>";
 		};
+		736D39AB1BDA2D66005CBD3C /* andro */ = {
+			isa = PBXGroup;
+			children = (
+				736D39AD1BDA2D66005CBD3C /* AndroPlayer.hpp */,
+				736D39AC1BDA2D66005CBD3C /* AndroPlayer.cpp */,
+				736D39AE1BDA4C71005CBD3C /* glboy_AndroPlayer.h */,
+			);
+			path = andro;
+			sourceTree = "<group>";
+		};
 		73E9EB7619678161004DB096 = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +88,7 @@
 				7301DA451BC6EE6B0031D21B /* CMakeLists.txt */,
 				7301DA461BC6EE6B0031D21B /* glboy */,
 				7301DA5A1BC6F0B80031D21B /* glfw */,
+				736D39AB1BDA2D66005CBD3C /* andro */,
 			);
 			sourceTree = "<group>";
 		};

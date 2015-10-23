@@ -80,7 +80,7 @@ int FWPlayer::run() {
 //	}
 	
 	GLBoy* glboy = GLBoy::instance;
-	glboy->init(shared_from_this(), width, height);
+	glboy->init(this, width, height);
 	glboy->setup();
 	
 	auto start = std::chrono::system_clock::now();
