@@ -26,15 +26,15 @@ namespace glboy {
 		layout(location = 3) in vec3 vertexNormal_modelspace;
 		// Output data ; will be interpolated for each fragment.
 		out vec3 fragmentColor;
-		out vec3 Position_worldspace;
-		out vec3 Normal_cameraspace;
-		out vec3 EyeDirection_cameraspace;
-		out vec3 LightDirection_cameraspace;
+		out highp vec3 Position_worldspace;
+		out highp vec3 Normal_cameraspace;
+		out highp vec3 EyeDirection_cameraspace;
+		out highp vec3 LightDirection_cameraspace;
 		// Values that stay constant for the whole mesh.
 		uniform mat4 MVP;
 		uniform mat4 V;
 		uniform mat4 M;
-		uniform vec3 LightPosition_worldspace;
+		uniform highp vec3 LightPosition_worldspace;
 		
 		void main() {
 			// Output position of the vertex, in clip space : MVP * position
@@ -60,16 +60,16 @@ namespace glboy {
 		//#version 330 core
 		// Interpolated values from the vertex shaders
 		in vec3 fragmentColor;
-		in vec3 Position_worldspace;
-		in vec3 Normal_cameraspace;
-		in vec3 EyeDirection_cameraspace;
-		in vec3 LightDirection_cameraspace;
+		in highp vec3 Position_worldspace;
+		in highp vec3 Normal_cameraspace;
+		in highp vec3 EyeDirection_cameraspace;
+		in highp vec3 LightDirection_cameraspace;
 		// Ouput data
 		out vec3 color;
 		//uniform mat4 MV;
-		uniform vec3 LightPosition_worldspace;
-		uniform float LightPower;
-		uniform float LightableDistance;
+		uniform highp vec3 LightPosition_worldspace;
+		uniform highp float LightPower;
+		uniform highp float LightableDistance;
 		uniform vec3 LightColor;
 		
 		void main() {
@@ -85,7 +85,7 @@ namespace glboy {
 		
 			// Distance to the light
 			//float distance = 1;//length( LightPosition_worldspace - Position_worldspace );
-			float distance = 1.0f - clamp(length( LightPosition_worldspace - Position_worldspace ) / LightableDistance, 0,1);
+			float distance = 1.0f - clamp(length( LightPosition_worldspace - Position_worldspace ) / LightableDistance, 0.0f, 1.0f);
 			// Normal of the computed fragment, in camera space
 			vec3 n = normalize( Normal_cameraspace );
 			// Direction of the light (from the fragment to the light)
@@ -95,7 +95,7 @@ namespace glboy {
 			//  - light is at the vertical of the triangle -> 1
 			//  - light is perpendicular to the triangle -> 0
 			//  - light is behind the triangle -> 0
-			float cosTheta = clamp( dot( n,l ), 0,1 );
+			float cosTheta = clamp( dot( n,l ), 0.0f, 1.0f );
 		
 			// Eye vector (towards the camera)
 			vec3 E = normalize(EyeDirection_cameraspace);
@@ -105,7 +105,7 @@ namespace glboy {
 			// clamped to 0
 			//  - Looking into the reflection -> 1
 			//  - Looking elsewhere -> < 1
-			float cosAlpha = clamp( dot( E,R ), 0,1 );
+			float cosAlpha = clamp( dot( E,R ), 0.0f, 1.0f );
 		
 			color =
 				// Ambient : simulates indirect lighting
@@ -113,7 +113,7 @@ namespace glboy {
 				// Diffuse : "color" of the object
 				MaterialDiffuseColor * LightColor * LightPower * cosTheta * distance + // / (distance*distance) +  
 				// Specular : reflective highlight, like a mirror
-				MaterialSpecularColor * LightColor * LightPower * pow(cosAlpha,5) * distance; // / (distance*distance);  
+				MaterialSpecularColor * LightColor * LightPower * pow(cosAlpha,5.0f) * distance; // / (distance*distance);
 		
 			//color = vec3(0.1,0.5,0.6);
 			//color = MaterialAmbientColor;

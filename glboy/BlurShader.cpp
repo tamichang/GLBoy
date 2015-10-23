@@ -18,7 +18,8 @@ namespace glboy {
 		out vec2 UV;
 		
 		void main() {
-			gl_Position.xyz = vertexPosition_modelspace;
+			//ESだとgl_Position.xyzだけを埋めても全く作画されない！！
+			gl_Position = vec4(vertexPosition_modelspace, 1.0f);
 			UV = vertexUV;
 		}
 	);
@@ -34,8 +35,6 @@ namespace glboy {
 		out vec4 color;
 		
 		void main() {
-//			float offset = 1.0f/400.0f;
-//			vec2 offset = vec2(1/400.0f,1/400.0f);
 			float left = UV.s - offset.x - offset.x;
 			float top  = UV.t - offset.y - offset.y;
 			vec2 tc = vec2(left, top);
@@ -74,6 +73,7 @@ namespace glboy {
 			c *= power;
 			
 			color = c;
+//			color = vec4(0.9f,0.2f,0.6f,1.0f);
 		}
 	);
 	

@@ -61,7 +61,7 @@ namespace glboy {
 		default_color_shader  = std::make_shared<DefaultColorShader>();
 		simple_texture_shader = std::make_shared<SimpleTextureShader>();
 		graphics_post_shader  = std::make_shared<GraphicsPostShader>();
-//		simple_light_shader   = std::make_shared<SimpleLightShader>();
+		simple_light_shader   = std::make_shared<SimpleLightShader>();
 		ellipse_shader        = std::make_shared<EllipseShader>();
 		blur_shader           = std::make_shared<BlurShader>();
 		/*

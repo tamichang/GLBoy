@@ -318,7 +318,7 @@ namespace glboy {
 		// float hh2 = 1;
 		
 		Object::ptr after_obj = obj->create_after_obj();
-		//after_obj->shader = GLBoy::instance->simple_texture_shader;
+		after_obj->shader = GLBoy::instance->simple_texture_shader;
 		after_obj->vertex(-hw2, hh2, 0, 0, 1);
 		after_obj->vertex(-hw2, -hh2, 0, 0, 0);
 		after_obj->vertex(hw2, -hh2, 0, 1, 0);
@@ -326,6 +326,8 @@ namespace glboy {
 		after_obj->vertex(hw2, hh2, 0, 1, 1);
 		after_obj->vertex(-hw2, hh2, 0, 0, 1);
 		after_obj->translate(x, y, z);
+		
+		obj->bindVertexData();
 		
 		return obj;
 	}

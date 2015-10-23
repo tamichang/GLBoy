@@ -201,11 +201,12 @@ namespace glboy {
 //		fbo->after_obj->draw();
 		
 		GLuint rendered_texture_id = blit_fbo->rendered_texture_id;
-		
+//		LOGV("rendered_texture_id: %d", rendered_texture_id);
 		for(auto it = post_processes.begin(); it != post_processes.end(); ++it) {
 			(*it)->set_texture_id(rendered_texture_id);
 			(*it)->draw();
 			rendered_texture_id = (*it)->rendered_texture_id;
+//			LOGV("rendered_texture_id: %d", rendered_texture_id);
 		}
 		
 		

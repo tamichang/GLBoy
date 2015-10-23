@@ -19,7 +19,8 @@ namespace glboy {
 		//"uniform mat4 MVP;
 		
 		void main() {
-			gl_Position.xyz = vertexPosition_modelspace;
+			//ESだとgl_Position.xyzだけを埋めても全く作画されない！！
+			gl_Position = vec4(vertexPosition_modelspace, 1);
 			fragmentColor = vertexColor;
 		}
 	);
@@ -30,11 +31,14 @@ namespace glboy {
 		//"layout(pixel_center_integer​) in vec4 gl_FragCoord;
 		in vec4 fragmentColor;
 		out vec4 color;
-		uniform vec2 center;
-		uniform vec2 major_minor;
+		uniform highp vec2 center;	// ESだとheightつけないとオーバーフローしちゃって正しく動かないっぽい。デフォルトは何？
+		uniform highp vec2 major_minor;	//これも同様、他にも注意する！！
 		//"uniform float height;
 		void main() {
-			float distance = length(center - gl_FragCoord.xy);
+			highp float distance = length(center - gl_FragCoord.xy);
+			// esだと distance <= 256 のような型ちがいの比較はすべてfalseになるっぽい
+//			highp float d = highp 256.0f;
+//			highp int d = 256;
 			if (distance <= major_minor.x/2.0f)
 					color = fragmentColor;
 			else

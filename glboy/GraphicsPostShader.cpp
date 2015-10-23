@@ -21,6 +21,7 @@ namespace glboy {
 //    out vec4 fragmentColor;
 		out vec2 UV;
 		void main() {
+			//ESだとgl_Position.xyzだけを埋めても全く作画されない！！
 		  gl_Position =  vec4(vertexPosition_modelspace,1);
 		  UV = vertexUV;
 //      fragmentColor = vertexColor;

@@ -31,13 +31,13 @@ namespace glboy {
 		// Interpolated values from the vertex shaders
 		in vec2 UV;
 		// Ouput data
-		out vec4 color;
+		out vec3 color;
 		// Values that stay constant for the whole mesh.
 		uniform sampler2D myTextureSampler;
 		void main() {
 		// Output color = color of the texture at the specified UV
-//			color = vec4(texture( myTextureSampler, UV ).xyz, 1.0f);
-			color = vec4(0.9f,0.2f,0.6f,1.0f);
+			color = texture( myTextureSampler, UV ).xyz;	//vec3でもいけるぞ？
+//			color = vec4(0.9f,0.2f,0.6f,1.0f);
 		}
 	);
 	

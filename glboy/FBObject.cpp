@@ -134,7 +134,7 @@ namespace glboy {
 		interval.push_back(3.0f);
 		fbo->shader_params.insert(std::make_pair("interval", interval));
 		std::vector<float> power;
-		power.push_back(3.0f);
+		power.push_back(2.0f);
 		fbo->shader_params.insert(std::make_pair("power", power));
 		
 		return fbo;
