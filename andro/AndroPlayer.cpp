@@ -52,7 +52,16 @@ glboy::GLBoy* boy;
 bool initial = true;
 
 JNIEXPORT void JNICALL Java_glboy_AndroPlayer_resize (JNIEnv * env, jclass cls, jint width, jint height) {
+	LOGV("JNI reszize called\n");
+	GLint drawFboId = 0, readFboId = 0;
+	glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFboId);
+	glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFboId);
+	LOGV("Current FrameBuffer_id: Draw %d, Read %d\n", drawFboId, readFboId);
+	GLint vp [4]; glGetIntegerv (GL_VIEWPORT, vp);
+	LOGV("Current Viewport %d %d %d %d\n", vp[0],vp[1],vp[2],vp[3]);
+
 	if (initial) {
+		LOGV("-- JNI reszize initial\n");
 		player = new AndroPlayer();
 		boy = glboy::GLBoy::instance;
 		boy->init(player, (int)width, (int)height);
@@ -70,6 +79,7 @@ JNIEXPORT void JNICALL Java_glboy_AndroPlayer_render (JNIEnv * env, jclass cls) 
 
 
 JNIEXPORT void JNICALL Java_glboy_AndroPlayer_touch (JNIEnv * env, jclass cls, jfloat x, jfloat y) {
+	if (player == NULL) return;
 	player->touchX = (float) x;
 	player->touchY = (float) y;
 	//LOGV("touchX %f, touchY %f", player->touchY, player->touchY);

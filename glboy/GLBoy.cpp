@@ -28,7 +28,8 @@ namespace glboy {
 	}
 	
 	
-	GLBoy::GLBoy() : camera_x(0.0f),	camera_y(0.0f),	background_color(Color::hsv(0,43,92)),
+	GLBoy::GLBoy() : should_resize(false), camera_x(0.0f),	camera_y(0.0f),
+									 background_color(Color::hsv(0,43,92)),
 									 light_position(glm::vec3(300.0f,300.0f,300.0f)),	LightPower(30.0f), LightableDistance(1000.0f),
 									 LightColor(glm::vec3(0.45, 0.56, 0.85)),	current_framebuffer_id(0)
 	{
@@ -93,10 +94,18 @@ namespace glboy {
 //	}
 	
 	void GLBoy::size(int w, int h) {
-		width = w;
-		height = h;
-		current_viewport = {w, h};
-		graphics->size(w, h);
+		next_size = {w, h};
+		should_resize = true;
+	}
+	
+	
+	void GLBoy::resize() {
+		LOGV("GLBoy resize\n");
+		width = next_size.w;
+		height = next_size.h;
+		glViewport(0, 0, width, height);
+		current_viewport = next_size;
+		graphics->size(width, height);
 		culc_projection_matrix();
 		culc_view_matrix();
 	}
@@ -161,10 +170,17 @@ namespace glboy {
 	
 	void GLBoy::render() {
 		clear_background();
+		
+		//描画途中でのrisazeをさせないため
+		if (should_resize) {
+			resize();
+			should_resize = false;
+		}
+		
 		graphics->begin();
 		draw();
 		graphics->end();
-//		graphics->quad_paste_obj->draw();
+		graphics->quad_paste_obj->draw();
 	}
 	
 	void GLBoy::draw() {}

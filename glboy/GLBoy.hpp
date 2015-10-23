@@ -101,6 +101,11 @@ namespace glboy {
 	
 	
 	class GLBoy {
+		
+		Size next_size;
+		bool should_resize;
+		void resize();
+		
 	public:
 		typedef std::shared_ptr<GLBoy> ptr;
 		

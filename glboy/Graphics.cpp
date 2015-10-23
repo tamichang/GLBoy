@@ -92,6 +92,7 @@ namespace glboy {
 			LOGE("Failed to create FrameBuffer. glCheckFramebufferStatus: %d\n", status);
 			throw std::runtime_error("error");
 		}
+		LOGV("Graphics init framebuffer createion SUCCESS\n");
 		
 		clear_background();
 		
@@ -154,15 +155,22 @@ namespace glboy {
 	}
 	
 	
-	
 	void Graphics::size(int w, int h) {
-		width = w;
+		LOGV("Graphics resize\n");
+		width  = w;
 		height = h;
+		
+		blit_fbo = NULL;
+		quad_paste_obj = NULL;
 		
 		glDeleteFramebuffers (1, &framebuffer_id);
 		glDeleteRenderbuffers(1, &color_renderbuffer_id);
 		glDeleteRenderbuffers(1, &depth_renderbuffer_id);
 
+		framebuffer_id = 0;
+		color_renderbuffer_id	 = 0;
+		depth_renderbuffer_id = 0;
+		
 		init();
 	}
 	
