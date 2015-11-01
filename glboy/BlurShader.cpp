@@ -1,10 +1,10 @@
+#include "Shader.hpp"
+//#include "GLBoy.hpp"
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
 //#include <string>
-
-#include "Shader.hpp"
-#include "GLBoy.hpp"
 
 
 namespace glboy {
@@ -88,13 +88,22 @@ namespace glboy {
 		offset_id = glGetUniformLocation(shader_id, "offset");
 		power_id  = glGetUniformLocation(shader_id, "power");
 		
+//		float _kernel[25] =
+//		{
+//			1, 4, 6, 4, 1,
+//			4, 16, 24, 16, 4,
+//			6, 24, 36, 24, 6,
+//			4, 16, 24, 16, 4,
+//			1, 4, 6, 4, 1,
+//		};
+		
 		float _kernel[25] =
 		{
-			1, 4, 6, 4, 1,
-			4, 16, 24, 16, 4,
-			6, 24, 36, 24, 6,
-			4, 16, 24, 16, 4,
-			1, 4, 6, 4, 1,
+			1,1,1,1,1,
+			1,1,1,1,1,
+			1,1,1,1,1,
+			1,1,1,1,1,
+			1,1,1,1,1
 		};
 		
 		memcpy(kernel, _kernel, sizeof(_kernel));

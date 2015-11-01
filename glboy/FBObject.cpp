@@ -114,9 +114,9 @@ namespace glboy {
 	}
 	
 	
-	FBObject::ptr FBObject::create_blur(float width, float height) {
+	FBObject::ptr FBObject::create_blur(float width, float height, Shader::ptr shader) {
 		FBObject::ptr fbo = std::make_shared<FBObject>(width, height);
-		fbo->shader = GLBoy::instance->blur_shader;
+		fbo->shader = shader;
 
 		fbo->vertex(-1, 1, 0, 0, 1);
 		fbo->vertex(-1, -1, 0, 0, 0);
@@ -131,10 +131,10 @@ namespace glboy {
 		size.push_back(height);
 		fbo->shader_params.insert(std::make_pair("size", size));
 		std::vector<float> interval;
-		interval.push_back(3.0f);
+		interval.push_back(1.0f);
 		fbo->shader_params.insert(std::make_pair("interval", interval));
 		std::vector<float> power;
-		power.push_back(2.0f);
+		power.push_back(1.0f);
 		fbo->shader_params.insert(std::make_pair("power", power));
 		
 		return fbo;
@@ -148,5 +148,59 @@ namespace glboy {
 		return after_obj;
 	}
 	
+	
+	FBObject::ptr FBObject::create_after_fbo() {
+		FBObject::ptr fbo = FBObject::create(width, height);
+		this->after_obj = fbo;
+		after_obj->shader = GLBoy::instance->simple_texture_shader;
+		after_obj->set_texture_id(rendered_texture_id);
+		return fbo;
+	}
+	
+	
+	void FBObject::set_after_obj(Object::ptr obj) {
+		after_obj = obj;
+		after_obj->set_texture_id(rendered_texture_id);
+	}
+	
+//	FBObject::ptr FBObject::create_color_cut_fbo(float width, float height, Color::ptr color) {
+//		FBObject::ptr cfbo = create(width, height);
+//		cfbo->shader = color_cut_shader;
+//		int p = 1;
+//		cfbo->vertex(-p, p, 0, 0, 1);
+//		cfbo->vertex(-p, -p, 0, 0, 0);
+//		cfbo->vertex(p, -p, 0, 1, 0);
+//		cfbo->vertex(p, -p, 0, 1, 0);
+//		cfbo->vertex(p, p, 0, 1, 1);
+//		cfbo->vertex(-p, p, 0, 0, 1);
+//		
+//		std::vector<float> cutting_color;
+//		cutting_color.push_back(color->r);
+//		cutting_color.push_back(color->g);
+//		cutting_color.push_back(color->b);
+//		cutting_color.push_back(color->alpha);
+//		cfbo->shader_params.insert(std::make_pair("cutting_color", cutting_color));
+//		
+//		cfbo->bindVertexData();
+//		return cfbo;
+//	}
+//	
+//	FBObject::ptr FBObject::create_merge_fbo(float width, float height, GLuint base_texture_id, GLuint plus_texture_id)
+//	{
+//		FBObject::ptr merge_fbo = FBObject::create(width, height);
+//		merge_fbo->shader = texture_merge_shader;
+//		merge_fbo->texture_id  = base_texture_id;
+//		merge_fbo->texture2_id = plus_texture_id;
+//
+//		int p = 1;
+//		merge_fbo->vertex(-p, p, 0, 0, 1);
+//		merge_fbo->vertex(-p, -p, 0, 0, 0);
+//		merge_fbo->vertex(p, -p, 0, 1, 0);
+//		merge_fbo->vertex(p, -p, 0, 1, 0);
+//		merge_fbo->vertex(p, p, 0, 1, 1);
+//		merge_fbo->vertex(-p, p, 0, 0, 1);
+//		
+//		merge_fbo->bindVertexData();
+//	}
 	
 }

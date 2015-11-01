@@ -3,9 +3,22 @@
 
 #define DEBUG 1
 
+
+
 #ifdef __ANDROID__
 	#include <android/log.h>
 	#include <GLES3/gl3.h>
+#elifdef TARGET_OS_IPHONE
+	#include <OpenGLES/ES3/gl.h>
+	#include <OpenGLES/ES3/glext.h>
+#else
+	#include <OpenGL/gl3.h>
+#endif
+
+//#include <GL/glew.h>
+
+
+#ifdef __ANDROID__
 	#define GLBOY_LOG_TAG "GLBOY"
 	#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, GLBOY_LOG_TAG, __VA_ARGS__)
 	#if DEBUG
@@ -14,7 +27,6 @@
 		#define LOGV(...)
 	#endif
 #else
-	#include <OpenGL/gl3.h>
 	#define LOGE(...) fprintf(stderr, __VA_ARGS__)
 	#if DEBUG
 		#define LOGV(...) printf(__VA_ARGS__)
@@ -22,6 +34,24 @@
 		#define LOGV(...)
 	#endif
 #endif
+
+
+#if DEBUG
+	#define GetGLError()									          \
+	{														                    \
+		GLenum err = glGetError();							      \
+		while (err != GL_NO_ERROR) {						      \
+			LOGV("GLError %s set in File:%s Line:%d\n",	\
+			GetGLErrorString(err),					            \
+			__FILE__,								                    \
+			__LINE__);								                  \
+			err = glGetError();								          \
+		}													                    \
+	}
+#else
+	#define GetGLError()
+#endif
+
 
 //#include <OpenGL/glu.h>
 //#include <GL/glew.h>
@@ -42,7 +72,6 @@ typedef int GLint;
 
 namespace glboy {
 	
-	class Shader;
 	
 	struct vertex_point {
 		float x, y, z;
@@ -73,7 +102,7 @@ namespace glboy {
 		void hsv_into_rgb();
 		
 	public:
-		typedef std::unique_ptr<Color> ptr;
+		typedef std::shared_ptr<Color> ptr;
 		
 		static const int hlimit, slimit, vlimit, alimit;
 		float r, g, b, alpha;
@@ -88,9 +117,10 @@ namespace glboy {
 	
 	
 	enum FILTER {
-		BLUR = 0
+		BLUR = 0, GLOW = 1
 	};
 	
+	class Shader;
 	
 	class Player;
 	
@@ -123,6 +153,10 @@ namespace glboy {
 		std::shared_ptr<Shader> simple_light_shader;
 		std::shared_ptr<Shader> ellipse_shader;
 		std::shared_ptr<Shader> blur_shader;
+		std::shared_ptr<Shader> blur_horizon_shader;
+		std::shared_ptr<Shader> blur_verticle_shader;
+		std::shared_ptr<Shader> color_cut_shader;
+		std::shared_ptr<Shader> texture_merge_shader;
 		
 		void culc_projection_matrix();
 		void culc_view_matrix();
@@ -130,6 +164,7 @@ namespace glboy {
 		int width, height;
 		float camera_x, camera_y;
 		Color::ptr background_color;
+		Color::ptr glow_color;
 		
 		void size(int w, int h);
 		Size size();
@@ -148,6 +183,7 @@ namespace glboy {
 		~GLBoy();
 		
 		void clear_background();
+		void set_background_color(int h, int s, int v);
 		
 		void camera_xy(float x, float y);
 		void camera_to_mouse();
@@ -204,12 +240,12 @@ namespace glboy {
 	
 	
 	class Object {
-	protected:
-		Color::ptr fill_color;
 		
 	public:
 		typedef std::shared_ptr<Object> ptr;
-				
+		
+		Color::ptr fill_color;
+		
 		bool need_reculc_mvp;
 		glm::mat4 mvp;
 		glm::mat4 model_matrix;
@@ -218,6 +254,7 @@ namespace glboy {
 		std::map<std::string, std::vector<float>> shader_params;
 		
 		GLenum primitive_mode;
+		//GLenum vertex_buffer_data_usage;
 		GLuint VAO;
 		GLuint vertexbuffer;
 		GLuint colorbuffer;
@@ -231,7 +268,7 @@ namespace glboy {
 		std::vector<uv_point> uvs;
 		std::vector<normal_point> normals;
 		
-		GLuint texture_id;
+		GLuint texture_id, texture2_id;
 		// bool use_texture;
 		// void texture(std::string image_path);
 		void set_texture_id(GLuint texture_id);
@@ -243,6 +280,7 @@ namespace glboy {
 		// virtualつけないとFBObjectのdrawが呼ばれない（Object型のとき）ハマった...
 		virtual void draw();
 		virtual void bindVertexData();
+//		void rebindVertexData();
 		
 		void vertex(float x, float y, float z);
 		void vertex(float x, float y, float z, float u, float v);
@@ -290,9 +328,35 @@ namespace glboy {
 		void bindVertexData();
 		
 		static FBObject::ptr create(float width, float height);
-		static FBObject::ptr create_blur(float width, float height);
+		static FBObject::ptr create_blur(float width, float height, std::shared_ptr<Shader> shader);
 		
 		Object::ptr create_after_obj();
+		FBObject::ptr create_after_fbo();
+		void set_after_obj(Object::ptr obj);
+	};
+	
+	
+	class GlowFBO : public FBObject {
+	public:
+		typedef std::shared_ptr<GlowFBO> ptr;
+		Color::ptr glow_color;
+		FBObject::ptr blur_fbo;
+		GlowFBO(float	width, float height, Color::ptr color);
+		virtual ~GlowFBO();
+		void draw();
+//		static GlowFBO::ptr create(float width, float height);
+	};
+	
+	
+	class Line : public Object {
+		std::vector<glm::vec4> points;
+	public:
+		typedef std::shared_ptr<Line> ptr;
+		Line();
+		virtual ~Line();
+		
+		void point(float x, float y, float z, float width);
+		void bindVertexData();
 	};
 	
 	
@@ -310,10 +374,13 @@ namespace glboy {
 //		virtual void set_glboy(std::shared_ptr<GLBoy> glboy);
 	};
 	
-	bool checkGlError(const char* funcName);
+//	bool checkGlError(const char* funcName);
 	
 	GLuint loadBMP_custom(const char * imagepath);
 	
+	const char * GetGLErrorString(GLenum error);
+	
+	void DebugOutputCallback();
 	
 }	//glboy
 

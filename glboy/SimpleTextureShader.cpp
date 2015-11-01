@@ -1,11 +1,13 @@
+#include "Shader.hpp"
+
 //#include "SimpleTextureShader.hpp"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
 //#include <string>
 
-#include "Shader.hpp"
-#include "GLBoy.hpp"
+
+//#include "GLBoy.hpp"
 //#include <string>
 
 namespace glboy {
@@ -48,7 +50,7 @@ namespace glboy {
 		LOGV("SimpleTextureShader constractor\n");
 		shader_id = LoadShaders(vertex_shader, fragment_shader);
 		mvp_id    = glGetUniformLocation(shader_id, "MVP");
-		samplerId = glGetUniformLocation(shader_id, "myTextureSampler");
+		sampler_id = glGetUniformLocation(shader_id, "myTextureSampler");
 	}
 	
 	
@@ -61,14 +63,14 @@ namespace glboy {
 		
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, obj->texture_id);
-		glUniform1i(samplerId, 0);
+		glUniform1i(sampler_id, 0);
 	}
 	
 	SimpleTextureShader::~SimpleTextureShader()
 	{
 		LOGV("SimpleTextureShader destructor\n");
 		glDeleteProgram(shader_id);
-		glDeleteTextures(1, &samplerId);
+		glDeleteTextures(1, &sampler_id);
 	}
 	
 	

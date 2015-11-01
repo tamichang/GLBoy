@@ -32,6 +32,12 @@
 		736D39AD1BDA2D66005CBD3C /* AndroPlayer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AndroPlayer.hpp; sourceTree = "<group>"; };
 		736D39AE1BDA4C71005CBD3C /* glboy_AndroPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glboy_AndroPlayer.h; sourceTree = "<group>"; };
 		73D7B600198C81C7001B5DB6 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
+		73E7B3B71BE38D2900C45C53 /* Line.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Line.cpp; sourceTree = "<group>"; };
+		73E7B3BA1BE4AC0F00C45C53 /* ColorCutShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ColorCutShader.cpp; sourceTree = "<group>"; };
+		73E7B3BC1BE5BE6000C45C53 /* TextureMergeShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextureMergeShader.cpp; sourceTree = "<group>"; };
+		73E7B3BD1BE5E93300C45C53 /* BlurHorizonShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BlurHorizonShader.cpp; sourceTree = "<group>"; };
+		73E7B3BE1BE60AB000C45C53 /* BlurVerticleShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BlurVerticleShader.cpp; sourceTree = "<group>"; };
+		73E7B3BF1BE64BD800C45C53 /* GlowFBO.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GlowFBO.cpp; sourceTree = "<group>"; };
 		73E9EB8719678207004DB096 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -46,16 +52,11 @@
 				7301DA481BC6EE6B0031D21B /* Color.cpp */,
 				7301DA4D1BC6EE6B0031D21B /* Object.cpp */,
 				7301DA671BCA27460031D21B /* FBObject.cpp */,
+				73E7B3BF1BE64BD800C45C53 /* GlowFBO.cpp */,
+				73E7B3B71BE38D2900C45C53 /* Line.cpp */,
 				7301DA4E1BC6EE6B0031D21B /* Player.cpp */,
-				7301DA501BC6EE6B0031D21B /* Shader.hpp */,
-				7301DA4F1BC6EE6B0031D21B /* Shader.cpp */,
-				7301DA491BC6EE6B0031D21B /* DefaultColorShader.cpp */,
-				7301DA531BC6EE6B0031D21B /* SimpleTextureShader.cpp */,
-				734CB0B31BCE1E870057C845 /* GraphicsPostShader.cpp */,
-				7301DA511BC6EE6B0031D21B /* SimpleLightShader.cpp */,
-				7301DA5E1BC81C830031D21B /* EllipseShader.cpp */,
-				7301DA681BCBD8750031D21B /* BlurShader.cpp */,
 				7301DA551BC6EE6B0031D21B /* texture.cpp */,
+				73E7B3B91BE4AB3E00C45C53 /* shaders */,
 			);
 			path = glboy;
 			sourceTree = "<group>";
@@ -78,6 +79,25 @@
 				736D39AE1BDA4C71005CBD3C /* glboy_AndroPlayer.h */,
 			);
 			path = andro;
+			sourceTree = "<group>";
+		};
+		73E7B3B91BE4AB3E00C45C53 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				7301DA501BC6EE6B0031D21B /* Shader.hpp */,
+				7301DA4F1BC6EE6B0031D21B /* Shader.cpp */,
+				7301DA491BC6EE6B0031D21B /* DefaultColorShader.cpp */,
+				7301DA531BC6EE6B0031D21B /* SimpleTextureShader.cpp */,
+				734CB0B31BCE1E870057C845 /* GraphicsPostShader.cpp */,
+				7301DA511BC6EE6B0031D21B /* SimpleLightShader.cpp */,
+				7301DA5E1BC81C830031D21B /* EllipseShader.cpp */,
+				7301DA681BCBD8750031D21B /* BlurShader.cpp */,
+				73E7B3BD1BE5E93300C45C53 /* BlurHorizonShader.cpp */,
+				73E7B3BE1BE60AB000C45C53 /* BlurVerticleShader.cpp */,
+				73E7B3BA1BE4AC0F00C45C53 /* ColorCutShader.cpp */,
+				73E7B3BC1BE5BE6000C45C53 /* TextureMergeShader.cpp */,
+			);
+			name = shaders;
 			sourceTree = "<group>";
 		};
 		73E9EB7619678161004DB096 = {

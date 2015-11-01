@@ -1,3 +1,4 @@
+#include "Shader.hpp"
 
 //#include "SimpleLightShader.hpp"
 
@@ -7,8 +8,8 @@
 #include <iostream>
 //#include <string>
 
-#include "Shader.hpp"
-#include "GLBoy.hpp"
+
+//#include "GLBoy.hpp"
 
 
 
@@ -80,7 +81,7 @@ namespace glboy {
 			
 			// Material properties
 			vec3 MaterialDiffuseColor = fragmentColor;	//texture( myTextureSampler, UV ).xyz;
-			vec3 MaterialAmbientColor = vec3(1,1,1) * MaterialDiffuseColor;
+			vec3 MaterialAmbientColor = vec3(0.3,0.3,0.3) * MaterialDiffuseColor;
 			vec3 MaterialSpecularColor = vec3(0.3,0.3,0.3);
 		
 			// Distance to the light

@@ -239,9 +239,18 @@ namespace glboy {
 		switch (filter) {
 			case FILTER::BLUR:
 			{
-				FBObject::ptr blur = FBObject::create_blur(width, height);
-				post_processes.push_back(blur);
+				FBObject::ptr blur1 = FBObject::create_blur(width, height, GLBoy::instance->blur_horizon_shader);
+				post_processes.push_back(blur1);
+
+				FBObject::ptr blur2 = FBObject::create_blur(width, height, GLBoy::instance->blur_verticle_shader);
+				post_processes.push_back(blur2);
+				
 				break;
+			}
+			case FILTER::GLOW:
+			{
+				GlowFBO::ptr glow = std::make_shared<GlowFBO>(width, height, GLBoy::instance->glow_color);
+				post_processes.push_back(glow);
 			}
 			default:
 				break;

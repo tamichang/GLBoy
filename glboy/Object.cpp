@@ -22,6 +22,7 @@ namespace glboy {
 	fill_color(Color::hsv(47,94,99,100)),
 	model_matrix(glm::mat4(1.0f)),
 	primitive_mode(GL_TRIANGLES)
+	//vertex_buffer_data_usage(GL_STATIC_DRAW)
 	// use_texture(false)
 	//need_reculc_mvp(true)
 	{
@@ -137,6 +138,8 @@ namespace glboy {
 		shader->use_program(this);
 		
 		glDrawElements(primitive_mode, indices.size(), GL_UNSIGNED_SHORT, (void*)0);
+		
+		glBindVertexArray(0);
 	}
 	
 	void Object::bindVertexData()
@@ -144,32 +147,54 @@ namespace glboy {
 		glBindVertexArray(VAO);
 		
 		glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(vertex_point), &vertices[0], GL_STATIC_DRAW);
+//		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(vertex_point), &vertices[0], GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(vertex_point), NULL, GL_DYNAMIC_DRAW);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, vertices.size() * sizeof(vertex_point), &vertices[0]);
 		
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 		
 		glBindBuffer(GL_ARRAY_BUFFER, colorbuffer);
-		glBufferData(GL_ARRAY_BUFFER, vertex_colors.size() * sizeof(rgb_color_point), &vertex_colors[0], GL_STATIC_DRAW);
+//		glBufferData(GL_ARRAY_BUFFER, vertex_colors.size() * sizeof(rgb_color_point), &vertex_colors[0], GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, vertex_colors.size() * sizeof(rgb_color_point), NULL, GL_DYNAMIC_DRAW);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, vertex_colors.size() * sizeof(rgb_color_point), &vertex_colors[0]);
 		
 		glEnableVertexAttribArray(1);
 		glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, (void*)0);
 		
 		glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
-		glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(uv_point), &uvs[0], GL_STATIC_DRAW);
+//		glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(uv_point), &uvs[0], GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(uv_point), NULL, GL_DYNAMIC_DRAW);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, uvs.size() * sizeof(uv_point), &uvs[0]);
 		
 		glEnableVertexAttribArray(2);
 		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
 		
 		glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
-		glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(normal_point), &normals[0], GL_STATIC_DRAW);
+//		glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(normal_point), &normals[0], GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(normal_point), NULL, GL_DYNAMIC_DRAW);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, normals.size() * sizeof(normal_point), &normals[0]);
 		
 		glEnableVertexAttribArray(3);
 		glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 		
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned short), &indices[0] , GL_STATIC_DRAW);
+//		glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned short), &indices[0] , GL_STATIC_DRAW);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned short), NULL, GL_DYNAMIC_DRAW);
+		glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, indices.size() * sizeof(unsigned short), &indices[0]);
+		
+		glBindVertexArray(0);
 	}
+	
+//	void Object::rebindVertexData () {
+//		glBindVertexArray(VAO);
+//		
+//		glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+//		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(vertex_point), NULL, vertex_buffer_data_usage);
+//		glBufferSubData(GL_ARRAY_BUFFER, 0, vertices.size() * sizeof(vertex_point), &vertices[0]);
+//		
+//		glBindVertexArray(0);
+//	}
 	
 	
 	Object::ptr Object::triangle(GLfloat x1, GLfloat y1, GLfloat z1,
@@ -341,10 +366,10 @@ namespace glboy {
 	void Object::fill(int h, int s, int v, int a)
 	{
 		fill_color->fill(h, s, v, a);
-		vertex_colors.clear();
-		for (int i=0; i < vertices.size(); i++) {
-			vertexColor();
-		}
+//		vertex_colors.clear();
+//		for (int i=0; i < vertices.size(); i++) {
+//			vertexColor();
+//		}
 	}
 	
 	

@@ -1,12 +1,14 @@
 #ifndef _GLBOY_SHADER_HPP
 #define _GLBOY_SHADER_HPP
 
+#include "GLBoy.hpp"
+
 #ifdef __ANDROID__
-	#include <GLES3/gl3.h>
+//	#include <GLES3/gl3.h>
 	//#define GLSL_VERSION "300 es"
 	#define GLSL(version, shader)  "#version 300 es\n" #shader
 #else
-	#include <OpenGL/gl3.h>
+//	#include <OpenGL/gl3.h>
 	//#define GLSL_VERSION "330	core"
 	#define GLSL(version, shader)  "#version 330 core\n" #shader
 #endif
@@ -30,7 +32,7 @@ namespace glboy {
 	public:
 		typedef std::shared_ptr<Shader> ptr;
 		
-		GLuint shader_id;
+		GLuint shader_id, sampler_id;
 		
 		Shader();
 		virtual ~Shader();
@@ -52,7 +54,7 @@ namespace glboy {
 	
 	
 	class SimpleTextureShader : public Shader {
-		GLuint samplerId;
+//		GLuint samplerId;
 //		GLuint mvp_id, samplerId;
 //		static const std::string vertex_shader, fragment_shader;
 		
@@ -65,7 +67,7 @@ namespace glboy {
 	
 	
 	class GraphicsPostShader : public Shader {
-		GLuint sampler_id;
+//		GLuint sampler_id;
 		
 	public:
 		GraphicsPostShader();
@@ -103,12 +105,57 @@ namespace glboy {
 	
 	class BlurShader : public Shader
 	{
-		GLint sampler_id, coefficients_id, offset_id, power_id;
+	protected:
+		GLint coefficients_id, offset_id, power_id;
 		float kernel[25];
 		
 	public:
 		BlurShader();
 		~BlurShader();
+		
+		void use_program(Object* object);
+	};
+	
+	
+	class BlurHorizonShader : public BlurShader
+	{
+		float kernel[7];
+	public:
+		BlurHorizonShader();
+		~BlurHorizonShader();
+		
+		void use_program(Object* object);
+	};
+	
+	
+	class BlurVerticleShader : public BlurShader
+	{
+		float kernel[7];
+	public:
+		BlurVerticleShader();
+		~BlurVerticleShader();
+		
+		void use_program(Object* object);
+	};
+	
+	
+	class ColorCutShader : public Shader
+	{
+		GLint cutting_color_id;
+	public:
+		ColorCutShader();
+		~ColorCutShader();
+		
+		void use_program(Object* object);
+	};
+	
+	
+	class TextureMergeShader : public Shader
+	{
+		GLint sampler2_id;
+	public:
+		TextureMergeShader();
+		~TextureMergeShader();
 		
 		void use_program(Object* object);
 	};

@@ -9,7 +9,7 @@
 //using namespace std;
 using namespace glboy;
 
-FWPlayer::FWPlayer() : width(800), height(640)
+FWPlayer::FWPlayer() : width(800), height(800)
 {
 	std::cout << "FWPlayer constractor" << std::endl;
 //	GLFWwindow* _window;
@@ -50,6 +50,9 @@ FWPlayer::FWPlayer() : width(800), height(640)
 	
 	// Ensure we can capture the escape key being pressed below
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
+	
+//	__glewDebugMessageCallbackAMD(&glboy::DebugOutputCallback, NULL);
+//	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);
 
 }
 
