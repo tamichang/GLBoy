@@ -1,0 +1,4 @@
+makeでコンパイル
+make cleanでクリア
+
+./bin/sample01 で起動
