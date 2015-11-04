@@ -38,6 +38,8 @@
 		73E7B3BD1BE5E93300C45C53 /* BlurHorizonShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BlurHorizonShader.cpp; sourceTree = "<group>"; };
 		73E7B3BE1BE60AB000C45C53 /* BlurVerticleShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BlurVerticleShader.cpp; sourceTree = "<group>"; };
 		73E7B3BF1BE64BD800C45C53 /* GlowFBO.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GlowFBO.cpp; sourceTree = "<group>"; };
+		73E7B3C61BEA7D5E00C45C53 /* Bezier2D.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bezier2D.cpp; sourceTree = "<group>"; };
+		73E7B3C71BEA80F500C45C53 /* Object.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Object.hpp; sourceTree = "<group>"; };
 		73E9EB8719678207004DB096 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -50,12 +52,9 @@
 				7301DA4B1BC6EE6B0031D21B /* GLBoy.cpp */,
 				734CB0B21BCDF6F00057C845 /* Graphics.cpp */,
 				7301DA481BC6EE6B0031D21B /* Color.cpp */,
-				7301DA4D1BC6EE6B0031D21B /* Object.cpp */,
-				7301DA671BCA27460031D21B /* FBObject.cpp */,
-				73E7B3BF1BE64BD800C45C53 /* GlowFBO.cpp */,
-				73E7B3B71BE38D2900C45C53 /* Line.cpp */,
 				7301DA4E1BC6EE6B0031D21B /* Player.cpp */,
 				7301DA551BC6EE6B0031D21B /* texture.cpp */,
+				73E7B3C51BEA7CFA00C45C53 /* Objects */,
 				73E7B3B91BE4AB3E00C45C53 /* shaders */,
 			);
 			path = glboy;
@@ -98,6 +97,19 @@
 				73E7B3BC1BE5BE6000C45C53 /* TextureMergeShader.cpp */,
 			);
 			name = shaders;
+			sourceTree = "<group>";
+		};
+		73E7B3C51BEA7CFA00C45C53 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				73E7B3C71BEA80F500C45C53 /* Object.hpp */,
+				7301DA4D1BC6EE6B0031D21B /* Object.cpp */,
+				7301DA671BCA27460031D21B /* FBObject.cpp */,
+				73E7B3BF1BE64BD800C45C53 /* GlowFBO.cpp */,
+				73E7B3B71BE38D2900C45C53 /* Line.cpp */,
+				73E7B3C61BEA7D5E00C45C53 /* Bezier2D.cpp */,
+			);
+			name = Objects;
 			sourceTree = "<group>";
 		};
 		73E9EB7619678161004DB096 = {

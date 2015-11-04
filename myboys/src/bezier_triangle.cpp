@@ -1,4 +1,4 @@
-#include "fwplayer.hpp"
+#include <GLBoy/fwplayer.hpp>
 //#include <GLBoy.hpp>
 
 #include <iostream>
@@ -34,7 +34,7 @@ public:
 		
 		obj = Object::create();
 		
-		float w = 50.0f;
+		float w = 4.0f;
 		
 		struct edge {
 			glm::vec3 p1, p2, p3;
@@ -50,55 +50,77 @@ public:
 		int segment_count = ceilf(sqrt(_seg * _seg * 0.6f + 225.0f));
 		LOGV("segment_count %d\n", segment_count);
 		float i_inc = 1.0f/segment_count;
-		std::vector<edge> points;
+		
+		std::vector<std::vector<glm::vec3>> points;
+		int angle_count = 6;
 		
 		for (float i = 0; i <= 1+i_inc/2.0f; i = i+i_inc) {
 			if (i > 1) {
 				i = 1;
 			}
+			
 			float q[3], tan[3];
 			f(i,q,tan);
 //			float normal_tan = q[2]; //1.0f / q[2];
 //			glm::vec3 normal(normal_tan, -1, 0);
+			glm::vec3 point(q[0], q[1], q[2]);
 			glm::vec3 axis(tan[0],tan[1],tan[2]);
 			glm::vec3 normal(tan[1], -1*tan[0], tan[2]);
 			normal = glm::normalize(normal);
 			normal = normal * w;
-			if (normal.y < 0) {
-				normal = -1.0f * normal;
-			}
-			float angle = glm::pi<float>()*2/3;
-			glm::vec3 normal2 = glm::rotate(normal,angle,axis);
-			glm::vec3 normal3 = glm::rotate(normal2,angle,axis);;
+//			if (normal.y < 0) {
+//				normal = -1.0f * normal;
+//			}
 			
-			glm::vec3 point(q[0], q[1], q[2]);
-			edge ed = {point+normal, point+normal2, point+normal3};
-			points.push_back(ed);
+			float angle = glm::pi<float>()*2/angle_count;
+			std::vector<glm::vec3> vertices;
+			for (int i = 0; i < angle_count; i++) {
+				glm::vec3 v = glm::rotate(normal,angle*i,axis);
+				vertices.push_back(v + point);
+			}
+//			glm::vec3 normal2 = glm::rotate(normal,angle,axis);
+//			glm::vec3 normal3 = glm::rotate(normal2,angle,axis);;
+			
+//			glm::vec3 point(q[0], q[1], q[2]);
+//			edge ed = {point+normal, point+normal2, point+normal3};
+//			points.push_back(ed);
+			points.push_back(vertices);
 		}
 		
 		for (int i = 0; i < points.size() -1; i++) {
-			edge ed1 = points[i];
-			edge ed2 = points[i+1];
-			obj->vertex(ed1.p1.x,ed1.p1.y,ed1.p1.z);
-			obj->vertex(ed1.p2.x,ed1.p2.y,ed1.p2.z);
-			obj->vertex(ed2.p2.x,ed2.p2.y,ed2.p2.z);
-			obj->vertex(ed2.p2.x,ed2.p2.y,ed2.p2.z);
-			obj->vertex(ed2.p1.x,ed2.p1.y,ed2.p1.z);
-			obj->vertex(ed1.p1.x,ed1.p1.y,ed1.p1.z);
+//			edge ed1 = points[i];
+//			edge ed2 = points[i+1];
+			std::vector<glm::vec3> edge1 = points[i];
+			std::vector<glm::vec3> edge2 = points[i+1];
 			
-			obj->vertex(ed1.p2.x,ed1.p2.y,ed1.p2.z);
-			obj->vertex(ed1.p3.x,ed1.p3.y,ed1.p3.z);
-			obj->vertex(ed2.p3.x,ed2.p3.y,ed2.p3.z);
-			obj->vertex(ed2.p3.x,ed2.p3.y,ed2.p3.z);
-			obj->vertex(ed2.p2.x,ed2.p2.y,ed2.p2.z);
-			obj->vertex(ed1.p2.x,ed1.p2.y,ed1.p2.z);
+			for (int j = 0; j < angle_count; j++) {
+				int next = j == angle_count -1 ? 0 : j+1;
+				glm::vec3 p11 = edge1[j];
+				glm::vec3 p12 = edge1[next];
+				glm::vec3 p21 = edge2[j];
+				glm::vec3 p22 = edge2[next];
+				obj->vertex(p11.x,p11.y,p11.z);
+				obj->vertex(p12.x,p12.y,p12.z);
+				obj->vertex(p22.x,p22.y,p22.z);
+				obj->vertex(p22.x,p22.y,p22.z);
+				obj->vertex(p21.x,p21.y,p21.z);
+				obj->vertex(p11.x,p11.y,p11.z);
+			}
 			
-			obj->vertex(ed1.p3.x,ed1.p3.y,ed1.p3.z);
-			obj->vertex(ed1.p1.x,ed1.p1.y,ed1.p1.z);
-			obj->vertex(ed2.p1.x,ed2.p1.y,ed2.p1.z);
-			obj->vertex(ed2.p1.x,ed2.p1.y,ed2.p1.z);
-			obj->vertex(ed2.p3.x,ed2.p3.y,ed2.p3.z);
-			obj->vertex(ed1.p3.x,ed1.p3.y,ed1.p3.z);
+			
+//			obj->vertex(ed1.p2.x,ed1.p2.y,ed1.p2.z);
+//			obj->vertex(ed1.p3.x,ed1.p3.y,ed1.p3.z);
+//			obj->vertex(ed2.p3.x,ed2.p3.y,ed2.p3.z);
+//			obj->vertex(ed2.p3.x,ed2.p3.y,ed2.p3.z);
+//			obj->vertex(ed2.p2.x,ed2.p2.y,ed2.p2.z);
+//			obj->vertex(ed1.p2.x,ed1.p2.y,ed1.p2.z);
+//			
+//			obj->vertex(ed1.p3.x,ed1.p3.y,ed1.p3.z);
+//			obj->vertex(ed1.p1.x,ed1.p1.y,ed1.p1.z);
+//			obj->vertex(ed2.p1.x,ed2.p1.y,ed2.p1.z);
+//			obj->vertex(ed2.p1.x,ed2.p1.y,ed2.p1.z);
+//			obj->vertex(ed2.p3.x,ed2.p3.y,ed2.p3.z);
+//			obj->vertex(ed1.p3.x,ed1.p3.y,ed1.p3.z);
 		}
 		
 		

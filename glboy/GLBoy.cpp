@@ -101,10 +101,10 @@ namespace glboy {
 		
 		// gl_pointsizeを有効にするため
 		glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
-		
+		*/
 		// Cull triangles which normal is not towards the camera
 		//glEnable(GL_CULL_FACE);
-		*/
+		
 		default_color_shader  = std::make_shared<DefaultColorShader>();
 		simple_texture_shader = std::make_shared<SimpleTextureShader>();
 		graphics_post_shader  = std::make_shared<GraphicsPostShader>();

@@ -23,6 +23,7 @@
 		73E7B3C11BE8B4E300C45C53 /* bezier.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = bezier.cpp; sourceTree = "<group>"; };
 		73E7B3C21BE9302800C45C53 /* bezier_triangle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = bezier_triangle.cpp; sourceTree = "<group>"; };
 		73E7B3C31BE93CB200C45C53 /* rotate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = rotate.cpp; sourceTree = "<group>"; };
+		73E7B3C41BEA3B8700C45C53 /* cull_face.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cull_face.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -30,6 +31,7 @@
 			isa = PBXGroup;
 			children = (
 				7301DA631BC8226D0031D21B /* sample01.cpp */,
+				73E7B3C41BEA3B8700C45C53 /* cull_face.cpp */,
 				73C09D4F1BE3316800F4A2DB /* dynamic_vertex.cpp */,
 				7301DA661BC8226D0031D21B /* wave_plane01.cpp */,
 				7301DA621BC8226D0031D21B /* ellipse.cpp */,

@@ -9,7 +9,7 @@
 //#error gl.h included
 //#endif
 
-#include <GLBoy.hpp>
+#include <GLBoy/GLBoy.hpp>
 
 #define GLFW_INCLUDE_GLCOREARB
 #include <GLFW/glfw3.h>

@@ -1,4 +1,4 @@
-#include "fwplayer.hpp"
+#include <GLBoy/fwplayer.hpp>
 //#include <GLBoy.hpp>
 
 #include <iostream>

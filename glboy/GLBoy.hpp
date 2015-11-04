@@ -237,7 +237,7 @@ namespace glboy {
 	};
 	
 	
-	
+	/*
 	
 	class Object {
 		
@@ -358,7 +358,8 @@ namespace glboy {
 		void point(float x, float y, float z, float width);
 		void bindVertexData();
 	};
-	
+	 
+	*/
 	
 	class Player : public std::enable_shared_from_this<Player> {
 	public:
@@ -384,5 +385,7 @@ namespace glboy {
 	
 }	//glboy
 
+
+#include "Object.hpp"
 
 #endif

@@ -16,4 +16,4 @@ ADD_LIBRARY(glfw STATIC fwplayer.cpp)
 INSTALL(TARGETS glfw ARCHIVE DESTINATION lib)
 
 #静的ライブラリ用ヘッダーファイルのインストール指定
-INSTALL(FILES fwplayer.hpp DESTINATION include)
+INSTALL(FILES FWPlayer.hpp DESTINATION include/GLBoy)
