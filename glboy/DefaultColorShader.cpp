@@ -1,9 +1,11 @@
 #include "Shader.hpp"
+//#include "Boy.hpp"
+#include "Object.hpp"
 
 //#include "DefaultColorShader.hpp"
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <iostream>
+//#include <glm/glm.hpp>
+//#include <glm/gtc/matrix_transform.hpp>
+//#include <iostream>
 //#include <string>
 
 

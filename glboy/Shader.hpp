@@ -1,7 +1,8 @@
 #ifndef _GLBOY_SHADER_HPP
 #define _GLBOY_SHADER_HPP
 
-#include "GLBoy.hpp"
+//#include "GLBoy.hpp"
+#include "Common.hpp"
 
 #ifdef __ANDROID__
 //	#include <GLES3/gl3.h>

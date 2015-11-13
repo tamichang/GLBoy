@@ -1,5 +1,5 @@
 
-#include "GLBoy.hpp"
+#include "Common.hpp"
 
 #include <stdio.h>
 #include <stdlib.h>

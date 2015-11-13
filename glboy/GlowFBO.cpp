@@ -1,5 +1,7 @@
-#include "GLBoy.hpp"
+#include "GlowFBO.hpp"
+#include "Boy.hpp"
 #include "Shader.hpp"
+#include "Color.hpp"
 
 #include <iostream>
 #include <cstdlib>
@@ -17,7 +19,7 @@ namespace glboy {
 	
 //	FBObject::FBObject(): width(256), height(256) {}
 	
-	GlowFBO::GlowFBO(float width, float height, Color::ptr color) : FBObject(width, height),
+	GlowFBO::GlowFBO(float width, float height, std::shared_ptr<Color> color) : FBObject(width, height),
 		glow_color(color)
 	{
 		LOGV("GlowFBO constractor\n");

@@ -24,4 +24,4 @@ ADD_LIBRARY(glboy STATIC ${sources})
 INSTALL(TARGETS glboy ARCHIVE DESTINATION lib)
 
 #静的ライブラリ用ヘッダーファイルのインストール指定
-INSTALL(FILES GLBoy.hpp Object.hpp DESTINATION include/GLBoy)
+INSTALL(DIRECTORY ./ DESTINATION include/GLBoy FILES_MATCHING PATTERN "*.hpp")

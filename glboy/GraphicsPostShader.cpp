@@ -1,9 +1,10 @@
 #include "Shader.hpp"
+#include "Object.hpp"
 
 //#include "SimpleTextureShader.hpp"
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <iostream>
+//#include <glm/glm.hpp>
+//#include <glm/gtc/matrix_transform.hpp>
+//#include <iostream>
 //#include <string>
 
 

@@ -1,56 +1,56 @@
 #ifndef _GLBOY_
 #define _GLBOY_
 
-#define DEBUG 1
 
 
 
-#ifdef __ANDROID__
-	#include <android/log.h>
-	#include <GLES3/gl3.h>
-#elifdef TARGET_OS_IPHONE
-	#include <OpenGLES/ES3/gl.h>
-	#include <OpenGLES/ES3/glext.h>
-#else
-	#include <OpenGL/gl3.h>
-#endif
 
-//#include <GL/glew.h>
-
-
-#ifdef __ANDROID__
-	#define GLBOY_LOG_TAG "GLBOY"
-	#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, GLBOY_LOG_TAG, __VA_ARGS__)
-	#if DEBUG
-		#define LOGV(...) __android_log_print(ANDROID_LOG_VERBOSE, GLBOY_LOG_TAG, __VA_ARGS__)
-	#else
-		#define LOGV(...)
-	#endif
-#else
-	#define LOGE(...) fprintf(stderr, __VA_ARGS__)
-	#if DEBUG
-		#define LOGV(...) printf(__VA_ARGS__)
-	#else
-		#define LOGV(...)
-	#endif
-#endif
-
-
-#if DEBUG
-	#define GetGLError()									          \
-	{														                    \
-		GLenum err = glGetError();							      \
-		while (err != GL_NO_ERROR) {						      \
-			LOGV("GLError %s set in File:%s Line:%d\n",	\
-			GetGLErrorString(err),					            \
-			__FILE__,								                    \
-			__LINE__);								                  \
-			err = glGetError();								          \
-		}													                    \
-	}
-#else
-	#define GetGLError()
-#endif
+//#ifdef __ANDROID__
+//	#include <android/log.h>
+//	#include <GLES3/gl3.h>
+//#elifdef TARGET_OS_IPHONE
+//	#include <OpenGLES/ES3/gl.h>
+//	#include <OpenGLES/ES3/glext.h>
+//#else
+//	#include <OpenGL/gl3.h>
+//#endif
+//
+////#include <GL/glew.h>
+//
+//
+//#ifdef __ANDROID__
+//	#define GLBOY_LOG_TAG "GLBOY"
+//	#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, GLBOY_LOG_TAG, __VA_ARGS__)
+//	#if DEBUG
+//		#define LOGV(...) __android_log_print(ANDROID_LOG_VERBOSE, GLBOY_LOG_TAG, __VA_ARGS__)
+//	#else
+//		#define LOGV(...)
+//	#endif
+//#else
+//	#define LOGE(...) fprintf(stderr, __VA_ARGS__)
+//	#if DEBUG
+//		#define LOGV(...) printf(__VA_ARGS__)
+//	#else
+//		#define LOGV(...)
+//	#endif
+//#endif
+//
+//
+//#if DEBUG
+//	#define GetGLError()									          \
+//	{														                    \
+//		GLenum err = glGetError();							      \
+//		while (err != GL_NO_ERROR) {						      \
+//			LOGV("GLError %s set in File:%s Line:%d\n",	\
+//			GetGLErrorString(err),					            \
+//			__FILE__,								                    \
+//			__LINE__);								                  \
+//			err = glGetError();								          \
+//		}													                    \
+//	}
+//#else
+//	#define GetGLError()
+//#endif
 
 
 //#include <OpenGL/glu.h>
@@ -59,182 +59,182 @@
 
 //#define GLM_FORCE_RADIANS
 //#define message(ignore)
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+//#include <glm/glm.hpp>
+//#include <glm/gtc/matrix_transform.hpp>
+//
+//#include <string>
+//#include <vector>
+//#include <map>
 
-#include <string>
-#include <vector>
-#include <map>
+//typedef float GLfloat;
+//typedef int GLint;
 
-typedef float GLfloat;
-typedef int GLint;
+#include "Common.hpp"
+#include "Color.hpp"
+#include "Boy.hpp"
 
+//namespace glboy {
+//	
+//	
+////	struct vertex_point {
+////		float x, y, z;
+////	};
+////	
+////	struct uv_point {
+////		float u, v;
+////	};
+////	
+////	struct rgb_color_point {
+////		 float r, g, b, a;
+////	};
+////	
+////	struct Size {
+////		int w, h;
+////	};
+////	
+////	struct point2d {
+////		float x, y;
+////	};
+////	
+////	typedef vertex_point normal_point;
+//	
+//	
+////	class Color
+////	{
+////		Color(int h, int s, int v, int a);
+////		void hsv_into_rgb();
+////		
+////	public:
+////		typedef std::shared_ptr<Color> ptr;
+////		
+////		static const int hlimit, slimit, vlimit, alimit;
+////		float r, g, b, alpha;
+////		int h, s, v, a;
+////
+////		static Color::ptr hsv(int h, int s, int v);
+////		static Color::ptr hsv(int h, int s, int v, int a);
+////		
+////		void fill(int h, int s, int v);
+////		void fill(int h, int s, int v, int a);
+////	};
+//	
+//	
+////	enum FILTER {
+////		BLUR = 0, GLOW = 1
+////	};
+//	
+//	class Shader;
+//	class Player;
+//	class Graphics;
+//	class Object;
+//	class FBObject;
+//	
+//	
+//	class GLBoy {
+//		
+//		Size next_size;
+//		bool should_resize;
+//		void resize();
+//		
+//	public:
+//		typedef std::shared_ptr<GLBoy> ptr;
+//		
+//		static GLBoy* instance;
+//		std::unique_ptr<Graphics> graphics;
+//		
+//		Player* player;
+//		
+//		std::map<std::string, GLuint> texture_map;
+//		GLuint texture(std::string image_path);
+//		
+//		std::shared_ptr<Shader> default_color_shader;
+//		std::shared_ptr<Shader> simple_texture_shader;
+//		std::shared_ptr<Shader> graphics_post_shader;
+//		std::shared_ptr<Shader> simple_light_shader;
+//		std::shared_ptr<Shader> ellipse_shader;
+//		std::shared_ptr<Shader> blur_shader;
+//		std::shared_ptr<Shader> blur_horizon_shader;
+//		std::shared_ptr<Shader> blur_verticle_shader;
+//		std::shared_ptr<Shader> color_cut_shader;
+//		std::shared_ptr<Shader> texture_merge_shader;
+//		
+//		void culc_projection_matrix();
+//		void culc_view_matrix();
+//		
+//		int width, height;
+//		float camera_x, camera_y;
+//		Color::ptr background_color;
+//		Color::ptr glow_color;
+//		
+//		void size(int w, int h);
+//		Size size();
+//		
+//		glm::mat4 view_matrix, projection_matrix;	//, MVP; //, View; //, Model;
+//		
+//		glm::vec3 light_position;
+//		float     LightPower;
+//		float     LightableDistance;
+//		glm::vec3 LightColor;
+//		
+//		GLuint current_framebuffer_id;
+//		Size   current_viewport;
+//		
+//		GLBoy();
+//		~GLBoy();
+//		
+//		void clear_background();
+//		void set_background_color(int h, int s, int v);
+//		
+//		void camera_xy(float x, float y);
+//		void camera_to_mouse();
+//		
+//		void rotateX(float angle);
+//		
+//		int frame_count;
+//		
+//		void init(Player* player, int w, int h);
+//		virtual void setup();
+//		void render();
+//		virtual void draw();
+//		
+//		float map(float value, float start1, float stop1, float start2, float stop2);
+//		
+////		enum FILTER {BLUR = 0};
+//		void filter(FILTER filter);
+//	};
 
-namespace glboy {
 	
-	
-	struct vertex_point {
-		float x, y, z;
-	};
-	
-	struct uv_point {
-		float u, v;
-	};
-	
-	struct rgb_color_point {
-		 float r, g, b, a;
-	};
-	
-	struct Size {
-		int w, h;
-	};
-	
-	struct point2d {
-		float x, y;
-	};
-	
-	typedef vertex_point normal_point;
-	
-	
-	class Color
-	{
-		Color(int h, int s, int v, int a);
-		void hsv_into_rgb();
-		
-	public:
-		typedef std::shared_ptr<Color> ptr;
-		
-		static const int hlimit, slimit, vlimit, alimit;
-		float r, g, b, alpha;
-		int h, s, v, a;
-
-		static Color::ptr hsv(int h, int s, int v);
-		static Color::ptr hsv(int h, int s, int v, int a);
-		
-		void fill(int h, int s, int v);
-		void fill(int h, int s, int v, int a);
-	};
-	
-	
-	enum FILTER {
-		BLUR = 0, GLOW = 1
-	};
-	
-	class Shader;
-	
-	class Player;
-	
-	class Graphics;
-	
-	class Object;
-	class FBObject;
-	
-	
-	class GLBoy {
-		
-		Size next_size;
-		bool should_resize;
-		void resize();
-		
-	public:
-		typedef std::shared_ptr<GLBoy> ptr;
-		
-		static GLBoy* instance;
-		std::unique_ptr<Graphics> graphics;
-		
-		Player* player;
-		
-		std::map<std::string, GLuint> texture_map;
-		GLuint texture(std::string image_path);
-		
-		std::shared_ptr<Shader> default_color_shader;
-		std::shared_ptr<Shader> simple_texture_shader;
-		std::shared_ptr<Shader> graphics_post_shader;
-		std::shared_ptr<Shader> simple_light_shader;
-		std::shared_ptr<Shader> ellipse_shader;
-		std::shared_ptr<Shader> blur_shader;
-		std::shared_ptr<Shader> blur_horizon_shader;
-		std::shared_ptr<Shader> blur_verticle_shader;
-		std::shared_ptr<Shader> color_cut_shader;
-		std::shared_ptr<Shader> texture_merge_shader;
-		
-		void culc_projection_matrix();
-		void culc_view_matrix();
-		
-		int width, height;
-		float camera_x, camera_y;
-		Color::ptr background_color;
-		Color::ptr glow_color;
-		
-		void size(int w, int h);
-		Size size();
-		
-		glm::mat4 view_matrix, projection_matrix;	//, MVP; //, View; //, Model;
-		
-		glm::vec3 light_position;
-		float     LightPower;
-		float     LightableDistance;
-		glm::vec3 LightColor;
-		
-		GLuint current_framebuffer_id;
-		Size   current_viewport;
-		
-		GLBoy();
-		~GLBoy();
-		
-		void clear_background();
-		void set_background_color(int h, int s, int v);
-		
-		void camera_xy(float x, float y);
-		void camera_to_mouse();
-		
-		void rotateX(float angle);
-		
-		int frame_count;
-		
-		void init(Player* player, int w, int h);
-		virtual void setup();
-		void render();
-		virtual void draw();
-		
-		float map(float value, float start1, float stop1, float start2, float stop2);
-		
-//		enum FILTER {BLUR = 0};
-		void filter(FILTER filter);
-	};
-	
-	
-	class Graphics {
-		GLuint framebuffer_id;
-//		GLuint rendered_texture_id;
-		GLuint depth_renderbuffer_id, color_renderbuffer_id;
-		
-		GLuint parent_framebuffer_id;
-		Size   parent_viewport;
-		point2d center;
-//		std::unique_ptr<Object> poster;
-		void init();
-		
-	public:
-		int width, height;
-		Color::ptr background_color;
-		std::unique_ptr<FBObject> blit_fbo;
-		std::unique_ptr<Object> quad_paste_obj;
-		
-		std::vector<std::shared_ptr<FBObject>> post_processes;
-		
-		Graphics(float x, float y, int w, int h);
-		~Graphics();
-		
-		// void init();
-		void size(int w, int h);
-		void clear_background();
-		
-		void begin();
-		void end();
-		
-		void filter(FILTER filter);
-	};
+//	class Graphics {
+//		GLuint framebuffer_id;
+////		GLuint rendered_texture_id;
+//		GLuint depth_renderbuffer_id, color_renderbuffer_id;
+//		
+//		GLuint parent_framebuffer_id;
+//		Size   parent_viewport;
+//		point2d center;
+////		std::unique_ptr<Object> poster;
+//		void init();
+//		
+//	public:
+//		int width, height;
+//		Color::ptr background_color;
+//		std::unique_ptr<FBObject> blit_fbo;
+//		std::unique_ptr<Object> quad_paste_obj;
+//		
+//		std::vector<std::shared_ptr<FBObject>> post_processes;
+//		
+//		Graphics(float x, float y, int w, int h);
+//		~Graphics();
+//		
+//		// void init();
+//		void size(int w, int h);
+//		void clear_background();
+//		
+//		void begin();
+//		void end();
+//		
+//		void filter(FILTER filter);
+//	};
 	
 	
 	/*
@@ -361,31 +361,36 @@ namespace glboy {
 	 
 	*/
 	
-	class Player : public std::enable_shared_from_this<Player> {
-	public:
-		typedef std::shared_ptr<Player> ptr;
-		
-		Player();
-		virtual ~Player();
-		
-//		std::shared_ptr<GLBoy> glboy;
-		
-		virtual int run();
-		virtual void mouse_position(float& xpos, float& ypos);
-//		virtual void set_glboy(std::shared_ptr<GLBoy> glboy);
-	};
+//	class Player : public std::enable_shared_from_this<Player> {
+//	public:
+//		typedef std::shared_ptr<Player> ptr;
+//		
+//		Player();
+//		virtual ~Player();
+//		
+////		std::shared_ptr<GLBoy> glboy;
+//		
+//		virtual int run();
+//		virtual void mouse_position(float& xpos, float& ypos);
+////		virtual void set_glboy(std::shared_ptr<GLBoy> glboy);
+//	};
 	
 //	bool checkGlError(const char* funcName);
 	
-	GLuint loadBMP_custom(const char * imagepath);
+//	GLuint loadBMP_custom(const char * imagepath);
+//	
+//	const char * GetGLErrorString(GLenum error);
+//	
+//	void DebugOutputCallback();
 	
-	const char * GetGLErrorString(GLenum error);
-	
-	void DebugOutputCallback();
-	
-}	//glboy
+//}	//glboy
 
 
 #include "Object.hpp"
+#include "FBObject.hpp"
+#include "GlowFBO.hpp"
+#include "Line.hpp"
+#include "Player.hpp"
+#include "Graphics.hpp"
 
 #endif

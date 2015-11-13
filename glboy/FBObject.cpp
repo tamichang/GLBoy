@@ -1,4 +1,5 @@
-#include "GLBoy.hpp"
+#include "FBObject.hpp"
+#include "Boy.hpp"
 #include "Shader.hpp"
 
 #include <iostream>
@@ -139,6 +140,59 @@ namespace glboy {
 		
 		return fbo;
 	}
+	
+	Object::ptr Object::ellipse(float x, float y, float z, float w, float h)
+	{
+		std::shared_ptr<FBObject> obj = std::make_shared<FBObject>(w,h);
+		//		GLBoy* boy = GLBoy::instance;
+		//		float hw1 = w/boy->width/2.0f;
+		//		float hh1 = h/boy->height/2.0f;
+		
+		//		obj->vertex(-hw1, hh1, 0);
+		//		obj->vertex(-hw1, -hh1, 0);
+		//		obj->vertex(hw1, -hh1, 0);
+		//		obj->vertex(hw1, -hh1, 0);
+		//		obj->vertex(hw1, hh1, 0);
+		//		obj->vertex(-hw1, hh1, 0);
+		
+		obj->vertex(-1, 1, 0);
+		obj->vertex(-1, -1, 0);
+		obj->vertex(1, -1, 0);
+		obj->vertex(1, -1, 0);
+		obj->vertex(1, 1, 0);
+		obj->vertex(-1, 1, 0);
+		
+		obj->shader = GLBoy::instance->ellipse_shader;
+		std::vector<float> major_minor;
+		major_minor.push_back(w);
+		major_minor.push_back(h);
+		obj->shader_params.insert(std::make_pair("major_minor", major_minor));
+		//		std::vector<float> center;
+		//		center.push_back(w/2.0f);
+		//		center.push_back(h/2.0f);
+		//		obj->shader_params.insert(std::make_pair("center", center));
+		
+		
+		float hw2 = w/2.0f;
+		float hh2 = h/2.0f;
+		// float hw2 = 1;
+		// float hh2 = 1;
+		
+		Object::ptr after_obj = obj->create_after_obj();
+		after_obj->shader = GLBoy::instance->simple_texture_shader;
+		after_obj->vertex(-hw2, hh2, 0, 0, 1);
+		after_obj->vertex(-hw2, -hh2, 0, 0, 0);
+		after_obj->vertex(hw2, -hh2, 0, 1, 0);
+		after_obj->vertex(hw2, -hh2, 0, 1, 0);
+		after_obj->vertex(hw2, hh2, 0, 1, 1);
+		after_obj->vertex(-hw2, hh2, 0, 0, 1);
+		after_obj->translate(x, y, z);
+		
+		obj->bindVertexData();
+		
+		return obj;
+	}
+
 	
 	
 	Object::ptr FBObject::create_after_obj() {

@@ -7,7 +7,7 @@ cmake_minimum_required(VERSION 3.0)
 PROJECT(glfw)
 
 add_definitions("-g -Wall -std=c++11")
-include_directories(../glboy)
+include_directories(../)
 include_directories(/usr/local/include)
 
 #静的ライブラリの生成

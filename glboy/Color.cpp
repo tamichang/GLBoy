@@ -1,8 +1,10 @@
-#include "GLBoy.hpp"
-//#include <algorithm>
+#include "Color.hpp"
+//
 //#include <cmath>
 
 //using namespace std;
+#include <glm/glm.hpp>
+#include <algorithm>
 
 namespace glboy {
 	

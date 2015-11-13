@@ -1,15 +1,19 @@
 #ifndef _GLBOY_OBJECT_
 #define _GLBOY_OBJECT_
 
+#include "Common.hpp"
 
 namespace glboy {
+	
+	class Color;
+	class Shader;
 	
 	class Object {
 		
 	public:
 		typedef std::shared_ptr<Object> ptr;
 		
-		Color::ptr fill_color;
+		std::shared_ptr<Color> fill_color;
 		
 		bool need_reculc_mvp;
 		glm::mat4 mvp;
@@ -71,59 +75,59 @@ namespace glboy {
 	};
 	
 	
-	class FBObject : public Object {
-	public:
-		
-		typedef std::shared_ptr<FBObject> ptr;
-		
-		float width, height;
-		
-		GLuint rendered_texture_id;
-		GLuint depth_renderbuffer;
-		GLuint framebuffer_id;
-		
-		std::shared_ptr<Object> after_obj;
-		
-//		FBObject();
-		FBObject(float width, float height);
-		virtual ~FBObject();
-		
-//		static ptr ellipse(float x, float y, float z, float w, float h);
-		void draw();
-		void bindVertexData();
-		
-		static FBObject::ptr create(float width, float height);
-		static FBObject::ptr create_blur(float width, float height, std::shared_ptr<Shader> shader);
-		
-		Object::ptr create_after_obj();
-		FBObject::ptr create_after_fbo();
-		void set_after_obj(Object::ptr obj);
-	};
-	
-	
-	class GlowFBO : public FBObject {
-	public:
-		typedef std::shared_ptr<GlowFBO> ptr;
-		Color::ptr glow_color;
-		FBObject::ptr blur_fbo;
-		GlowFBO(float	width, float height, Color::ptr color);
-		virtual ~GlowFBO();
-		void draw();
-//		static GlowFBO::ptr create(float width, float height);
-	};
-	
-	
-	class Line : public Object {
-		std::vector<glm::vec4> points;
-	public:
-		typedef std::shared_ptr<Line> ptr;
-		Line();
-		virtual ~Line();
-		
-		void point(float x, float y, float z, float width);
-		void bindVertexData();
-	};
-	
+//	class FBObject : public Object {
+//	public:
+//		
+//		typedef std::shared_ptr<FBObject> ptr;
+//		
+//		float width, height;
+//		
+//		GLuint rendered_texture_id;
+//		GLuint depth_renderbuffer;
+//		GLuint framebuffer_id;
+//		
+//		std::shared_ptr<Object> after_obj;
+//		
+////		FBObject();
+//		FBObject(float width, float height);
+//		virtual ~FBObject();
+//		
+////		static ptr ellipse(float x, float y, float z, float w, float h);
+//		void draw();
+//		void bindVertexData();
+//		
+//		static FBObject::ptr create(float width, float height);
+//		static FBObject::ptr create_blur(float width, float height, std::shared_ptr<Shader> shader);
+//		
+//		Object::ptr create_after_obj();
+//		FBObject::ptr create_after_fbo();
+//		void set_after_obj(Object::ptr obj);
+//	};
+//	
+//	
+//	class GlowFBO : public FBObject {
+//	public:
+//		typedef std::shared_ptr<GlowFBO> ptr;
+//		std::shared_ptr<Color> glow_color;
+//		FBObject::ptr blur_fbo;
+//		GlowFBO(float	width, float height, std::shared_ptr<Color> color);
+//		virtual ~GlowFBO();
+//		void draw();
+////		static GlowFBO::ptr create(float width, float height);
+//	};
+//	
+//	
+//	class Line : public Object {
+//		std::vector<glm::vec4> points;
+//	public:
+//		typedef std::shared_ptr<Line> ptr;
+//		Line();
+//		virtual ~Line();
+//		
+//		void point(float x, float y, float z, float width);
+//		void bindVertexData();
+//	};
+//	
 	
 }
 

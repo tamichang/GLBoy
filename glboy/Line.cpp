@@ -1,5 +1,6 @@
-
-#include "GLBoy.hpp"
+#include "Object.hpp"
+#include "Line.hpp"
+#include "Boy.hpp"
 //#include "DefaultColorShader.hpp"
 //#include "SimpleTextureShader.hpp"
 #include "Shader.hpp"

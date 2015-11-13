@@ -1,11 +1,12 @@
 #include "Shader.hpp"
-
+#include "Boy.hpp"
+#include "Object.hpp"
 //#include "SimpleLightShader.hpp"
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+//#include <glm/glm.hpp>
+//#include <glm/gtc/matrix_transform.hpp>
 #include <glm/ext.hpp>
-#include <iostream>
+//#include <iostream>
 //#include <string>
 
 

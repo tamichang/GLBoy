@@ -1,4 +1,10 @@
-#include "GLBoy.hpp"
+#include "Graphics.hpp"
+#include "Boy.hpp"
+#include "Object.hpp"
+#include "FBObject.hpp"
+#include "GlowFBO.hpp"
+#include "Color.hpp"
+
 
 #include <iostream>
 // #include <cstdlib>
@@ -11,13 +17,15 @@
 
 namespace glboy {
 
-	Graphics::Graphics(float x, float y, int w, int h) : background_color(Color::hsv(212,84,26))
+	Graphics::Graphics(float x, float y, int w, int h)
 	{
 		LOGV("Graphics constructor\n");
 		
 		center = {x, y};
 		width = w;
 		height = h;
+		
+		background_color = Color::hsv(212,84,26);
 		
 		init();
 	}

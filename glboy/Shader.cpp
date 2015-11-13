@@ -1,9 +1,9 @@
 #include "Shader.hpp"
-//#include "GLBoy.hpp"
+//#include "Boy.hpp"
 
 //#include <stdio.h>
 
-#include <vector>
+//#include <vector>
 #include <iostream>
 #include <fstream>
 

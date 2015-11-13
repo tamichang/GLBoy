@@ -11,7 +11,6 @@
 		7301DA471BC6EE6B0031D21B /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		7301DA481BC6EE6B0031D21B /* Color.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Color.cpp; sourceTree = "<group>"; };
 		7301DA491BC6EE6B0031D21B /* DefaultColorShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DefaultColorShader.cpp; sourceTree = "<group>"; };
-		7301DA4B1BC6EE6B0031D21B /* GLBoy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GLBoy.cpp; sourceTree = "<group>"; };
 		7301DA4C1BC6EE6B0031D21B /* GLBoy.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GLBoy.hpp; sourceTree = "<group>"; };
 		7301DA4D1BC6EE6B0031D21B /* Object.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Object.cpp; sourceTree = "<group>"; };
 		7301DA4E1BC6EE6B0031D21B /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
@@ -38,8 +37,18 @@
 		73E7B3BD1BE5E93300C45C53 /* BlurHorizonShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BlurHorizonShader.cpp; sourceTree = "<group>"; };
 		73E7B3BE1BE60AB000C45C53 /* BlurVerticleShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BlurVerticleShader.cpp; sourceTree = "<group>"; };
 		73E7B3BF1BE64BD800C45C53 /* GlowFBO.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GlowFBO.cpp; sourceTree = "<group>"; };
-		73E7B3C61BEA7D5E00C45C53 /* Bezier2D.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bezier2D.cpp; sourceTree = "<group>"; };
+		73E7B3C61BEA7D5E00C45C53 /* Bezier2D.cpp__ */ = {isa = PBXFileReference; lastKnownFileType = text; path = Bezier2D.cpp__; sourceTree = "<group>"; };
 		73E7B3C71BEA80F500C45C53 /* Object.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Object.hpp; sourceTree = "<group>"; };
+		73E7B3C81BEA854D00C45C53 /* Color.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Color.hpp; sourceTree = "<group>"; };
+		73E7B3C91BEA898600C45C53 /* Common.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Common.hpp; sourceTree = "<group>"; };
+		73E7B3CA1BEA8A2500C45C53 /* Common.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Common.cpp; sourceTree = "<group>"; };
+		73E7B3CB1BEA8B2400C45C53 /* Player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
+		73E7B3CC1BEA8C9E00C45C53 /* Graphics.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Graphics.hpp; sourceTree = "<group>"; };
+		73E7B3CD1BEA927600C45C53 /* Boy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Boy.cpp; sourceTree = "<group>"; };
+		73E7B3CE1BEA927600C45C53 /* Boy.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Boy.hpp; sourceTree = "<group>"; };
+		73E7B3CF1BEA991C00C45C53 /* Line.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Line.hpp; sourceTree = "<group>"; };
+		73E7B3D01BEA992300C45C53 /* GlowFBO.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GlowFBO.hpp; sourceTree = "<group>"; };
+		73E7B3D11BEA992C00C45C53 /* FBObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FBObject.hpp; sourceTree = "<group>"; };
 		73E9EB8719678207004DB096 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -48,10 +57,16 @@
 			isa = PBXGroup;
 			children = (
 				7301DA471BC6EE6B0031D21B /* CMakeLists.txt */,
+				73E7B3C91BEA898600C45C53 /* Common.hpp */,
+				73E7B3CA1BEA8A2500C45C53 /* Common.cpp */,
 				7301DA4C1BC6EE6B0031D21B /* GLBoy.hpp */,
-				7301DA4B1BC6EE6B0031D21B /* GLBoy.cpp */,
+				73E7B3CE1BEA927600C45C53 /* Boy.hpp */,
+				73E7B3CD1BEA927600C45C53 /* Boy.cpp */,
+				73E7B3CC1BEA8C9E00C45C53 /* Graphics.hpp */,
 				734CB0B21BCDF6F00057C845 /* Graphics.cpp */,
+				73E7B3C81BEA854D00C45C53 /* Color.hpp */,
 				7301DA481BC6EE6B0031D21B /* Color.cpp */,
+				73E7B3CB1BEA8B2400C45C53 /* Player.hpp */,
 				7301DA4E1BC6EE6B0031D21B /* Player.cpp */,
 				7301DA551BC6EE6B0031D21B /* texture.cpp */,
 				73E7B3C51BEA7CFA00C45C53 /* Objects */,
@@ -104,10 +119,13 @@
 			children = (
 				73E7B3C71BEA80F500C45C53 /* Object.hpp */,
 				7301DA4D1BC6EE6B0031D21B /* Object.cpp */,
+				73E7B3D11BEA992C00C45C53 /* FBObject.hpp */,
 				7301DA671BCA27460031D21B /* FBObject.cpp */,
+				73E7B3D01BEA992300C45C53 /* GlowFBO.hpp */,
 				73E7B3BF1BE64BD800C45C53 /* GlowFBO.cpp */,
+				73E7B3CF1BEA991C00C45C53 /* Line.hpp */,
 				73E7B3B71BE38D2900C45C53 /* Line.cpp */,
-				73E7B3C61BEA7D5E00C45C53 /* Bezier2D.cpp */,
+				73E7B3C61BEA7D5E00C45C53 /* Bezier2D.cpp__ */,
 			);
 			name = Objects;
 			sourceTree = "<group>";

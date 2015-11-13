@@ -1,9 +1,9 @@
 #include "Shader.hpp"
 //#include "GLBoy.hpp"
-
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <iostream>
+#include "Object.hpp"
+//#include <glm/glm.hpp>
+//#include <glm/gtc/matrix_transform.hpp>
+//#include <iostream>
 //#include <string>
 
 
