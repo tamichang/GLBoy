@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		616AAA391C60645000D9F08F /* triangle_background.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = triangle_background.cpp; sourceTree = "<group>"; };
 		7301DA611BC8226D0031D21B /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		7301DA621BC8226D0031D21B /* ellipse.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ellipse.cpp; sourceTree = "<group>"; };
 		7301DA631BC8226D0031D21B /* sample01.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sample01.cpp; sourceTree = "<group>"; };
@@ -34,6 +35,7 @@
 				73E7B3C41BEA3B8700C45C53 /* cull_face.cpp */,
 				73C09D4F1BE3316800F4A2DB /* dynamic_vertex.cpp */,
 				7301DA661BC8226D0031D21B /* wave_plane01.cpp */,
+				616AAA391C60645000D9F08F /* triangle_background.cpp */,
 				7301DA621BC8226D0031D21B /* ellipse.cpp */,
 				73E7B3B81BE3914B00C45C53 /* line.cpp */,
 				73E7B3BB1BE4B07D00C45C53 /* color_cut.cpp */,

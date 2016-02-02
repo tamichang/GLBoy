@@ -1,10 +1,11 @@
 
-
 #include "testing.h"
 #include <iostream>
 #include <vector>
 #include <chrono>
 #include <glm/glm.hpp>
+//#include <cstdlib>
+//#include <time.h>
 
 class Aaa {
 	int id;
@@ -37,7 +38,15 @@ int main()
 {
 //	std::shared_ptr<Aaa> aaa1 = std::make_shared<Aaa>(1);
 //	aaa1 = std::make_shared<Aaa>(2);
-	std::unique_ptr<Bbb> bbb(new Bbb(1));
+//	std::unique_ptr<Bbb> bbb(new Bbb(1));
 //	aaa1 = std::unique_ptr<Aaa>(new Aaa(2));
+	
+	std::srand (std::time(NULL));
+//	std::cout << RAND_MAX << std::endl;
+	for (int i = 0; i < 1000; i++) {
+		std::cout << (float) std::rand() / RAND_MAX << std::endl;
+	}
+	
+	
 	std::cout << "main end" << std::endl;
 }

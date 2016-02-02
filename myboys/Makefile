@@ -63,6 +63,11 @@ cull_face: build/cull_face.o
 	@mkdir -p bin
 	@echo " $(CC) $^ -o bin/cull_face $(LIB)"; $(CC) $^ -o bin/cull_face $(LIB)
 
+%: build/%.o
+	@mkdir -p bin
+	@echo " $(CC) $^ -o bin/$@ $(LIB)"; $(CC) $^ -o bin/$@ $(LIB)
+
+
 # bin/sample01: sample01.cpp fwplayer.cpp
 #	@echo " Linking..."
 #	@echo " $(CC) $^ -o $(TARGET) $(LIB)"; $(CC) $^ -o $(TARGET) $(LIB)

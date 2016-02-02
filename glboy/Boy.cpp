@@ -6,7 +6,6 @@
 #include "Object.hpp"
 
 #include <iostream>
-#include <cstdlib>
 #include <math.h>
 
 using std::vector;
@@ -80,6 +79,7 @@ namespace glboy {
 	{
 		LOGV("GLBOY constractor\n");
 		GLBoy::instance = this;
+		std::srand(std::time(NULL));
 	}
 	
 	void GLBoy::init(Player* player, int w, int h) {
@@ -242,8 +242,19 @@ namespace glboy {
 	
 	void GLBoy::draw() {}
 	
-	float GLBoy::map(float value, float start1, float stop1, float start2, float stop2) {
+	float GLBoy::map(float value, float start1, float stop1, float start2, float stop2)
+	{
 		return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
+	}
+	
+	float GLBoy::rand()
+	{
+		return (float) std::rand() / RAND_MAX;
+	}
+	
+	float GLBoy::rand(float bottom, float top)
+	{
+		return (top - bottom) * rand() + bottom;
 	}
 	
 	GLuint GLBoy::texture(std::string image_path)
