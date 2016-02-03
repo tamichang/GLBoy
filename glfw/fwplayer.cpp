@@ -96,8 +96,8 @@ int FWPlayer::run() {
 		glboy->render();
 
 		glfwSwapBuffers(window);
-    /* Poll for and process events */
-    glfwPollEvents();
+		/* Poll for and process events */
+		glfwPollEvents();
 		
 		auto end = std::chrono::system_clock::now();       // 計測終了時刻を保存
 		auto dur = end - start;        // 要した時間を計算

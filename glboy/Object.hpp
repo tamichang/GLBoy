@@ -50,6 +50,7 @@ namespace glboy {
 		virtual void draw();
 		virtual void bindVertexData();
 //		void rebindVertexData();
+		bool wire_frame;
 		
 		void vertex(float x, float y, float z);
 		void vertex(float x, float y, float z, float u, float v);

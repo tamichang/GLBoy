@@ -138,7 +138,15 @@ namespace glboy {
 		
 		shader->use_program(this);
 		
+		if (wire_frame) {
+			glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+		}
+		
 		glDrawElements(primitive_mode, indices.size(), GL_UNSIGNED_SHORT, (void*)0);
+		
+		if (wire_frame) {
+			glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
+		}
 		
 		glBindVertexArray(0);
 	}

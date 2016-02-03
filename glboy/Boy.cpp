@@ -228,7 +228,7 @@ namespace glboy {
 	void GLBoy::render() {
 		clear_background();
 		
-		//描画途中でのrisazeをさせないため
+		//描画途中でのresizeをさせないため
 		if (should_resize) {
 			resize();
 			should_resize = false;
@@ -237,7 +237,7 @@ namespace glboy {
 		graphics->begin();
 		draw();
 		graphics->end();
-		graphics->quad_paste_obj->draw();
+//		graphics->quad_paste_obj->draw();
 	}
 	
 	void GLBoy::draw() {}
