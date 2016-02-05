@@ -79,9 +79,12 @@ namespace glboy {
 		void camera_xy(float x, float y);
 		void camera_to_mouse();
 		
+		void light_to_mouse();
+		
 		void rotateX(float angle);
 		
 		int frame_count;
+		void frame_rate(int rate);
 		
 		void init(Player* player, int w, int h);
 		virtual void setup();
@@ -91,6 +94,8 @@ namespace glboy {
 		float map(float value, float start1, float stop1, float start2, float stop2);
 		float rand();
 		float rand(float bottom, float top);
+		
+		glm::vec3 normalized_cross_product(float* p1, float* p2, float* p3);
 		
 		void filter(FILTER filter);
 	};

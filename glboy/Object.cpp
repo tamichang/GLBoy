@@ -4,6 +4,7 @@
 //#include "SimpleTextureShader.hpp"
 #include "Shader.hpp"
 #include "Color.hpp"
+#include "Triangle.hpp"
 
 #include <iostream>
 #include <cstdlib>
@@ -87,12 +88,43 @@ namespace glboy {
 		indices.push_back(indices.size());
 	}
 	
+//	void Object::add_triangle(glm::vec3 v1, glm::vec3 v2, glm::vec3 v3)
+//	{
+//		Triangle::ptr tgl = std::make_shared<Triangle>(v1, v2, v3);
+//		auto itr = triangle_map.find(v1);
+//		if (itr == triangle_map.end()) {
+//			std::set<Triangle::ptr> triangles = {tgl};
+//			triangle_map[v1] = triangles;
+//		} else {
+//			itr->second.insert(tgl);
+//		}
+//		std::map<glm::vec3, int> aaa;
+//		aaa[v1] = 1;
+//	}
+	
 	
 	void Object::normal(GLfloat x, GLfloat y, GLfloat z)
 	{
 //		glm::vec3 vertex_normal(x,y,z);
 		normal_point normal = {x,y,z};
 		normals.push_back(normal);
+	}
+	
+	void Object::normal(glm::vec3 vec)
+	{
+		normal(vec.x, vec.y, vec.z);
+	}
+	
+	void Object::normal_three_times(float x, float y, float z)
+	{
+		normal(x, y, z);
+		normal(x, y, z);
+		normal(x, y, z);
+	}
+	
+	void Object::normal_three_times(glm::vec3 vec)
+	{
+		normal_three_times(vec.x, vec.y, vec.z);
 	}
 	
 	

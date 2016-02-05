@@ -20,6 +20,8 @@ public:
 	GLFWwindow* window;
 	
 	int width, height;
+	int _frame_rate;
+	bool frame_rate_changed;
 	
 	int run();
 	
@@ -31,6 +33,8 @@ public:
 	void mouse_position(GLfloat& xpos, GLfloat& ypos);
 	
 //	void set_glboy(glboy::GLBoy::ptr glboy);
+	
+	void frame_rate(int rate);
 };
 
 #endif

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		616AAA3B1C64AB6900D9F08F /* Triangle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Triangle.cpp; sourceTree = "<group>"; };
+		616AAA3C1C64AB6900D9F08F /* Triangle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Triangle.hpp; sourceTree = "<group>"; };
 		7301DA451BC6EE6B0031D21B /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		7301DA471BC6EE6B0031D21B /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		7301DA481BC6EE6B0031D21B /* Color.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Color.cpp; sourceTree = "<group>"; };
@@ -53,6 +55,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		616AAA3A1C64AB3000D9F08F /* parts */ = {
+			isa = PBXGroup;
+			children = (
+				616AAA3B1C64AB6900D9F08F /* Triangle.cpp */,
+				616AAA3C1C64AB6900D9F08F /* Triangle.hpp */,
+			);
+			name = parts;
+			sourceTree = "<group>";
+		};
 		7301DA461BC6EE6B0031D21B /* glboy */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +128,7 @@
 		73E7B3C51BEA7CFA00C45C53 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				616AAA3A1C64AB3000D9F08F /* parts */,
 				73E7B3C71BEA80F500C45C53 /* Object.hpp */,
 				7301DA4D1BC6EE6B0031D21B /* Object.cpp */,
 				73E7B3D11BEA992C00C45C53 /* FBObject.hpp */,

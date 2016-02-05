@@ -5,6 +5,8 @@
 #include <cmath>
 
 #include <chrono>
+#include <unistd.h>
+
 
 //using namespace std;
 using namespace glboy;
@@ -87,7 +89,10 @@ int FWPlayer::run() {
 	glboy->setup();
 	
 	auto start = std::chrono::system_clock::now();
-	int frame = 0;
+	int frame = 1;
+	
+	int frame_rate = 60;
+	int frame_span = 1000 / frame_rate;	//ミリ秒
 	
 	while (!glfwWindowShouldClose(window)) {
 		glboy->frame_count++;
@@ -103,12 +108,30 @@ int FWPlayer::run() {
 		auto dur = end - start;        // 要した時間を計算
 		auto msec = std::chrono::duration_cast<std::chrono::milliseconds>(dur).count();
 		// 要した時間をミリ秒（1/1000秒）に変換して表示
-		frame++;
-		if(msec > 1000) {
-			std::cout << "Frame Rate : " << frame << std::endl;
-			start = end;
-			frame = 0;
+		int frame_time = frame * frame_span;
+		auto sleep_msec = frame_time - msec;
+		
+		if (sleep_msec > 0) {
+			usleep(sleep_msec * 1000);
 		}
+		
+//		end = std::chrono::system_clock::now();       // 計測終了時刻を保存
+//		dur = end - start;        // 要した時間を計算
+//		msec = std::chrono::duration_cast<std::chrono::milliseconds>(dur).count();
+		
+//		if(msec >= 1000) {
+		if (frame == frame_rate) {
+			std::cout << "Frame Rate : " << frame << " msec: " << msec << std::endl;
+			start = end;
+			frame = 1;
+			
+			if (frame_rate_changed) {
+				frame_rate = _frame_rate;
+				frame_span = 1000 / frame_rate;
+				frame_rate_changed = false;
+			}
+		}
+		frame++;
 	}
 	
   glfwTerminate();
@@ -132,6 +155,13 @@ void FWPlayer::mouse_position(GLfloat& xpos, GLfloat& ypos)
 	
 	xpos = (GLfloat) x;
 	ypos = (GLfloat) y;
+}
+
+
+void FWPlayer::frame_rate(int rate)
+{
+	_frame_rate = rate;
+	frame_rate_changed = true;
 }
 
 

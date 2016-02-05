@@ -17,6 +17,7 @@ namespace glboy {
 		virtual int run();
 		virtual void mouse_position(float& xpos, float& ypos);
 //		virtual void set_glboy(std::shared_ptr<GLBoy> glboy);
+		virtual void frame_rate(int rate);
 	};
 	
 }	//glboy

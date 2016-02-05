@@ -12,6 +12,7 @@ namespace glboy {
 	
 	void Player::mouse_position(float& xpos, float& ypos) {}
 //	void Player::set_glboy(std::shared_ptr<GLBoy> glboy) {}
-
+	
+	void Player::frame_rate(int rate) {}
 }
 

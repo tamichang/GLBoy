@@ -198,6 +198,21 @@ namespace glboy {
 	}
 	
 	
+	void GLBoy::light_to_mouse()
+	{
+		float xpos, ypos;
+		player->mouse_position(xpos, ypos);
+		light_position.x = xpos;
+		light_position.y = ypos;
+	}
+	
+	
+	void GLBoy::frame_rate(int rate)
+	{
+		player->frame_rate(rate);
+	}
+	
+	
 	GLBoy::~GLBoy()
 	{
 		LOGV("destroied GLBOY\n");
@@ -279,6 +294,16 @@ namespace glboy {
 	
 	void GLBoy::filter(FILTER filter) {
 		graphics->filter(filter);
+	}
+	
+	
+	glm::vec3 GLBoy::normalized_cross_product(float* p1, float* p2, float* p3)
+	{
+		glm::vec3 v1(p2[0]-p1[0], p2[1]-p1[1], p2[2]-p1[2]);
+		glm::vec3 v2(p3[0]-p1[0], p3[1]-p1[1], p3[2]-p1[2]);
+		glm::vec3 cross = glm::cross(v1, v2);
+		glm::vec3 cross_normal = glm::normalize(cross);
+		return cross_normal;
 	}
 	
 	

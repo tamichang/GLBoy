@@ -55,6 +55,8 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <set>
+#include <unordered_map>
 
 
 namespace glboy {
@@ -74,6 +76,10 @@ namespace glboy {
 	
 	struct Size {
 		int w, h;
+	};
+	
+	struct Sizef {
+		float w, h;
 	};
 	
 	struct point2d {

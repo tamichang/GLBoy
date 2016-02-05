@@ -7,6 +7,7 @@ namespace glboy {
 	
 	class Color;
 	class Shader;
+	class Triangle;
 	
 	class Object {
 		
@@ -56,6 +57,9 @@ namespace glboy {
 		void vertex(float x, float y, float z, float u, float v);
 		void vertexColor();
 		void normal(float x, float y, float z);
+		void normal(glm::vec3 vec);
+		void normal_three_times(float x, float y, float z);
+		void normal_three_times(glm::vec3 vec);
 		void clear_vertices();
 		
 		static Object::ptr create();
