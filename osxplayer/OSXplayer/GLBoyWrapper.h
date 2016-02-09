@@ -1,10 +1,15 @@
 #import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
+
+//@class OSXPlayer;
 
 @interface GLBoyWrapper : NSObject
 {
-	void* _cppObj;    // C++クラスのインスタンスを参照するポインタ
 }
 
--(void)test;    // このメソッドをSwiftから呼べて、内部でC++コードが動けばOK、とする
+-(void) initGLBoyWidth:(int) width Height:(int) height;
+-(void) setup;
+-(void) render;
+-(void) sizeWidth:(int) width Height:(int) height;
 
 @end

@@ -1,17 +1,53 @@
 #import "GLBoyWrapper.h"
+#import "OSXplayer-Swift.h"
 
+
+#include <GLBoy/GLBoy.hpp>
 #include <vector>
 #include <iostream>
 
-class MyCppClass
-{
+using namespace glboy;
+
+class Sample01 : public glboy::GLBoy {
 public:
-	MyCppClass& add(int i) {vct.push_back(i); return *this;}
-	void trace() {std::for_each(vct.begin(), vct.end(), [](int i){std::cout << i << std::endl;});}
+	Object::ptr box;
 	
-private:
-	std::vector<int> vct;
+	void setup() {
+		box = Object::box(200);
+		box->bindVertexData();
+	}
+	
+	void draw() {
+		camera_to_mouse();
+		box->draw();
+	}
 };
+
+class OSXPlayer : public glboy::Player {
+public:
+	OSXPlayer() {}
+	~OSXPlayer() {}
+	
+	int run() { return 0; }
+	
+	void mouse_position(float& xpos, float& ypos) {
+		NSPoint mouseLoc;
+		mouseLoc = [NSEvent mouseLocation]; //get current mouse position
+//		NSLog(@"Mouse location: %f %f", mouseLoc.x, mouseLoc.y);
+		NSWindow* window = [[NSApplication sharedApplication] mainWindow];
+//		NSLog(@"window location: %f %f", window.frame.origin.x, window.frame.origin.y);
+		NSPoint localPoint = [window.contentView convertPoint:mouseLoc fromView:nil];
+		NSLog(@"local mouse location: %f %f", mouseLoc.x, mouseLoc.y);
+	}
+	void frame_rate(int rate) {}
+};
+
+@interface GLBoyWrapper ()
+{
+	OSXPlayer* _player;
+	Sample01* _glboy;
+}
+@end
 
 @implementation GLBoyWrapper
 
@@ -19,21 +55,35 @@ private:
 	self = [super init];
 	
 	if (self) {
-		_cppObj = new MyCppClass();
-		MyCppClass& obj = *static_cast<MyCppClass*>(_cppObj);
-		obj.add(10).add(20).add(30);
+		_glboy = new Sample01();
+		_player = new OSXPlayer();
 	}
 	
 	return self;
 }
 
 -(void)dealloc {
-	delete static_cast<MyCppClass*>(_cppObj);
+	delete _glboy;
+	delete _player;
 }
 
--(void)test {
-	MyCppClass& obj = *static_cast<MyCppClass*>(_cppObj);
-	obj.trace();
+-(void)initGLBoyWidth:(int) width Height:(int) height {
+	_glboy->init(_player, width, height);
+}
+
+-(void)setup {
+	_glboy->setup();
+}
+
+-(void)render {
+//	_glboy->frame_count++;
+	_glboy->clear_background();
+	_glboy->render();
+}
+
+-(void) sizeWidth:(int) width Height:(int) height {
+//	NSLog(@"resize %d, %d", width, height);
+	_glboy->size(width, height);
 }
 
 @end

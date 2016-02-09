@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:GLBoy_glfw.xcodeproj">
+      location = "self:/Users/tamichan/Projects/GLBoy/myboys/GLBoys.xcodeproj">
    </FileRef>
 </Workspace>

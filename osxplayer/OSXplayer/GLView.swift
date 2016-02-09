@@ -7,10 +7,13 @@
 //
 
 import Cocoa
+import AppKit
 
 class GLView: NSOpenGLView {
 	
 	var displayLink:CVDisplayLink?	//UnsafeMutablePointer<CVDisplayLink?>.alloc(1)
+	
+	var glboyWrapper: GLBoyWrapper?
 	
 	override func awakeFromNib() {
 		let attributes: [NSOpenGLPixelFormatAttribute] = [
@@ -42,6 +45,8 @@ class GLView: NSOpenGLView {
 		
 		pixelFormat = pf
 		openGLContext = context
+		
+		
 	}
 	
 	
@@ -101,14 +106,35 @@ class GLView: NSOpenGLView {
 		// OSX (but not iOS since iOS apps must create their own FBO)
 //		_renderer = [[OpenGLRenderer alloc] initWithDefaultFBO:0];
 		
-		let obj = GLBoyWrapper()      // Objective-Cクラスとして作成したものをインスタンス化
-		obj.test()                   // そいつのメソッドを呼んでみる
+		glboyWrapper = GLBoyWrapper()
+		glboyWrapper!.initGLBoyWidth(Int32(bounds.size.width), height: Int32(bounds.size.height))
+		glboyWrapper!.setup()
 		
 	}
 	
 	
-	func getFrameForTime(outputTime: UnsafePointer<CVTimeStamp>) {
-		NSLog("getFrameForTime");
+	func getFrameForTime(outputTime: UnsafePointer<CVTimeStamp>) -> CVReturn {
+//		NSLog("width: %f, height: %f", window!.frame.origin.x, window!.frame.origin.y)
+		autoreleasepool {
+			drawView()
+		}
+		return kCVReturnSuccess;
+	}
+	
+	
+	func drawView() {
+		openGLContext!.makeCurrentContext()
+		
+		// We draw on a secondary thread through the display link
+		// When resizing the view, -reshape is called automatically on the main
+		// thread. Add a mutex around to avoid the threads accessing the context
+		// simultaneously when resizing
+		CGLLockContext(openGLContext!.CGLContextObj);
+		
+		glboyWrapper!.render()
+		
+		CGLFlushDrawable(openGLContext!.CGLContextObj)
+		CGLUnlockContext(openGLContext!.CGLContextObj)
 	}
 	
 	
@@ -128,6 +154,31 @@ class GLView: NSOpenGLView {
 		CVDisplayLinkStop(displayLink!);
 //		CVDisplayLinkRelease(displayLink!);
 	}
+	
+	
+	override func reshape()
+	{
+		super.reshape()
+	
+		// We draw on a secondary thread through the display link. However, when
+		// resizing the view, -drawRect is called on the main thread.
+		// Add a mutex around to avoid the threads accessing the context
+		// simultaneously when resizing.
+		CGLLockContext(openGLContext!.CGLContextObj)
+		glboyWrapper!.sizeWidth(Int32(bounds.size.width), height: Int32(bounds.size.height))
+		CGLUnlockContext(openGLContext!.CGLContextObj)
+	}
+	
+	
+	override func drawRect(theRect: NSRect)
+	{
+		// Called during resize operations
+		
+		// Avoid flickering during resize by drawiing
+		drawView()
+	}
+
+
 
 	//https://www.ekreative.com/blog/using-c-code-and-libraries-in-applications-written-in-swift
 

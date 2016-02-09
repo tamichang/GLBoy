@@ -654,7 +654,7 @@
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="111" y="240" width="433" height="249"/>
+                        <rect key="contentRect" x="642" y="381" width="433" height="249"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                     </window>
                     <connections>
@@ -670,18 +670,24 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="OSXplayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="666" height="395"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="640"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <openGLView fixedFrame="YES" useAuxiliaryDepthBufferStencil="NO" allowOffline="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dsc-aR-6dF" customClass="GLView" customModule="OSXplayer" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="666" height="395"/>
+                            <openGLView misplaced="YES" useAuxiliaryDepthBufferStencil="NO" allowOffline="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dsc-aR-6dF" customClass="GLView" customModule="OSXplayer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="800" height="640"/>
                             </openGLView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="dsc-aR-6dF" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="Nf9-PA-lm6"/>
+                            <constraint firstAttribute="trailing" secondItem="dsc-aR-6dF" secondAttribute="trailing" id="TRY-JW-g76"/>
+                            <constraint firstAttribute="bottom" secondItem="dsc-aR-6dF" secondAttribute="bottom" id="Z3Q-IW-VU2"/>
+                            <constraint firstItem="dsc-aR-6dF" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="nT5-aU-DSY"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-66" y="694.5"/>
+            <point key="canvasLocation" x="37.5" y="658.5"/>
         </scene>
     </scenes>
 </document>

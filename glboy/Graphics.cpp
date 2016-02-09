@@ -176,7 +176,7 @@ namespace glboy {
 		glDeleteRenderbuffers(1, &depth_renderbuffer_id);
 
 		framebuffer_id = 0;
-		color_renderbuffer_id	 = 0;
+		color_renderbuffer_id = 0;
 		depth_renderbuffer_id = 0;
 		
 		init();

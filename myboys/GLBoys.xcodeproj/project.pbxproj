@@ -85,7 +85,7 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = tamichan;
 			};
-			buildConfigurationList = 73E9EB7A19678161004DB096 /* Build configuration list for PBXProject "GLBoy_glfw" */;
+			buildConfigurationList = 73E9EB7A19678161004DB096 /* Build configuration list for PBXProject "GLBoys" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -198,7 +198,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		73E9EB7A19678161004DB096 /* Build configuration list for PBXProject "GLBoy_glfw" */ = {
+		73E9EB7A19678161004DB096 /* Build configuration list for PBXProject "GLBoys" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				73E9EB7C19678161004DB096 /* Debug */,
