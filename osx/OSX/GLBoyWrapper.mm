@@ -1,10 +1,12 @@
 #import "GLBoyWrapper.h"
-#import "OSXplayer-Swift.h"
+#import "OSX-Swift.h"
 
 
 #include <GLBoy/GLBoy.hpp>
 #include <vector>
 #include <iostream>
+
+#include "TriangleBackground.hpp"
 
 using namespace glboy;
 
@@ -25,7 +27,13 @@ public:
 
 class OSXPlayer : public glboy::Player {
 public:
-	OSXPlayer() {}
+	
+	CGPoint screenCenter;
+	
+	OSXPlayer() {
+		NSRect screenRect = [[[NSScreen screens] objectAtIndex:0] visibleFrame];
+		screenCenter = {screenRect.size.width/2, screenRect.size.height/2};
+	}
 	~OSXPlayer() {}
 	
 	int run() { return 0; }
@@ -33,11 +41,13 @@ public:
 	void mouse_position(float& xpos, float& ypos) {
 		NSPoint mouseLoc;
 		mouseLoc = [NSEvent mouseLocation]; //get current mouse position
+		xpos = mouseLoc.x - screenCenter.x;
+		ypos = mouseLoc.y - screenCenter.y;
 //		NSLog(@"Mouse location: %f %f", mouseLoc.x, mouseLoc.y);
-		NSWindow* window = [[NSApplication sharedApplication] mainWindow];
+//		NSWindow* window = [[NSApplication sharedApplication] mainWindow];
 //		NSLog(@"window location: %f %f", window.frame.origin.x, window.frame.origin.y);
-		NSPoint localPoint = [window.contentView convertPoint:mouseLoc fromView:nil];
-		NSLog(@"local mouse location: %f %f", mouseLoc.x, mouseLoc.y);
+//		NSPoint localPoint = [window.contentView convertPoint:mouseLoc fromView:nil];
+//		NSLog(@"local mouse location: %f %f", mouseLoc.x, mouseLoc.y);
 	}
 	void frame_rate(int rate) {}
 };
@@ -45,7 +55,7 @@ public:
 @interface GLBoyWrapper ()
 {
 	OSXPlayer* _player;
-	Sample01* _glboy;
+	glboy::GLBoy* _glboy;
 }
 @end
 
@@ -55,7 +65,7 @@ public:
 	self = [super init];
 	
 	if (self) {
-		_glboy = new Sample01();
+		_glboy = new TriangleBackground(800, 640);
 		_player = new OSXPlayer();
 	}
 	
@@ -82,7 +92,6 @@ public:
 }
 
 -(void) sizeWidth:(int) width Height:(int) height {
-//	NSLog(@"resize %d, %d", width, height);
 	_glboy->size(width, height);
 }
 

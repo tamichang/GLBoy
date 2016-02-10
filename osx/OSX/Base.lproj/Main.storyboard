@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <scenes>
@@ -11,11 +10,11 @@
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="OSXplayer" id="1Xt-HY-uBw">
+                            <menuItem title="OSX" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="OSXplayer" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="OSX" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About OSXplayer" id="5kV-Vb-QxS">
+                                        <menuItem title="About OSX" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -29,7 +28,7 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide OSXplayer" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide OSX" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -47,7 +46,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit OSXplayer" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit OSX" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -628,7 +627,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="OSXplayer Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="OSX Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
@@ -663,7 +662,7 @@
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-65.5" y="219.5"/>
+            <point key="canvasLocation" x="-7.5" y="133.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -673,21 +672,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="800" height="640"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <openGLView misplaced="YES" useAuxiliaryDepthBufferStencil="NO" allowOffline="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dsc-aR-6dF" customClass="GLView" customModule="OSXplayer" customModuleProvider="target">
+                            <openGLView useAuxiliaryDepthBufferStencil="NO" allowOffline="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fp5-VN-DGd" customClass="GLView" customModule="OSXplayer" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="800" height="640"/>
                             </openGLView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="dsc-aR-6dF" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="Nf9-PA-lm6"/>
-                            <constraint firstAttribute="trailing" secondItem="dsc-aR-6dF" secondAttribute="trailing" id="TRY-JW-g76"/>
-                            <constraint firstAttribute="bottom" secondItem="dsc-aR-6dF" secondAttribute="bottom" id="Z3Q-IW-VU2"/>
-                            <constraint firstItem="dsc-aR-6dF" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="nT5-aU-DSY"/>
+                            <constraint firstAttribute="bottom" secondItem="fp5-VN-DGd" secondAttribute="bottom" id="KOY-np-Y46"/>
+                            <constraint firstAttribute="trailing" secondItem="fp5-VN-DGd" secondAttribute="trailing" id="Q4i-fT-fOl"/>
+                            <constraint firstItem="fp5-VN-DGd" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="eMK-Re-p5P"/>
+                            <constraint firstItem="fp5-VN-DGd" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="wbt-e9-Q5j"/>
                         </constraints>
                     </view>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="37.5" y="658.5"/>
+            <point key="canvasLocation" x="5" y="1045"/>
         </scene>
     </scenes>
 </document>

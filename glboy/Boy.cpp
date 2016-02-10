@@ -72,7 +72,7 @@ namespace glboy {
 	
 	
 	GLBoy::GLBoy() : should_resize(false), camera_x(0.0f), camera_y(0.0f),
-									 background_color(Color::hsv(0,43,92)), glow_color(Color::hsv(188,99,99)),
+									 background_color(Color::hsv(190,11,60)), glow_color(Color::hsv(188,99,99)),
 									 light_position(glm::vec3(300.0f,300.0f,300.0f)),	LightPower(30.0f),
 	                 LightableDistance(1000.0f),
 									 LightColor(glm::vec3(0.45, 0.56, 0.85)),	current_framebuffer_id(0)

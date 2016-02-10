@@ -11,12 +11,13 @@
 		616AAA4C1C68828E00D9F08F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616AAA4B1C68828E00D9F08F /* ViewController.swift */; };
 		616AAA4E1C68828E00D9F08F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 616AAA4D1C68828E00D9F08F /* Assets.xcassets */; };
 		616AAA511C68828E00D9F08F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 616AAA4F1C68828E00D9F08F /* Main.storyboard */; };
-		616AAA5C1C68828F00D9F08F /* OSXplayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616AAA5B1C68828F00D9F08F /* OSXplayerTests.swift */; };
-		616AAA671C68828F00D9F08F /* OSXplayerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616AAA661C68828F00D9F08F /* OSXplayerUITests.swift */; };
+		616AAA5C1C68828F00D9F08F /* OSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616AAA5B1C68828F00D9F08F /* OSXTests.swift */; };
+		616AAA671C68828F00D9F08F /* OSXUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616AAA661C68828F00D9F08F /* OSXUITests.swift */; };
 		616AAA751C6883FE00D9F08F /* GLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616AAA741C6883FE00D9F08F /* GLView.swift */; };
 		616AAA771C688AAC00D9F08F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616AAA761C688AAC00D9F08F /* QuartzCore.framework */; };
 		616AAA7A1C68B6ED00D9F08F /* GLBoyWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 616AAA791C68B6ED00D9F08F /* GLBoyWrapper.mm */; };
 		616AAA7D1C68BB0C00D9F08F /* libglboy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 616AAA7C1C68BB0C00D9F08F /* libglboy.a */; };
+		616AAA8F1C6AF3CE00D9F08F /* TriangleBackground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 616AAA8D1C6AF3CE00D9F08F /* TriangleBackground.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,24 +38,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		616AAA461C68828E00D9F08F /* OSXplayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OSXplayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		616AAA461C68828E00D9F08F /* OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		616AAA491C68828E00D9F08F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		616AAA4B1C68828E00D9F08F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		616AAA4D1C68828E00D9F08F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		616AAA501C68828E00D9F08F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		616AAA521C68828E00D9F08F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		616AAA571C68828F00D9F08F /* OSXplayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSXplayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		616AAA5B1C68828F00D9F08F /* OSXplayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSXplayerTests.swift; sourceTree = "<group>"; };
+		616AAA571C68828F00D9F08F /* OSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSX.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		616AAA5B1C68828F00D9F08F /* OSXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSXTests.swift; sourceTree = "<group>"; };
 		616AAA5D1C68828F00D9F08F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		616AAA621C68828F00D9F08F /* OSXplayerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSXplayerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		616AAA661C68828F00D9F08F /* OSXplayerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSXplayerUITests.swift; sourceTree = "<group>"; };
+		616AAA621C68828F00D9F08F /* OSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSX.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		616AAA661C68828F00D9F08F /* OSXUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSXUITests.swift; sourceTree = "<group>"; };
 		616AAA681C68828F00D9F08F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		616AAA741C6883FE00D9F08F /* GLView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLView.swift; sourceTree = "<group>"; };
 		616AAA761C688AAC00D9F08F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		616AAA781C68B6ED00D9F08F /* OSXplayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OSXplayer-Bridging-Header.h"; sourceTree = "<group>"; };
+		616AAA781C68B6ED00D9F08F /* OSX-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OSX-Bridging-Header.h"; sourceTree = "<group>"; };
 		616AAA791C68B6ED00D9F08F /* GLBoyWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GLBoyWrapper.mm; sourceTree = "<group>"; };
 		616AAA7B1C68B7BB00D9F08F /* GLBoyWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLBoyWrapper.h; sourceTree = "<group>"; };
 		616AAA7C1C68BB0C00D9F08F /* libglboy.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglboy.a; path = /usr/local/lib/libglboy.a; sourceTree = "<absolute>"; };
+		616AAA8D1C6AF3CE00D9F08F /* TriangleBackground.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TriangleBackground.cpp; sourceTree = "<group>"; };
+		616AAA8E1C6AF3CE00D9F08F /* TriangleBackground.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TriangleBackground.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,9 +91,9 @@
 			isa = PBXGroup;
 			children = (
 				616AAA7E1C68BB1800D9F08F /* Frameworks */,
-				616AAA481C68828E00D9F08F /* OSXplayer */,
-				616AAA5A1C68828F00D9F08F /* OSXplayerTests */,
-				616AAA651C68828F00D9F08F /* OSXplayerUITests */,
+				616AAA481C68828E00D9F08F /* OSX */,
+				616AAA5A1C68828F00D9F08F /* OSXTests */,
+				616AAA651C68828F00D9F08F /* OSXUITests */,
 				616AAA471C68828E00D9F08F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -98,16 +101,17 @@
 		616AAA471C68828E00D9F08F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				616AAA461C68828E00D9F08F /* OSXplayer.app */,
-				616AAA571C68828F00D9F08F /* OSXplayerTests.xctest */,
-				616AAA621C68828F00D9F08F /* OSXplayerUITests.xctest */,
+				616AAA461C68828E00D9F08F /* OSX.app */,
+				616AAA571C68828F00D9F08F /* OSX.xctest */,
+				616AAA621C68828F00D9F08F /* OSX.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		616AAA481C68828E00D9F08F /* OSXplayer */ = {
+		616AAA481C68828E00D9F08F /* OSX */ = {
 			isa = PBXGroup;
 			children = (
+				616AAA8C1C6AF37800D9F08F /* boys */,
 				616AAA491C68828E00D9F08F /* AppDelegate.swift */,
 				616AAA4B1C68828E00D9F08F /* ViewController.swift */,
 				616AAA4D1C68828E00D9F08F /* Assets.xcassets */,
@@ -116,27 +120,27 @@
 				616AAA741C6883FE00D9F08F /* GLView.swift */,
 				616AAA7B1C68B7BB00D9F08F /* GLBoyWrapper.h */,
 				616AAA791C68B6ED00D9F08F /* GLBoyWrapper.mm */,
-				616AAA781C68B6ED00D9F08F /* OSXplayer-Bridging-Header.h */,
+				616AAA781C68B6ED00D9F08F /* OSX-Bridging-Header.h */,
 			);
-			path = OSXplayer;
+			path = OSX;
 			sourceTree = "<group>";
 		};
-		616AAA5A1C68828F00D9F08F /* OSXplayerTests */ = {
+		616AAA5A1C68828F00D9F08F /* OSXTests */ = {
 			isa = PBXGroup;
 			children = (
-				616AAA5B1C68828F00D9F08F /* OSXplayerTests.swift */,
+				616AAA5B1C68828F00D9F08F /* OSXTests.swift */,
 				616AAA5D1C68828F00D9F08F /* Info.plist */,
 			);
-			path = OSXplayerTests;
+			path = OSXTests;
 			sourceTree = "<group>";
 		};
-		616AAA651C68828F00D9F08F /* OSXplayerUITests */ = {
+		616AAA651C68828F00D9F08F /* OSXUITests */ = {
 			isa = PBXGroup;
 			children = (
-				616AAA661C68828F00D9F08F /* OSXplayerUITests.swift */,
+				616AAA661C68828F00D9F08F /* OSXUITests.swift */,
 				616AAA681C68828F00D9F08F /* Info.plist */,
 			);
-			path = OSXplayerUITests;
+			path = OSXUITests;
 			sourceTree = "<group>";
 		};
 		616AAA7E1C68BB1800D9F08F /* Frameworks */ = {
@@ -148,12 +152,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		616AAA8C1C6AF37800D9F08F /* boys */ = {
+			isa = PBXGroup;
+			children = (
+				616AAA8D1C6AF3CE00D9F08F /* TriangleBackground.cpp */,
+				616AAA8E1C6AF3CE00D9F08F /* TriangleBackground.hpp */,
+			);
+			path = boys;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		616AAA451C68828E00D9F08F /* OSXplayer */ = {
+		616AAA451C68828E00D9F08F /* OSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 616AAA6B1C68828F00D9F08F /* Build configuration list for PBXNativeTarget "OSXplayer" */;
+			buildConfigurationList = 616AAA6B1C68828F00D9F08F /* Build configuration list for PBXNativeTarget "OSX" */;
 			buildPhases = (
 				616AAA421C68828E00D9F08F /* Sources */,
 				616AAA431C68828E00D9F08F /* Frameworks */,
@@ -163,14 +176,14 @@
 			);
 			dependencies = (
 			);
-			name = OSXplayer;
+			name = OSX;
 			productName = OSXplayer;
-			productReference = 616AAA461C68828E00D9F08F /* OSXplayer.app */;
+			productReference = 616AAA461C68828E00D9F08F /* OSX.app */;
 			productType = "com.apple.product-type.application";
 		};
-		616AAA561C68828F00D9F08F /* OSXplayerTests */ = {
+		616AAA561C68828F00D9F08F /* OSXTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 616AAA6E1C68828F00D9F08F /* Build configuration list for PBXNativeTarget "OSXplayerTests" */;
+			buildConfigurationList = 616AAA6E1C68828F00D9F08F /* Build configuration list for PBXNativeTarget "OSXTests" */;
 			buildPhases = (
 				616AAA531C68828F00D9F08F /* Sources */,
 				616AAA541C68828F00D9F08F /* Frameworks */,
@@ -181,14 +194,14 @@
 			dependencies = (
 				616AAA591C68828F00D9F08F /* PBXTargetDependency */,
 			);
-			name = OSXplayerTests;
+			name = OSXTests;
 			productName = OSXplayerTests;
-			productReference = 616AAA571C68828F00D9F08F /* OSXplayerTests.xctest */;
+			productReference = 616AAA571C68828F00D9F08F /* OSX.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		616AAA611C68828F00D9F08F /* OSXplayerUITests */ = {
+		616AAA611C68828F00D9F08F /* OSXUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 616AAA711C68828F00D9F08F /* Build configuration list for PBXNativeTarget "OSXplayerUITests" */;
+			buildConfigurationList = 616AAA711C68828F00D9F08F /* Build configuration list for PBXNativeTarget "OSXUITests" */;
 			buildPhases = (
 				616AAA5E1C68828F00D9F08F /* Sources */,
 				616AAA5F1C68828F00D9F08F /* Frameworks */,
@@ -199,9 +212,9 @@
 			dependencies = (
 				616AAA641C68828F00D9F08F /* PBXTargetDependency */,
 			);
-			name = OSXplayerUITests;
+			name = OSXUITests;
 			productName = OSXplayerUITests;
-			productReference = 616AAA621C68828F00D9F08F /* OSXplayerUITests.xctest */;
+			productReference = 616AAA621C68828F00D9F08F /* OSX.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -227,7 +240,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 616AAA411C68828E00D9F08F /* Build configuration list for PBXProject "OSXplayer" */;
+			buildConfigurationList = 616AAA411C68828E00D9F08F /* Build configuration list for PBXProject "OSX" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -240,9 +253,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				616AAA451C68828E00D9F08F /* OSXplayer */,
-				616AAA561C68828F00D9F08F /* OSXplayerTests */,
-				616AAA611C68828F00D9F08F /* OSXplayerUITests */,
+				616AAA451C68828E00D9F08F /* OSX */,
+				616AAA561C68828F00D9F08F /* OSXTests */,
+				616AAA611C68828F00D9F08F /* OSXUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -278,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				616AAA8F1C6AF3CE00D9F08F /* TriangleBackground.cpp in Sources */,
 				616AAA751C6883FE00D9F08F /* GLView.swift in Sources */,
 				616AAA4C1C68828E00D9F08F /* ViewController.swift in Sources */,
 				616AAA4A1C68828E00D9F08F /* AppDelegate.swift in Sources */,
@@ -289,7 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				616AAA5C1C68828F00D9F08F /* OSXplayerTests.swift in Sources */,
+				616AAA5C1C68828F00D9F08F /* OSXTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,7 +311,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				616AAA671C68828F00D9F08F /* OSXplayerUITests.swift in Sources */,
+				616AAA671C68828F00D9F08F /* OSXUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,12 +320,12 @@
 /* Begin PBXTargetDependency section */
 		616AAA591C68828F00D9F08F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 616AAA451C68828E00D9F08F /* OSXplayer */;
+			target = 616AAA451C68828E00D9F08F /* OSX */;
 			targetProxy = 616AAA581C68828F00D9F08F /* PBXContainerItemProxy */;
 		};
 		616AAA641C68828F00D9F08F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 616AAA451C68828E00D9F08F /* OSXplayer */;
+			target = 616AAA451C68828E00D9F08F /* OSX */;
 			targetProxy = 616AAA631C68828F00D9F08F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -415,12 +429,12 @@
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				HEADER_SEARCH_PATHS = /usr/local/include;
-				INFOPLIST_FILE = OSXplayer/Info.plist;
+				INFOPLIST_FILE = OSX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				PRODUCT_BUNDLE_IDENTIFIER = tamichang.OSXplayer;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "OSXplayer/OSXplayer-Bridging-Header.h";
+				PRODUCT_BUNDLE_IDENTIFIER = tamichang.osx;
+				PRODUCT_NAME = OSX;
+				SWIFT_OBJC_BRIDGING_HEADER = "OSX/OSX-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -432,12 +446,12 @@
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				HEADER_SEARCH_PATHS = /usr/local/include;
-				INFOPLIST_FILE = OSXplayer/Info.plist;
+				INFOPLIST_FILE = OSX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				PRODUCT_BUNDLE_IDENTIFIER = tamichang.OSXplayer;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "OSXplayer/OSXplayer-Bridging-Header.h";
+				PRODUCT_BUNDLE_IDENTIFIER = tamichang.osx;
+				PRODUCT_NAME = OSX;
+				SWIFT_OBJC_BRIDGING_HEADER = "OSX/OSX-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -449,8 +463,8 @@
 				INFOPLIST_FILE = OSXplayerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tamichang.OSXplayerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OSXplayer.app/Contents/MacOS/OSXplayer";
+				PRODUCT_NAME = OSX;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OSX.app/Contents/MacOS/OSX";
 			};
 			name = Debug;
 		};
@@ -462,8 +476,8 @@
 				INFOPLIST_FILE = OSXplayerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tamichang.OSXplayerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OSXplayer.app/Contents/MacOS/OSXplayer";
+				PRODUCT_NAME = OSX;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OSX.app/Contents/MacOS/OSX";
 			};
 			name = Release;
 		};
@@ -474,7 +488,7 @@
 				INFOPLIST_FILE = OSXplayerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tamichang.OSXplayerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = OSX;
 				TEST_TARGET_NAME = OSXplayer;
 				USES_XCTRUNNER = YES;
 			};
@@ -487,7 +501,7 @@
 				INFOPLIST_FILE = OSXplayerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tamichang.OSXplayerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = OSX;
 				TEST_TARGET_NAME = OSXplayer;
 				USES_XCTRUNNER = YES;
 			};
@@ -496,7 +510,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		616AAA411C68828E00D9F08F /* Build configuration list for PBXProject "OSXplayer" */ = {
+		616AAA411C68828E00D9F08F /* Build configuration list for PBXProject "OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				616AAA691C68828F00D9F08F /* Debug */,
@@ -505,7 +519,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		616AAA6B1C68828F00D9F08F /* Build configuration list for PBXNativeTarget "OSXplayer" */ = {
+		616AAA6B1C68828F00D9F08F /* Build configuration list for PBXNativeTarget "OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				616AAA6C1C68828F00D9F08F /* Debug */,
@@ -514,7 +528,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		616AAA6E1C68828F00D9F08F /* Build configuration list for PBXNativeTarget "OSXplayerTests" */ = {
+		616AAA6E1C68828F00D9F08F /* Build configuration list for PBXNativeTarget "OSXTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				616AAA6F1C68828F00D9F08F /* Debug */,
@@ -523,7 +537,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		616AAA711C68828F00D9F08F /* Build configuration list for PBXNativeTarget "OSXplayerUITests" */ = {
+		616AAA711C68828F00D9F08F /* Build configuration list for PBXNativeTarget "OSXUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				616AAA721C68828F00D9F08F /* Debug */,
