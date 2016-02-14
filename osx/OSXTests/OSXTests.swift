@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import OSXplayer
+@testable import OSX
 
 class OSXplayerTests: XCTestCase {
     

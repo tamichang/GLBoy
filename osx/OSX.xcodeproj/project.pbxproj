@@ -460,9 +460,9 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = OSXplayerTests/Info.plist;
+				INFOPLIST_FILE = OSXTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tamichang.OSXplayerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = tamichang.OSXTests;
 				PRODUCT_NAME = OSX;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OSX.app/Contents/MacOS/OSX";
 			};
@@ -473,9 +473,9 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = OSXplayerTests/Info.plist;
+				INFOPLIST_FILE = OSXTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tamichang.OSXplayerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = tamichang.OSXTests;
 				PRODUCT_NAME = OSX;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OSX.app/Contents/MacOS/OSX";
 			};
@@ -485,11 +485,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = OSXplayerUITests/Info.plist;
+				INFOPLIST_FILE = OSXUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tamichang.OSXplayerUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = tamichang.OSXUITests;
 				PRODUCT_NAME = OSX;
-				TEST_TARGET_NAME = OSXplayer;
+				TEST_TARGET_NAME = OSX;
 				USES_XCTRUNNER = YES;
 			};
 			name = Debug;
@@ -498,11 +498,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = OSXplayerUITests/Info.plist;
+				INFOPLIST_FILE = OSXUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tamichang.OSXplayerUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = tamichang.OSXUITests;
 				PRODUCT_NAME = OSX;
-				TEST_TARGET_NAME = OSXplayer;
+				TEST_TARGET_NAME = OSX;
 				USES_XCTRUNNER = YES;
 			};
 			name = Release;
