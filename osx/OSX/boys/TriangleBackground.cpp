@@ -68,6 +68,7 @@ void TriangleBackground::tick() {
 void TriangleBackground::setup()
 {
 	object = Object::create();
+	object->fill(334, 50, 86);
 	object->translate(-1 * plane_size.w / 2, -1 * plane_size.h / 2, 0);
 	//		object->wire_frame = true;
 	object->shader = simple_light_shader;
