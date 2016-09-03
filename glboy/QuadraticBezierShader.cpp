@@ -28,7 +28,7 @@ namespace glboy {
 				 
 				 void main() {
 					 if (standard_point.x * standard_point.x - standard_point.y > 0.0) {
-						 color = vec4(0.6, 0.6, 0.6, 1.0);//
+						 color = vec4(0.6, 0.6, 0.6, 1.0);
 					 } else {
 						 color = vec4(0.0, 1.0, 1.0, 1.0);
 					 }
