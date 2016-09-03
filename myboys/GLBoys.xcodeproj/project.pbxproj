@@ -25,6 +25,7 @@
 		73E7B3C21BE9302800C45C53 /* bezier_triangle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = bezier_triangle.cpp; sourceTree = "<group>"; };
 		73E7B3C31BE93CB200C45C53 /* rotate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = rotate.cpp; sourceTree = "<group>"; };
 		73E7B3C41BEA3B8700C45C53 /* cull_face.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cull_face.cpp; sourceTree = "<group>"; };
+		73E8CB691D7A965B007908DD /* quadratic_bezier.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = quadratic_bezier.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -45,6 +46,7 @@
 				73E7B3C31BE93CB200C45C53 /* rotate.cpp */,
 				7301DA651BC8226D0031D21B /* testing.h */,
 				7301DA641BC8226D0031D21B /* testing.cpp */,
+				73E8CB691D7A965B007908DD /* quadratic_bezier.cpp */,
 				7301DA611BC8226D0031D21B /* CMakeLists.txt */,
 			);
 			path = src;

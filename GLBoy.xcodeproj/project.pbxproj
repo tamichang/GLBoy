@@ -51,6 +51,7 @@
 		73E7B3CF1BEA991C00C45C53 /* Line.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Line.hpp; sourceTree = "<group>"; };
 		73E7B3D01BEA992300C45C53 /* GlowFBO.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GlowFBO.hpp; sourceTree = "<group>"; };
 		73E7B3D11BEA992C00C45C53 /* FBObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FBObject.hpp; sourceTree = "<group>"; };
+		73E8CB681D7A948F007908DD /* QuadraticBezierShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = QuadraticBezierShader.cpp; sourceTree = "<group>"; };
 		73E9EB8719678207004DB096 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,8 +59,8 @@
 		616AAA3A1C64AB3000D9F08F /* parts */ = {
 			isa = PBXGroup;
 			children = (
-				616AAA3B1C64AB6900D9F08F /* Triangle.cpp */,
 				616AAA3C1C64AB6900D9F08F /* Triangle.hpp */,
+				616AAA3B1C64AB6900D9F08F /* Triangle.cpp */,
 			);
 			name = parts;
 			sourceTree = "<group>";
@@ -116,6 +117,7 @@
 				734CB0B31BCE1E870057C845 /* GraphicsPostShader.cpp */,
 				7301DA511BC6EE6B0031D21B /* SimpleLightShader.cpp */,
 				7301DA5E1BC81C830031D21B /* EllipseShader.cpp */,
+				73E8CB681D7A948F007908DD /* QuadraticBezierShader.cpp */,
 				7301DA681BCBD8750031D21B /* BlurShader.cpp */,
 				73E7B3BD1BE5E93300C45C53 /* BlurHorizonShader.cpp */,
 				73E7B3BE1BE60AB000C45C53 /* BlurVerticleShader.cpp */,

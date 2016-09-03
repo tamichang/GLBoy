@@ -48,6 +48,7 @@ namespace glboy {
 		std::shared_ptr<Shader> blur_verticle_shader;
 		std::shared_ptr<Shader> color_cut_shader;
 		std::shared_ptr<Shader> texture_merge_shader;
+		std::shared_ptr<Shader> quadratic_bezier_shader;
 		
 		void culc_projection_matrix();
 		void culc_view_matrix();

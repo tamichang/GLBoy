@@ -115,6 +115,7 @@ namespace glboy {
 		blur_verticle_shader  = std::make_shared<BlurVerticleShader>();
 		color_cut_shader      = std::make_shared<ColorCutShader>();
 		texture_merge_shader  = std::make_shared<TextureMergeShader>();
+		quadratic_bezier_shader = std::make_shared<QuadraticBezierShader>();
 		/*
 		// Enable blending
 		//　テクスチャ使ってるとき、以下をONにするとおかしくなる

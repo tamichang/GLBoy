@@ -160,7 +160,16 @@ namespace glboy {
 		
 		void use_program(Object* object);
 	};
-
+	
+	class QuadraticBezierShader : public Shader
+	{		
+	public:
+		QuadraticBezierShader();
+		~QuadraticBezierShader();
+		
+		void use_program(Object* object);
+	};
+	
 	
 }	//glboy
 

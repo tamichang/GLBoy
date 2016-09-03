@@ -27,6 +27,10 @@ ellipse: build/ellipse.o
 	@mkdir -p bin
 	@echo " $(CC) $^ -o bin/ellipse $(LIB)"; $(CC) $^ -o bin/ellipse $(LIB)
 
+quadratic_bezier: build/quadratic_bezier.o
+	@mkdir -p bin
+	@echo " $(CC) $^ -o bin/quadratic_bezier $(LIB)"; $(CC) $^ -o bin/quadratic_bezier $(LIB)
+
 testing: build/testing.o
 	@mkdir -p bin
 	@echo " $(CC) $^ -o bin/testing $(LIB)"; $(CC) $^ -o bin/testing $(LIB)
