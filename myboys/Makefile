@@ -31,6 +31,10 @@ quadratic_bezier: build/quadratic_bezier.o
 	@mkdir -p bin
 	@echo " $(CC) $^ -o bin/quadratic_bezier $(LIB)"; $(CC) $^ -o bin/quadratic_bezier $(LIB)
 
+bezier_processing_method: build/bezier_processing_method.o
+	@mkdir -p bin
+	@echo " $(CC) $^ -o bin/bezier_processing_method $(LIB)"; $(CC) $^ -o bin/bezier_processing_method $(LIB)
+
 testing: build/testing.o
 	@mkdir -p bin
 	@echo " $(CC) $^ -o bin/testing $(LIB)"; $(CC) $^ -o bin/testing $(LIB)

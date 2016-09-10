@@ -14,6 +14,7 @@
 		7301DA641BC8226D0031D21B /* testing.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = testing.cpp; sourceTree = "<group>"; };
 		7301DA651BC8226D0031D21B /* testing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testing.h; sourceTree = "<group>"; };
 		7301DA661BC8226D0031D21B /* wave_plane01.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = wave_plane01.cpp; sourceTree = "<group>"; };
+		730CE8EF1D83D092004AF270 /* bezier_processing_method.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = bezier_processing_method.cpp; sourceTree = "<group>"; };
 		730DFB9F1B19DF75009C0853 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		730DFBA11B19DF7D009C0853 /* uvtemplate.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = uvtemplate.bmp; sourceTree = "<group>"; };
 		730DFBA21B1A9CEF009C0853 /* memo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = memo; sourceTree = "<group>"; };
@@ -47,6 +48,7 @@
 				7301DA651BC8226D0031D21B /* testing.h */,
 				7301DA641BC8226D0031D21B /* testing.cpp */,
 				73E8CB691D7A965B007908DD /* quadratic_bezier.cpp */,
+				730CE8EF1D83D092004AF270 /* bezier_processing_method.cpp */,
 				7301DA611BC8226D0031D21B /* CMakeLists.txt */,
 			);
 			path = src;

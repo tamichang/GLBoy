@@ -5,6 +5,7 @@ namespace glboy {
 	
 	const std::string vertex_shader =
 		GLSL(330 core,
+				 //#version 330 core  "
 				 layout(location = 0) in vec3 vertexPosition_modelspace;
 				 layout(location = 1) in vec4 vertexColor;
 				 layout(location = 2) in vec2 vertexUV;
@@ -22,6 +23,7 @@ namespace glboy {
 	
 	const std::string fragment_shader =
 		GLSL(330 core,
+				 //#version 330 core  "
 				 in vec4 fragmentColor;
 				 in vec3 standard_point;
 				 out vec4 color;
