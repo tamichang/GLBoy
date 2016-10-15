@@ -113,7 +113,7 @@ int FWPlayer::run() {
 		auto sleep_msec = frame_time - msec;
 		
 		if (sleep_msec > 0) {
-#ifndef WIN32
+#ifndef _WIN32
 			usleep(sleep_msec * 1000);
 #else
 			Sleep(sleep_msec);

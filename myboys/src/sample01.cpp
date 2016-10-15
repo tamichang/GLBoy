@@ -1,4 +1,8 @@
-#include <glfw/fwplayer.hpp>
+#ifdef _WIN32
+	#include <glfw/fwplayer.hpp>
+#else
+	#include <GLBou/fwplayer.hpp>
+#endif
 //#include <GLBoy.hpp>
 
 #include <iostream>
@@ -29,7 +33,7 @@ public:
 		//box->translate(150,-100,0);
 		box->shader = simple_light_shader;
 //		box->set_fill_color(glboy::Color::hsv(226,52,55));
-		/*
+		
 		triangle = Object::create();
 		triangle->texture_id = texture("uvtemplate.bmp");
 		triangle->shader = simple_texture_shader;
@@ -41,7 +45,7 @@ public:
 //		//triangle->translate(100,0,0);
 		triangle->bindVertexData();
 		
-		plane = Object::create();
+		/*plane = Object::create();
 		plane->texture_id = texture("uvtemplate.bmp");
 		plane->shader = simple_texture_shader;
 		float w = width/2.0f;
@@ -52,10 +56,10 @@ public:
 		plane->vertex(w,-h,0,1,0);
 		plane->vertex(w,h,0,1,1);
 		plane->vertex(-w,h,0,0,1);
-		plane->bindVertexData();
+		plane->bindVertexData();*/
 		
 		filter(FILTER::BLUR);
-		*/
+		
 //		std::vector<float> coefficients;
 //		coefficients.assign(kernel, kernel+25);
 //		triangle->shader_params.insert(std::make_pair("coefficients", coefficients));
@@ -95,7 +99,7 @@ public:
 		//LightPower = ypos/10.0f;
 		//LightColor.x = (ypos+300)/600.0f;
 		
-		//triangle->draw();
+		triangle->draw();
 		box->draw();
 		//plane->draw();
 		

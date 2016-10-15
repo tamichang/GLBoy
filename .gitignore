@@ -2,6 +2,12 @@
 build
 lib/*
 
+#visual studio
+.vs/
+*.VC.db
+*.VC.VC.opendb
+x64/
+
 # Ignore any executables
 bin
 

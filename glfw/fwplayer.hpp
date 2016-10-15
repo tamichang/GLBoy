@@ -11,7 +11,8 @@
 
 #include <GLBoy/GLBoy.hpp>
 
-#ifndef WIN32
+#ifndef _WIN32
+	#define GLFW_INCLUDE_NONE
 	#define GLFW_INCLUDE_GLCOREARB
 #endif
 #include <GLFW/glfw3.h>
