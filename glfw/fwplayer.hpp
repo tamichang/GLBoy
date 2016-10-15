@@ -11,7 +11,9 @@
 
 #include <GLBoy/GLBoy.hpp>
 
-#define GLFW_INCLUDE_GLCOREARB
+#ifndef WIN32
+	#define GLFW_INCLUDE_GLCOREARB
+#endif
 #include <GLFW/glfw3.h>
 
 
@@ -20,8 +22,8 @@ public:
 	GLFWwindow* window;
 	
 	int width, height;
-	int _frame_rate;
-	bool frame_rate_changed;
+	int _frame_rate = false;
+	bool frame_rate_changed = false;
 	
 	int run();
 	

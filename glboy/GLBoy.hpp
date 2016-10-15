@@ -277,7 +277,6 @@
 		
 		std::shared_ptr<Shader> shader;
 		
-		// virtualつけないとFBObjectのdrawが呼ばれない（Object型のとき）ハマった...
 		virtual void draw();
 		virtual void bindVertexData();
 //		void rebindVertexData();

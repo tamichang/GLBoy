@@ -23,10 +23,11 @@ namespace glboy {
 	Object::Object() :
 	fill_color(Color::hsv(47,94,99,100)),
 	model_matrix(glm::mat4(1.0f)),
-	primitive_mode(GL_TRIANGLES)
+	primitive_mode(GL_TRIANGLES),
 	//vertex_buffer_data_usage(GL_STATIC_DRAW)
 	// use_texture(false)
-	//need_reculc_mvp(true)
+	wire_frame(false),
+	need_reculc_mvp(false)
 	{
 		LOGV("Object constractor\n");
 		
@@ -206,7 +207,8 @@ namespace glboy {
 		glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
 //		glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(uv_point), &uvs[0], GL_STATIC_DRAW);
 		glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(uv_point), NULL, GL_DYNAMIC_DRAW);
-		glBufferSubData(GL_ARRAY_BUFFER, 0, uvs.size() * sizeof(uv_point), &uvs[0]);
+		if (uvs.size() > 0)
+			glBufferSubData(GL_ARRAY_BUFFER, 0, uvs.size() * sizeof(uv_point), &uvs[0]);
 		
 		glEnableVertexAttribArray(2);
 		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
@@ -214,7 +216,8 @@ namespace glboy {
 		glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
 //		glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(normal_point), &normals[0], GL_STATIC_DRAW);
 		glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(normal_point), NULL, GL_DYNAMIC_DRAW);
-		glBufferSubData(GL_ARRAY_BUFFER, 0, normals.size() * sizeof(normal_point), &normals[0]);
+		if (normals.size() > 0)
+			glBufferSubData(GL_ARRAY_BUFFER, 0, normals.size() * sizeof(normal_point), &normals[0]);
 		
 		glEnableVertexAttribArray(3);
 		glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);

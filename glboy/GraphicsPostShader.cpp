@@ -24,7 +24,7 @@ namespace glboy {
 //    out vec4 fragmentColor;
 		out vec2 UV;
 		void main() {
-			//ESだとgl_Position.xyzだけを埋めても全く作画されない！！
+			//in ES, only fill gl_Position.xyz can't draw anything!
 		  gl_Position =  vec4(vertexPosition_modelspace,1);
 		  UV = vertexUV;
 //      fragmentColor = vertexColor;
@@ -39,7 +39,7 @@ namespace glboy {
 		out vec4 color;
 		uniform sampler2D myTextureSampler;
 		void main() {
-		 color = vec4(texture( myTextureSampler, UV ).xyz, 1.0f);	//vec4を返さないとAndroidでは表示されなかった！vec3じゃだめ
+		 color = vec4(texture( myTextureSampler, UV ).xyz, 1.0f);	//return vec4 in Android! vec3 not work
 //			color = vec4(1.0f,1.0f,1.0f,1.0f);
 		}
 	);

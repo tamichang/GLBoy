@@ -3,15 +3,33 @@
 
 #define DEBUG 1
 
-#ifdef __ANDROID__
-	#include <android/log.h>
-	#include <GLES3/gl3.h>
-#elifdef TARGET_OS_IPHONE
-	#include <OpenGLES/ES3/gl.h>
-	#include <OpenGLES/ES3/glext.h>
-#else
-	#include <OpenGL/gl3.h>
-#endif
+//#ifdef __ANDROID__
+//	#include <android/log.h>
+//	#include <GLES3/gl3.h>
+//#elifdef TARGET_OS_IPHONE
+//	#include <OpenGLES/ES3/gl.h>
+//	#include <OpenGLES/ES3/glext.h>
+//#elifdef _WIN32
+//	#include <gl.h>
+//#elifdef __APPLE__
+//	#include <OpenGL/gl3.h>
+//#endif
+
+#define GL_GLEXT_PROTOTYPES
+#define GLFW_INCLUDE_NONE
+
+#include <windows.h>
+//#include <gl/gl.h>
+//#include <gl/glcorearb.h>
+//#include <gl/glu.h>
+//#include <gl/glext.h>
+//#include <gl/wglext.h>
+#include <gl/glew.h>
+//#include <gl.h>
+
+
+
+
 
 
 #ifdef __ANDROID__

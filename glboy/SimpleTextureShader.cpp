@@ -39,7 +39,7 @@ namespace glboy {
 		uniform sampler2D myTextureSampler;
 		void main() {
 		// Output color = color of the texture at the specified UV
-			color = texture( myTextureSampler, UV ).xyz;	//vec3でもいけるぞ？
+			color = texture( myTextureSampler, UV ).xyz;
 //			color = vec4(0.9f,0.2f,0.6f,1.0f);
 		}
 	);

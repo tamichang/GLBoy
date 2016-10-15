@@ -47,7 +47,7 @@ namespace glboy {
 		
 		std::shared_ptr<Shader> shader;
 		
-		// virtualつけないとFBObjectのdrawが呼ばれない（Object型のとき）ハマった...
+		// if not added virtual, FBObject.draw doesnt called
 		virtual void draw();
 		virtual void bindVertexData();
 //		void rebindVertexData();

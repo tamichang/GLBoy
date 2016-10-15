@@ -83,14 +83,14 @@ namespace glboy {
 		//		// Accept fragment if it closer to the camera than the former one
 		glDepthFunc(GL_LEQUAL);
 		
-		// gl_pointsizeを有効にするため
+		// for enable gl_pointsize
 		//		glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
 		
 		// Cull triangles which normal is not towards the camera
 		//glEnable(GL_CULL_FACE);
 		
 		// Enable blending
-		//　テクスチャ使ってるとき、以下をONにするとおかしくなる
+		//　when using texture this ON make wrong 
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		

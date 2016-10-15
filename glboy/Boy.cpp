@@ -6,6 +6,7 @@
 #include "Object.hpp"
 
 #include <iostream>
+#define _USE_MATH_DEFINES
 #include <math.h>
 
 using std::vector;
@@ -79,7 +80,7 @@ namespace glboy {
 	{
 		LOGV("GLBOY constractor\n");
 		GLBoy::instance = this;
-		std::srand(std::time(NULL));
+		//std::srand(std::time(NULL));
 	}
 	
 	void GLBoy::init(Player* player, int w, int h) {
@@ -99,7 +100,6 @@ namespace glboy {
 		// Accept fragment if it closer to the camera than the former one
 		glDepthFunc(GL_LEQUAL);
 		
-		// gl_pointsizeを有効にするため
 		glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
 		*/
 		// Cull triangles which normal is not towards the camera
@@ -118,7 +118,6 @@ namespace glboy {
 		quadratic_bezier_shader = std::make_shared<QuadraticBezierShader>();
 		/*
 		// Enable blending
-		//　テクスチャ使ってるとき、以下をONにするとおかしくなる
 		//	glEnable(GL_BLEND);
 		//	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
@@ -244,7 +243,7 @@ namespace glboy {
 	void GLBoy::render() {
 		clear_background();
 		
-		//描画途中でのresizeをさせないため
+		//stop resize between drawing
 		if (should_resize) {
 			resize();
 			should_resize = false;

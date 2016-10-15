@@ -19,7 +19,6 @@ namespace glboy {
 		out vec2 UV;
 		
 		void main() {
-			//ESだとgl_Position.xyzだけを埋めても全く作画されない！！
 			gl_Position = vec4(vertexPosition_modelspace, 1.0f);
 			UV = vertexUV;
 		}

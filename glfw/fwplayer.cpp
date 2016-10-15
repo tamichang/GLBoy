@@ -5,7 +5,9 @@
 #include <cmath>
 
 #include <chrono>
-#include <unistd.h>
+#ifndef _WIN32
+	#include <unistd.h>
+#endif
 
 
 //using namespace std;
@@ -42,14 +44,14 @@ FWPlayer::FWPlayer() : width(800), height(800)
 	glfwSwapInterval(1);
 	glfwMakeContextCurrent(window);
 	
+#ifdef _WIN32
 	// Initialize GLEW
-	/*
-	 glewExperimental = true; // Needed for core profile
-	 if (glewInit() != GLEW_OK) {
+	glewExperimental = true; // Needed for core profile
+	if (glewInit() != GLEW_OK) {
 		fprintf(stderr, "Failed to initialize GLEW\n");
-		return -1;
-	 }*/
-	
+		throw std::runtime_error("error");
+	}
+#endif
 	// Ensure we can capture the escape key being pressed below
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 	
@@ -92,7 +94,7 @@ int FWPlayer::run() {
 	int frame = 1;
 	
 	int frame_rate = 60;
-	int frame_span = 1000 / frame_rate;	//ミリ秒
+	int frame_span = 1000 / frame_rate;	//millsecond
 	
 	while (!glfwWindowShouldClose(window)) {
 		glboy->frame_count++;
@@ -104,20 +106,20 @@ int FWPlayer::run() {
 		/* Poll for and process events */
 		glfwPollEvents();
 		
-		auto end = std::chrono::system_clock::now();       // 計測終了時刻を保存
-		auto dur = end - start;        // 要した時間を計算
+		auto end = std::chrono::system_clock::now();       // save end time
+		auto dur = end - start;        // expend time
 		auto msec = std::chrono::duration_cast<std::chrono::milliseconds>(dur).count();
-		// 要した時間をミリ秒（1/1000秒）に変換して表示
 		int frame_time = frame * frame_span;
 		auto sleep_msec = frame_time - msec;
 		
 		if (sleep_msec > 0) {
+#ifndef WIN32
 			usleep(sleep_msec * 1000);
+#else
+			Sleep(sleep_msec);
+#endif
 		}
 		
-//		end = std::chrono::system_clock::now();       // 計測終了時刻を保存
-//		dur = end - start;        // 要した時間を計算
-//		msec = std::chrono::duration_cast<std::chrono::milliseconds>(dur).count();
 		
 //		if(msec >= 1000) {
 		if (frame == frame_rate) {
@@ -141,7 +143,6 @@ int FWPlayer::run() {
 
 FWPlayer::~FWPlayer() {
 	std::cout << "FWPlayer destractor" << std::endl;
-	//delete glboy;//	これはバグ、これをすると、２度glboyのリリースが実行される。
 }
 
 void FWPlayer::mouse_position(GLfloat& xpos, GLfloat& ypos)
