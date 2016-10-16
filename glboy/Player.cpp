@@ -8,6 +8,8 @@ namespace glboy {
 	
 	Player::~Player() {}
 	
+	bool Player::init() { return true; }
+
 	int Player::run() {return 0;}
 	
 	void Player::mouse_position(float& xpos, float& ypos) {}

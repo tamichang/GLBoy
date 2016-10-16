@@ -1,7 +1,7 @@
 #ifdef _WIN32
 #include <glfw/fwplayer.hpp>
 #else
-#include <GLBou/fwplayer.hpp>
+#include <GLBoy/fwplayer.hpp>
 #endif
 
 #include <iostream>
