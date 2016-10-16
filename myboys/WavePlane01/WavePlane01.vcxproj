@@ -19,12 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="sample01.cpp" />
+    <ClCompile Include="wave_plane01.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{23F24264-52B0-4D4D-81D7-C0D23E43C86C}</ProjectGuid>
+    <ProjectGuid>{9699A454-861B-4C84-9D84-EF77B5324CFD}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Sample01</RootNamespace>
+    <RootNamespace>WavePlane01</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

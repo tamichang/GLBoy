@@ -19,13 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="sample01.cpp" />
+    <ClCompile Include="bezier.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{23F24264-52B0-4D4D-81D7-C0D23E43C86C}</ProjectGuid>
+    <ProjectGuid>{236C01E6-B0F0-4653-A4A5-0212E00DD46E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Sample01</RootNamespace>
+    <RootNamespace>Bezier</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>Bezier</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
