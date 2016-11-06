@@ -22,12 +22,12 @@ namespace glboy {
 	
 	Object::Object() :
 	fill_color(Color::hsv(47,94,99,100)),
+	need_reculc_mvp(false),
 	model_matrix(glm::mat4(1.0f)),
 	primitive_mode(GL_TRIANGLES),
 	//vertex_buffer_data_usage(GL_STATIC_DRAW)
 	// use_texture(false)
-	wire_frame(false),
-	need_reculc_mvp(false)
+	wire_frame(false)
 	{
 		LOGV("Object constractor\n");
 		

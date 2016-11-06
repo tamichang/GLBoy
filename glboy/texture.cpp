@@ -21,12 +21,15 @@ namespace glboy {
 		unsigned char * data;
 		
 		// Open the file
+#if defined(_WIN32)
 		FILE *file;
 		errno_t error;
 		if ((error = fopen_s(&file, imagepath, "rb")) != 0) {
-		//FILE * file = fopen(imagepath,"rb");
-		//if (!file)
-		//{
+#else
+		FILE * file = fopen(imagepath,"rb");
+		if (!file)
+		{
+#endif
 			LOGE("%s could not be opened. Are you in the right directory ? Don't forget to read the FAQ !\n", imagepath);
 			getchar(); return 0;
 		}
