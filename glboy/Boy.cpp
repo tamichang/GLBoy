@@ -171,7 +171,9 @@ namespace glboy {
 		// culc projection matrix
 		float fov = M_PI / 3.0f;
 		float cameraZ = (height/2.0f) / glm::tan(fov/2.0f);
-		projection_matrix = glm::perspective(fov /*glm::degrees(fov)*/, (float)width/(float)height, cameraZ/10.0f, cameraZ*10.0f);
+		nearClip = cameraZ / 10.0f;
+		farClip = cameraZ * 10.0f;
+		projection_matrix = glm::perspective(fov /*glm::degrees(fov)*/, (float)width/(float)height, nearClip, farClip);
 	}
 	
 	void GLBoy::culc_view_matrix()

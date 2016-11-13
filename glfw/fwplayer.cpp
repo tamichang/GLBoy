@@ -41,7 +41,7 @@ FWPlayer::FWPlayer() : width(800), height(800)
 		throw std::runtime_error("error");
 	}
 	
-	glfwSwapInterval(1);
+	glfwSwapInterval(0);
 	glfwMakeContextCurrent(window);
 	
 #ifdef _WIN32
@@ -105,11 +105,11 @@ int FWPlayer::run() {
 		glfwSwapBuffers(window);
 		/* Poll for and process events */
 		glfwPollEvents();
-		
+
 		auto end = std::chrono::system_clock::now();       // save end time
 		auto dur = end - start;        // expend time
 		auto msec = std::chrono::duration_cast<std::chrono::milliseconds>(dur).count();
-		int frame_time = frame * frame_span;
+		/*int frame_time = frame * frame_span;
 		auto sleep_msec = frame_time - msec;
 		
 		if (sleep_msec > 0) {
@@ -118,21 +118,23 @@ int FWPlayer::run() {
 #else
 			Sleep(sleep_msec);
 #endif
-		}
+		}*/
 		
 		
-//		if(msec >= 1000) {
-		if (frame == frame_rate) {
+		if(msec >= 1000) {
+		//if (frame == frame_rate) {
 			std::cout << "Frame Rate : " << frame << " msec: " << msec << std::endl;
-			start = end;
-			frame = 1;
+			//start = end;
+			start = start + std::chrono::milliseconds(1000);
+			frame = 0;
 			
-			if (frame_rate_changed) {
+			/*if (frame_rate_changed) {
 				frame_rate = _frame_rate;
 				frame_span = 1000 / frame_rate;
 				frame_rate_changed = false;
-			}
+			}*/
 		}
+		
 		frame++;
 	}
 	

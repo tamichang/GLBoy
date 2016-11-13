@@ -58,7 +58,7 @@ public:
 		plane->vertex(-w,h,0,0,1);
 		plane->bindVertexData();*/
 		
-		filter(FILTER::BLUR);
+		//filter(FILTER::BLUR);
 		
 //		std::vector<float> coefficients;
 //		coefficients.assign(kernel, kernel+25);
@@ -88,7 +88,7 @@ public:
 //		camera_xy(xpos, ypos);
 		
 //		GLBoy* boy = GLBoy::instance;
-		camera_to_mouse();
+		//camera_to_mouse();
 		
 		//box->move(xpos/100.0, ypos/100.0, 0);
 		

@@ -29,6 +29,8 @@ namespace glboy {
 		std::unique_ptr<Object> quad_paste_obj;
 		
 		std::vector<std::shared_ptr<FBObject>> post_processes;
+
+		GLuint final_rendered_texture_id;
 		
 		Graphics(float x, float y, int w, int h);
 		~Graphics();

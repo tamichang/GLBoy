@@ -54,6 +54,7 @@ namespace glboy {
 		void culc_view_matrix();
 		
 		int width, height;
+		float nearClip, farClip;
 		float camera_x, camera_y;
 		std::shared_ptr<Color> background_color;
 		std::shared_ptr<Color> glow_color;

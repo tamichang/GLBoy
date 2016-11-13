@@ -17,7 +17,7 @@
 
 namespace glboy {
 
-	Graphics::Graphics(float x, float y, int w, int h)
+	Graphics::Graphics(float x, float y, int w, int h) : final_rendered_texture_id(0)
 	{
 		LOGV("Graphics constructor\n");
 		
@@ -237,6 +237,8 @@ namespace glboy {
 		
 		quad_paste_obj->set_texture_id(rendered_texture_id);
 		quad_paste_obj->draw();
+		//std::cout << rendered_texture_id << std::endl;
+		final_rendered_texture_id = rendered_texture_id;
 		
 //		poster->texture_id = rendered_texture_id;
 //		poster->draw();

@@ -25,8 +25,16 @@ public:
 
 	vr::IVRSystem *m_pHMD;
 	vr::IVRRenderModels *m_pRenderModels;
+	vr::TrackedDevicePose_t m_rTrackedDevicePose[vr::k_unMaxTrackedDeviceCount];
 	std::string m_strDriver;
 	std::string m_strDisplay;
+
+	uint32_t vrTexWidth;
+	uint32_t vrTexHeight;
+
+	glm::mat4 projectionLeft, projectionRight;
+	glm::mat4 eyePositionLeft, eyePositionRight;
+	glm::mat4 hmdPosition;
 	
 	int width, height;
 	int _frame_rate = false;
@@ -46,6 +54,10 @@ public:
 //	void set_glboy(glboy::GLBoy::ptr glboy);
 	
 	void frame_rate(int rate);
+
+	glm::mat4 GetHMDMatrixProjectionEye(vr::Hmd_Eye nEye);
+	glm::mat4 GetHMDMatrixPoseEye(vr::Hmd_Eye nEye);
+	glm::mat4 ConvertSteamVRMatrixToMatrix4(const vr::HmdMatrix34_t &matPose);
 };
 
 #endif
