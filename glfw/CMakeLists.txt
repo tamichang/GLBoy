@@ -4,16 +4,16 @@
 cmake_minimum_required(VERSION 3.0)
 
 #プロジェクト名
-PROJECT(glfw)
+PROJECT(glboyfwplayer)
 
 add_definitions("-g -Wall -std=c++11")
 include_directories(../)
 include_directories(/usr/local/include)
 
 #静的ライブラリの生成
-ADD_LIBRARY(glfw STATIC fwplayer.cpp)
+ADD_LIBRARY(glboyfwplayer STATIC fwplayer.cpp)
 
-INSTALL(TARGETS glfw ARCHIVE DESTINATION lib)
+INSTALL(TARGETS glboyfwplayer ARCHIVE DESTINATION lib)
 
 #静的ライブラリ用ヘッダーファイルのインストール指定
 INSTALL(FILES FWPlayer.hpp DESTINATION include/GLBoy)

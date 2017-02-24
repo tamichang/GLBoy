@@ -93,7 +93,7 @@ namespace glboy {
 		void render();
 		virtual void draw();
 		
-		float map(float value, float start1, float stop1, float start2, float stop2);
+		//float map(float value, float start1, float stop1, float start2, float stop2);
 		float rand();
 		float rand(float bottom, float top);
 		

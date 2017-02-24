@@ -30,7 +30,7 @@ public:
 	
 	void setup() {
 		
-		set_background_color(0,0,100);
+		set_background_color(0,0,0);
 		
 		obj = Object::create();
 		
@@ -125,6 +125,8 @@ public:
 		
 		
 		obj->bindVertexData();
+        glow_color = Color::hsv(47,94,99);
+        filter(FILTER::GLOW);
 		
 	}
 	

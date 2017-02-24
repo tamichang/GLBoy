@@ -14,7 +14,7 @@ public:
 	void setup() {
 		set_background_color(0,0,0);
 		
-		ellipse = Object::ellipse(0,0,0,30,30);
+		ellipse = Object::ellipse(0,0,0,300,300);
 		
 		filter(FILTER::BLUR);
 	}

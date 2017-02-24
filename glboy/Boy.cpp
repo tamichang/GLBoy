@@ -259,10 +259,10 @@ namespace glboy {
 	
 	void GLBoy::draw() {}
 	
-	float GLBoy::map(float value, float start1, float stop1, float start2, float stop2)
-	{
-		return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
-	}
+//	float GLBoy::map(float value, float start1, float stop1, float start2, float stop2)
+//	{
+//		return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
+//	}
 	
 	float GLBoy::rand()
 	{

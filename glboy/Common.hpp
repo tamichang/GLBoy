@@ -109,6 +109,8 @@ namespace glboy {
 	const char * GetGLErrorString(GLenum error);
 	
 	void DebugOutputCallback();
+    
+    float map(float value, float start1, float stop1, float start2, float stop2);
 	
 }
 

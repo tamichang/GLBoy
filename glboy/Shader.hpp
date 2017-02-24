@@ -107,7 +107,7 @@ namespace glboy {
 	class BlurShader : public Shader
 	{
 	protected:
-		GLint coefficients_id, offset_id, power_id;
+		GLint coefficients_id, offset_id, power_id, blur_array_size_id;
 		float kernel[25];
 		
 	public:
@@ -120,7 +120,8 @@ namespace glboy {
 	
 	class BlurHorizonShader : public BlurShader
 	{
-		float kernel[7];
+//        float kernel[21];
+		float *kernel;
 	public:
 		BlurHorizonShader();
 		~BlurHorizonShader();
@@ -131,7 +132,8 @@ namespace glboy {
 	
 	class BlurVerticleShader : public BlurShader
 	{
-		float kernel[7];
+//		float kernel[21];
+        float *kernel;
 	public:
 		BlurVerticleShader();
 		~BlurVerticleShader();

@@ -7,7 +7,7 @@ OBJECTS := $(patsubst src/%, build/%, $(SOURCES:.cpp=.o))
 
 CFLAGS := -g -Wall -std=c++11
 
-LIB := -L /usr/local/lib -lglfw3 -lglew -lglboy -lglfw -framework OpenGL -framework IOKit -framework Cocoa
+LIB := -L /usr/local/lib -lglfw -lglew -lglboy -lglboyfwplayer -framework OpenGL -framework IOKit -framework Cocoa
 INC := -I include -I /usr/local/include
 
 all: sample01 wave_plane01 ellipse testing

@@ -1,14 +1,18 @@
 #include "Shader.hpp"
 //#include "GLBoy.hpp"
 #include "Object.hpp"
+#include <math.h>
 //#include <glm/glm.hpp>
 //#include <glm/gtc/matrix_transform.hpp>
 //#include <iostream>
 //#include <string>
-
+#include <iostream>
 
 namespace glboy {
 	
+    const int blur_length = 10;
+    const int blur_array_size = blur_length * 2 + 1;
+    
 	const std::string vertex_shader = GLSL(330 core,
 		//#version 330 core
 		layout(location = 0) in vec3 vertexPosition_modelspace;
@@ -28,18 +32,20 @@ namespace glboy {
 		//#version 330 core
 		in vec2 UV;
 		uniform sampler2D sampler;
-		uniform float coefficients[7];
-		uniform vec2 offset;
-	  uniform float power;
-		out vec4 color;
+        uniform float coefficients[100];
+        uniform vec2 offset;
+        uniform float power;
+        uniform int blur_array_size;
+        out vec4 color;
+
 		
 		void main() {
 			float left = UV.s;
-			float top  = UV.t - offset.y - offset.y - offset.y;
+			float top  = UV.t - offset.y * (blur_array_size/2);
 			vec2 tc = vec2(left, top);
 			vec4 c = vec4(0, 0, 0, 0);
 	
-			for (int i=0; i<coefficients.length(); i++) {
+			for (int i=0; i<blur_array_size; i++) {
 				c += coefficients[i] * texture(sampler, tc); tc.y += offset.y;
 			}
 			
@@ -58,6 +64,7 @@ namespace glboy {
 		coefficients_id = glGetUniformLocation(shader_id, "coefficients");
 		offset_id = glGetUniformLocation(shader_id, "offset");
 		power_id  = glGetUniformLocation(shader_id, "power");
+        blur_array_size_id = glGetUniformLocation(shader_id, "blur_array_size");
 		
 //		float _kernel[25] =
 //		{
@@ -67,20 +74,36 @@ namespace glboy {
 //			4, 16, 24, 16, 4,
 //			1, 4, 6, 4, 1,
 //		};
+        
+        kernel = new float[blur_array_size];
+        float myu = 0;
+        float sigma2 = 5;
+        for(int i=0; i<blur_array_size; i++) {
+            float x = map(i,0,blur_array_size-1,-5,5);
+            float y = 1/sqrt(M_PI*2*sigma2) * exp(-1*pow(x-myu,2)/(2*sigma2));
+            std::cout << y << std::endl;
+            kernel[i] = y;
+        }
 		
-		float _kernel[7] =
-		{
-			1,1,1,1,1,1,1
-		};
-		
-		memcpy(kernel, _kernel, sizeof(_kernel));
-		
-		// Normalize kernel coefficients
-		float sum = 0;
-		for (int c = 0; c < 7; c++)
-			sum += kernel[c];
-		for (int c = 0; c < 7; c++)
-			kernel[c] /= sum;
+//        float _kernel[21] =
+//        {
+//            //			1,1,1,1,1,1,1
+//            //          0.016216, 0.054054, 0.1216216, 0.1945946, 0.227027, 0.1945946, 0.1216216, 0.054054, 0.016216
+//            1,1,1,1,1,
+//            1,1,1,1,1,
+//            1,1,1,1,1,
+//            1,1,1,1,1,
+//            1
+//        };
+//        
+//        memcpy(kernel, _kernel, sizeof(_kernel));
+//        
+//        // Normalize kernel coefficients
+//        float sum = 0;
+//        for (int c = 0; c < 21; c++)
+//            sum += kernel[c];
+//        for (int c = 0; c < 21; c++)
+//            kernel[c] /= sum;
 		
 		
 	}
@@ -94,7 +117,7 @@ namespace glboy {
 		glBindTexture(GL_TEXTURE_2D, obj->texture_id);
 		glUniform1i(sampler_id, 0);
 		
-		glUniform1fv(coefficients_id, 7, kernel);
+		glUniform1fv(coefficients_id, blur_array_size, kernel);
 		
 		std::vector<float> size = obj->shader_params.find("size")->second;
 		std::vector<float> interval = obj->shader_params.find("interval")->second;
@@ -104,7 +127,7 @@ namespace glboy {
 		
 		std::vector<float> power = obj->shader_params.find("power")->second;
 		glUniform1f(power_id, power[0]);
-		
+		glUniform1i(blur_array_size_id, blur_array_size);
 	}
 	
 	
@@ -112,6 +135,7 @@ namespace glboy {
 	{
 		LOGV("BlurVerticleShader destructor\n");
 		glDeleteProgram(shader_id);
+        delete [] kernel;
 	}
 	
 	

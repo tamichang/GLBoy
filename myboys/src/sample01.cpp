@@ -1,7 +1,7 @@
 #ifdef _WIN32
 	#include <glfw/fwplayer.hpp>
 #else
-	#include <GLBou/fwplayer.hpp>
+	#include <GLBoy/fwplayer.hpp>
 #endif
 //#include <GLBoy.hpp>
 
@@ -31,7 +31,7 @@ public:
 		box = Object::box(200);
 		box->bindVertexData();
 		//box->translate(150,-100,0);
-		box->shader = simple_light_shader;
+//		box->shader = simple_light_shader;
 //		box->set_fill_color(glboy::Color::hsv(226,52,55));
 		
 		triangle = Object::create();
@@ -58,7 +58,9 @@ public:
 		plane->vertex(-w,h,0,0,1);
 		plane->bindVertexData();*/
 		
-		filter(FILTER::BLUR);
+//		filter(FILTER::BLUR);
+        glow_color = Color::hsv(47,94,99);
+        filter(FILTER::GLOW);
 		
 //		std::vector<float> coefficients;
 //		coefficients.assign(kernel, kernel+25);

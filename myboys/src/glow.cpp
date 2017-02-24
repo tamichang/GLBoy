@@ -21,10 +21,13 @@ class ColorCut : public glboy::GLBoy {
 public:
 	
 	Object::ptr obj;
+    Object::ptr box;
 	
 	void setup() {
 		
 		//set_background_color(0,0,100);
+        box = Object::box(200);
+        box->bindVertexData();
 		
 		obj = Object::create();
 		obj->fill(188,99,99);
@@ -47,7 +50,7 @@ public:
 		
 //		camera_to_mouse();
 		
-		
+//		box->draw();
 		obj->draw();
 	}
 	
