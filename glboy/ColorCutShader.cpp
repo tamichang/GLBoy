@@ -28,7 +28,7 @@ namespace glboy {
 		//#version 330 core
 		in vec2 UV;
 		uniform sampler2D sampler;
-	  uniform vec4 cutting_color;
+	    uniform vec4 cutting_color;
 		out vec4 color;
 		
 		void main() {

@@ -30,7 +30,7 @@ public:
 	
 	void setup() {
 		
-		set_background_color(0,0,0);
+		set_background_color(0,0,70);
 		
 		obj = Object::create();
 		
